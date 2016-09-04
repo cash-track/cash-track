@@ -6,8 +6,7 @@ composer.lock
 .idea/
 .phpstorm.meta.php
 _ide_helper.php
-public/css/*
-public/js/*
+public/dist/*
 
 # Laravel 4 specific
 bootstrap/compiled.php
