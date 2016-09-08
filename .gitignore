@@ -1,6 +1,5 @@
 vendor/
 node_modules/
-composer.lock
 
 # Developement
 .idea/
@@ -8,6 +7,7 @@ composer.lock
 _ide_helper.php
 public/css/*
 public/js/*
+composer.lock
 
 # Laravel 4 specific
 bootstrap/compiled.php
