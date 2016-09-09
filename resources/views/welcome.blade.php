@@ -8,7 +8,7 @@
         <title>Finance</title>
 
         <!-- Styles -->
-        <link href="{{ elixir('/css/app.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/dist/styles.css') }}" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -38,6 +38,6 @@
 
         <example></example>
 
-    <script src="{{ elixir('/js/app.js') }}"></script>
+    <script src="{{ asset('/dist/scripts.js') }}"></script>
     </body>
 </html>

@@ -5,8 +5,8 @@ node_modules/
 .idea/
 .phpstorm.meta.php
 _ide_helper.php
-public/css/*
-public/js/*
+public/dist/*
+!public/dist/.gitkeep
 composer.lock
 
 # Laravel 4 specific
