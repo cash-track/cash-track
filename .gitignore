@@ -1,12 +1,13 @@
 vendor/
 node_modules/
-composer.lock
 
 # Developement
 .idea/
 .phpstorm.meta.php
 _ide_helper.php
 public/dist/*
+!public/dist/.gitkeep
+composer.lock
 
 # Laravel 4 specific
 bootstrap/compiled.php
