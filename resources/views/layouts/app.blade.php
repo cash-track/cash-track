@@ -4,16 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('/dist/styles.css') }}" rel="stylesheet">
 
-    <!-- Scripts -->
+    <!-- public scripts -->
     <script>
         window.Laravel = <?= json_encode([
             'csrfToken' => csrf_token(),
@@ -34,9 +31,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -76,6 +71,10 @@
     </nav>
 
     @yield('content')
+
+    <div class="container footer">
+        Copyright &copy; {{ date('Y') }} <a href="{{ url('/') }}">Finance</a>
+    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('/dist/scripts.js') }}"></script>
