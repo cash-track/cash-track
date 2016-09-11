@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-faded navbar-main">
     <div class="container">
         <div class="hidden-sm-up">
-            <button class="navbar-toggler pull-left hidden-sm-up"
+            <button class="navbar-toggler pull-right hidden-sm-up"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navigation-main"

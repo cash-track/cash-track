@@ -10,3 +10,8 @@ Vue.component('example', example);
 window.app = new Vue({
     el: 'body'
 });
+
+// bind main hooks
+$(function(){
+	$('[data-toggle="tooltip"]').tooltip()
+});
