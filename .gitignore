@@ -7,6 +7,9 @@ node_modules/
 _ide_helper.php
 public/dist/*
 !public/dist/.gitkeep
+public/dist/fonts/*
+!public/dist/fonts/
+!public/dist/fonts/.gitkeep
 composer.lock
 
 # Laravel 4 specific
@@ -14,7 +17,8 @@ bootstrap/compiled.php
 app/storage/
 
 # Laravel 5 & Lumen specific
-bootstrap/cache/
+bootstrap/cache/*
+!bootstrap/cache/.gitkeep
 .env.*.php
 .env.php
 .env
