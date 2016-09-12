@@ -68,6 +68,7 @@
                             <i class="fa fa-plus-circle trans-operation text-success" aria-hidden="true"></i>
                         @endif
 
+                        <span class="@if($i % 2) text-danger @else text-success @endif trans-amount">305</span>
                         <span>Trans title</span>
                     </div>
                 </div>
