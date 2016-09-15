@@ -13,5 +13,9 @@ window.app = new Vue({
 
 // bind main hooks
 $(function(){
-	$('[data-toggle="tooltip"]').tooltip()
+	$('[data-toggle="tooltip"]').tooltip();
+
+	$('.trans-header, .trans-operation').on('click', function(e){
+		$(this).closest('.trans-item').toggleClass('active');
+	});
 });
