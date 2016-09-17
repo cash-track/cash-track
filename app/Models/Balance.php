@@ -34,7 +34,7 @@ class Balance extends Model
 	 */
 	public function trans()
 	{
-		return $this->hasMany('App\Models\Trans')->get();
+		return $this->hasMany('App\Models\Trans')->orderBy('created_at', 'desc')->get();
 	}
 
 	/**
@@ -44,6 +44,40 @@ class Balance extends Model
 	 */
 	public function users()
 	{
-		return $this->belongsToMany('App\Models\User', 'user_balance', 'balance_id', 'user_id')->get();
+		return $this->belongsToMany('App\Models\User', 'user_balance', 'balance_id', 'user_id');
+	}
+
+	/**
+	 * Get all of credited of balance
+	 *
+	 * @return int
+	 */
+	public function getCredit()
+	{
+		$trans = $this->trans()->where('type', '=', '-')->sum('amount');
+		return intval($trans, 10);
+	}
+
+	/**
+	 * Get all of debited of balance
+	 *
+	 * @return int
+	 */
+	public function getDebit()
+	{
+		$trans = $this->trans()->where('type', '=', '+')->sum('amount');
+		return intval($trans, 10);
+	}
+
+	/**
+	 * Calculate summary of balance
+	 *
+	 * @return int
+	 */
+	public function getBalance()
+	{
+		$credit = $this->getCredit();
+		$debit = $this->getDebit() + $this->amount;
+		return $debit - $credit;
 	}
 }

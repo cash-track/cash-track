@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/balance', function(){
-	return view('balance');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+
+Route::get('/dashboard', 'ProfileController@index');
+
+Route::resource('/balance', 'BalanceController');
+Route::resource('/trans', 'TransController');

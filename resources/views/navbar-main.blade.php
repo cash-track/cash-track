@@ -18,7 +18,7 @@
 
             <ul class="nav navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
@@ -34,16 +34,28 @@
             <ul class="nav navbar-nav pull-sm-right">
                 @if (Auth::guest())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/login') }}">Login</a>
+                        <a class="nav-link" href="{{ url('/login') }}">Sign-in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/register') }}">Register</a>
+                        <a class="nav-link" href="{{ url('/register') }}">Sign-up</a>
                     </li>
                 @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           id="login-dropdown"
+                           href="#"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            {{ Auth::user()->name }}
                         </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="login-dropdown">
+                            <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
+                            <form action="{{ url('/logout') }}" method="POST">
+                                {{ csrf_field() }}
+                                <button class="dropdown-item" href="#">Logout</button>
+                            </form>
+                        </div>
                     </li>
                 @endif
             </ul>
