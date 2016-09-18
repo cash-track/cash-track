@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{--*/ $page = 'balance.show' /*--}}
+@section('title') Balance @endsection
+
 @section('content')
     <div class="container balance-page">
 

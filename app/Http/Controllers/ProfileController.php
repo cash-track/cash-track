@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Balance;
+use Auth;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+	/**
+	 * ProfileController constructor.
+	 */
     public function __construct() {
     	$this->middleware('auth');
     }
@@ -13,11 +17,11 @@ class ProfileController extends Controller
 	/**
 	 * Show the application dashboard
 	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @return View
 	 */
 	public function index()
 	{
-		$balances = Balance::all();
+		$balances = Auth::user()->balances();
 		return view('profile.dashboard', compact('balances'));
 	}
 }

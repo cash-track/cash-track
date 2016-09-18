@@ -10,34 +10,25 @@
                     aria-label="Toggle navigation">
                 &#9776;
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">Finance</a>
+            <a class="navbar-brand" href="{{ route('homepage') }}">Finance</a>
             <div class="clearfix"></div>
         </div>
         <div class="collapse navbar-toggleable-xs" id="navigation-main">
-            <a class="navbar-brand hidden-xs-down" href="{{ url('/') }}">Finance</a>
+            <a class="navbar-brand hidden-xs-down" href="{{ route('homepage') }}">Finance</a>
 
             <ul class="nav navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav pull-sm-right">
                 @if (Auth::guest())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/login') }}">Sign-in</a>
+                        <a class="nav-link" href="{{ route('login') }}">Sign in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/register') }}">Sign-up</a>
+                        <a class="nav-link" href="{{ url('/register') }}">Sign up</a>
                     </li>
                 @else
                     <li class="nav-item dropdown">
@@ -50,10 +41,19 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="login-dropdown">
-                            <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                Dashboard
+                            </a>
+                            <a class="dropdown-item" href="{{ route('balance.create') }}">
+                                New balance
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                Profile
+                            </a>
                             <form action="{{ url('/logout') }}" method="POST">
                                 {{ csrf_field() }}
-                                <button class="dropdown-item" href="#">Logout</button>
+                                <button class="dropdown-item" href="#">Sign out</button>
                             </form>
                         </div>
                     </li>

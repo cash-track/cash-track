@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Balance;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class BalanceController extends Controller
 {
@@ -20,11 +21,13 @@ class BalanceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        //
+    	$this->middleware('auth');
+
+        return view('balance.new');
     }
 
     /**
@@ -35,7 +38,9 @@ class BalanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->middleware('auth');
+
+
     }
 
     /**

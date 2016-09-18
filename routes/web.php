@@ -13,9 +13,11 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')
+	->name('homepage');
 
-Route::get('/dashboard', 'ProfileController@index');
+Route::get('/dashboard', 'ProfileController@index')
+	->name('dashboard');
 
 Route::resource('/balance', 'BalanceController');
 Route::resource('/trans', 'TransController');

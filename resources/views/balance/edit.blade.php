@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: vovan
- * Date: 17.09.2016
- * Time: 17:53
- */
+@extends('layouts.app')
+
+{{--*/ $page = 'balance.edit' /*--}}
+
+@section('content')
+
+@endsection

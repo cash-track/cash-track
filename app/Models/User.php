@@ -56,6 +56,8 @@ class User extends Authenticatable
 	 */
 	public function balances()
 	{
-		return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id')->get();
+		return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id')
+			->orderBy('created_at', 'desc')
+			->get();
 	}
 }
