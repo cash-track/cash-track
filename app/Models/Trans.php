@@ -36,6 +36,6 @@ class Trans extends Model
 	 */
 	public function balance()
 	{
-		//return $this->belongsTo('App\Models\Balance');
+		return $this->belongsTo('App\Models\Balance');
 	}
 }

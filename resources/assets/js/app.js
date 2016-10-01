@@ -16,6 +16,12 @@ $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 
 	$('.trans-header, .trans-operation').on('click', function(e){
+		e.preventDefault();
 		$(this).closest('.trans-item').toggleClass('active');
+	});
+
+	$('.new-trans-item .trans-detail>i, .new-trans-item .trans-detail>a').on('click', function(e){
+		e.preventDefault();
+		$('.new-trans-item-form').toggleClass('active');
 	});
 });

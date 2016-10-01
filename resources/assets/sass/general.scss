@@ -115,6 +115,15 @@
       .trans-detail{
         padding-top: 0;
         margin-top: 10px;
+
+        .new-trans-item-form{
+	        display: none;
+	        padding-top: 20px;
+
+	        &.active{
+		        display: block;
+	        }
+        }
       }
     }
 
