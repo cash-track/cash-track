@@ -70,6 +70,6 @@ class TransController extends Controller
 		    return back()->with('fail', 'Cannot delete transaction');
 	    }
 
-	    return back();
+	    return back()->with('success', 'Transaction deleted');
     }
 }

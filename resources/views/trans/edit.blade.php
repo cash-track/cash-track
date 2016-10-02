@@ -1,13 +1,5 @@
 <form action="{{ route('trans.update', $tran->id) }}" method="POST">
     <div class="row">
-        <div class="col-md-12">
-            @if(session('success'))
-                <p class="alert alert-success">{{ session('success') }}</p>
-            @endif
-            @if(session('fail'))
-                <p class="alert alert-danger">{{ session('fail') }}</p>
-            @endif
-        </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="new-trans-amount">Amount <i class="text-danger">*</i></label>
