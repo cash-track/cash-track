@@ -51,12 +51,16 @@ class Balance extends Model
 	/**
 	 * Check if user assigned to balance
 	 *
-	 * @param $user
-	 * @return mixed
+	 * @param User $user
+	 * @return bool
 	 */
 	public function hasUser($user)
 	{
-		return $this->users()->whereStrict('id', $user->id)->count();
+		if($user instanceof User){
+			return (bool) $this->users()->get()->whereStrict('id', $user->id)->count();
+		}
+
+		return false;
 	}
 
 	/**

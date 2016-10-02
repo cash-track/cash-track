@@ -165,7 +165,7 @@
 
 		.trans-detail{
 			border-left: 1px solid #eee;
-			padding: 10px 0 20px 45px;
+			padding: 10px 45px 20px;
 			position: relative;
 
 			.trans-operation{
@@ -220,6 +220,7 @@
 		// Active state - transaction clicked
 		&.active{
 			background: #f5f5f5;
+			border-bottom: 1px solid #eee;
 
 			.trans-body{
 				display: block;
