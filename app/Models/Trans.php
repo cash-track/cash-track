@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Trans
@@ -33,7 +34,7 @@ class Trans extends Model
 	/**
 	 * Balance on trans
 	 *
-	 * @return Collection
+	 * @return BelongsTo
 	 */
 	public function balance()
 	{

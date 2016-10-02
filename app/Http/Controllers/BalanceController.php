@@ -32,7 +32,7 @@ class BalanceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created balance in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -41,7 +41,40 @@ class BalanceController extends Controller
     {
         $this->middleware('auth');
 
+	    // create balance instance
+	    $balance = new Balance();
 
+	    // fill balance fields
+	    $balance->amount = $request->get('amount');
+	    switch($request->get('type')){
+		    case '1':
+		    	// Balance active
+		    	$balance->is_active = true;
+		    	break;
+		    case '2':
+		    	// only this balance active
+			    $balance->is_active = true;
+				Auth::user()
+					->balances()
+					->where('is_active', 1)
+					->update(['is_active'=>0]);
+		    	break;
+		    case '3':
+		    	// balance not active
+		    	$balance->is_active = false;
+		    	break;
+	    }
+
+	    // save balance
+	    if($balance->save()){
+
+	    	// attach balance to user
+	    	Auth::user()->balances()->attach($balance);
+
+		    return redirect()->route('balance.show', $balance->id);
+	    }else{
+	    	return back()->with('fail', 'Cannot create balance');
+	    }
     }
 
     /**

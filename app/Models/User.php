@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -52,12 +52,10 @@ class User extends Authenticatable
 	/**
 	 * Get the balances for user
 	 *
-	 * @return Collection
+	 * @return BelongsToMany
 	 */
 	public function balances()
 	{
-		return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id')
-			->orderBy('created_at', 'desc')
-			->get();
+		return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id');
 	}
 }

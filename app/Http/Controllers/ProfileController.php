@@ -21,7 +21,7 @@ class ProfileController extends Controller
 	 */
 	public function index()
 	{
-		$balances = Auth::user()->balances();
+		$balances = Auth::user()->balances()->orderBy('created_at', 'DESC')->get();
 		return view('profile.dashboard', compact('balances'));
 	}
 }

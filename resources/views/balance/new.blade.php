@@ -14,14 +14,27 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('dashboard') }}" class="pull-right"><i class="fa fa-times"></i></a>
+                            <a href="{{ route('dashboard') }}" class="pull-right">
+                                <i class="fa fa-times"></i>
+                            </a>
                             New balance
                         </div>
                         <div class="card-block">
 
+                            @if(session('success'))
+                                <p class="alert alert-success">{{ session('success') }}</p>
+                            @endif
+
+                            @if(session('fail'))
+                                <p class="alert alert-danger">{{ session('fail') }}</p>
+                            @endif
+
+                            {{--
                             <!-- Started at field -->
                             <div class="form-group row {{ $errors->has('started_at') ? 'has-danger' : '' }}">
-                                <label for="started_at" class="text-xs-right col-md-4 col-form-label">Started at</label>
+                                <label for="started_at" class="text-xs-right col-md-4 col-form-label">
+                                    Started at
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="started_at" type="date" class="form-control" name="started_at" value="{{ old('started_at') }}" required autofocus>
@@ -35,10 +48,14 @@
                                     <small class="form-text text-muted">Put date when balance will be started</small>
                                 </div>
                             </div>
+                            --}}
 
                             <!-- Start amount field -->
                             <div class="form-group row {{ $errors->has('amount') ? 'has-danger' : '' }}">
-                                <label for="amount" class="text-xs-right col-md-4 col-form-label">Amount</label>
+                                <label for="amount" class="text-xs-right col-md-4 col-form-label">
+                                    Amount
+                                    <i class="text-danger">*</i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="amount" type="number" class="form-control" name="amount" value="{{ old('amount') }}" required>
@@ -55,7 +72,10 @@
 
                             <!-- Balance type field -->
                             <div class="form-group row {{ $errors->has('type') ? 'has-danger' : '' }}">
-                                <label for="type" class="text-xs-right col-md-4 col-form-label">Type</label>
+                                <label for="type" class="text-xs-right col-md-4 col-form-label">
+                                    Type
+                                    <i class="text-danger">*</i>
+                                </label>
 
                                 <div class="col-md-6">
 
@@ -69,16 +89,16 @@
                                     <div class="form-check">
                                         <label for="type2" class="form-check-label">
                                             <input class="form-check-input" type="radio" name="type" id="type2" value="2">
-                                            Auto activate on started date
+                                            Activate now and disable all other balance
                                         </label>
-                                        <small class="form-text text-muted">Balance will be activated when started at date coming up</small>
+                                        <small class="form-text text-muted">Balance will be activated after created and other balances will be disabled</small>
                                     </div>
                                     <div class="form-check">
                                         <label for="type3" class="form-check-label">
                                             <input class="form-check-input" type="radio" name="type" id="type3" value="3">
-                                            Auto activate on started date and disable previous
+                                            Leave disabled
                                         </label>
-                                        <small class="form-text text-muted">Balance will be activated when started at date coming up and previous active balances will be disabled</small>
+                                        <small class="form-text text-muted">Balance will be created with not active status</small>
                                     </div>
 
                                 </div>
