@@ -20,4 +20,6 @@ Route::get('/dashboard', 'ProfileController@index')
 	->name('dashboard');
 
 Route::resource('/balance', 'BalanceController');
-Route::resource('/trans', 'TransController');
+Route::resource('/trans', 'TransController', ['only' => [
+	'store', 'update', 'destroy'
+]]);

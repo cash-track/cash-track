@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Balance;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -51,7 +52,13 @@ class BalanceController extends Controller
      */
     public function show($id)
     {
+    	$this->middleware('auth');
+
 		$balance = Balance::findOrFail($id);
+
+	    // balance can see only attached user
+	    if(!$balance->hasUser(Auth::user()))
+	    	return redirect(route('dashboard'));
 
 	    return view('balance.show', compact('balance'));
     }

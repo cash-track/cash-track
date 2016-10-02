@@ -24,4 +24,9 @@ $(function(){
 		e.preventDefault();
 		$('.new-trans-item-form').toggleClass('active');
 	});
+
+	$('.trans-item .action-button .edit-button, .trans-item .cancel-edit').on('click', function(e){
+		e.preventDefault();
+		$(this).closest('.trans-item').toggleClass('edit');
+	});
 });

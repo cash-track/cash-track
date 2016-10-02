@@ -1,220 +1,248 @@
 
 .navbar-main{
-  background: #f5f5f5;
-  border-bottom: 1px solid #e5e5e5;
-  border-radius: 0;
-  margin-bottom: 20px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    border-radius: 0;
+    margin-bottom: 20px;
 }
 
 .footer{
-  border-top: 1px solid #eee;
-  padding: 20px 0;
-  margin-top: 20px;
-  font-size: 14px;
+    border-top: 1px solid #eee;
+    padding: 20px 0;
+    margin-top: 20px;
+    font-size: 14px;
 }
 
 .card-columns {
-  .card{
-    -webkit-column-break-inside: avoid; /* Chrome, Safari */
-    page-break-inside: avoid;           /* Theoretically FF 20+ */
-    break-inside: avoid-column;         /* IE 11 */
+	.card{
+		-webkit-column-break-inside: avoid; /* Chrome, Safari */
+		page-break-inside: avoid;           /* Theoretically FF 20+ */
+		break-inside: avoid-column;         /* IE 11 */
 
-    .card-footer{
-      font-size: 14px;
+		.card-footer{
+			font-size: 14px;
 
-      a{
-        color: #818a91;
-      }
-    }
-  }
+			a{
+				color: #818a91;
+			}
+		}
+	}
 }
 
+
 .balance-box{
-  cursor: pointer;
-  background-color: #f5f5f5;
+    cursor: pointer;
+    background-color: #f5f5f5;
 
-  &:hover{
-    border-color: $brand-primary;
-  }
-
-  .card-title .status{
-    font-size: 12px;
-    font-weight: normal;
-    text-transform: uppercase;
-  }
-
-  .list-group-item{
-    border-left: 0;
-    border-right: 0;
-    background: transparent;
-
-    &:last-child{
-      border-bottom: 0;
+    &:hover{
+        border-color: $brand-primary;
     }
-  }
 
-  &.balance-box-active{
-    background-color: #fff;
+    .card-title .status{
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
 
     .list-group-item{
-      background-color: #fff;
+        border-left: 0;
+        border-right: 0;
+        background: transparent;
+
+        &:last-child{
+            border-bottom: 0;
+        }
     }
-  }
+
+	&.balance-box-active{
+        background-color: #fff;
+
+        .list-group-item{
+            background-color: #fff;
+        }
+    }
 }
 
 .balance-page{
 
-  .balance-header{
-    font-size: 20px;
-    padding-bottom: 25px;
-    padding-top: 5px;
+    .balance-header{
+        font-size: 20px;
+        padding-bottom: 25px;
+        padding-top: 5px;
 
-    .status{
-      font-size: 12px;
-      font-weight: normal;
-      text-transform: uppercase;
-    }
-  }
-  .balance-detail{
-    padding: 20px 0 30px;
-    border-top: 1px #eee solid;
-    border-bottom: 1px #eee solid;
-
-    .text-muted{
-      font-size: 12px;
+	    .status{
+            font-size: 12px;
+            font-weight: normal;
+            text-transform: uppercase;
+	    }
     }
 
-    .balance-detail-item{
-      font-size: 40px;
-      line-height: 40px;
-    }
-  }
+	.balance-detail{
+		padding: 20px 0 30px;
+		border-top: 1px #eee solid;
+		border-bottom: 1px #eee solid;
+
+		.text-muted{
+			font-size: 12px;
+		}
+
+		.balance-detail-item{
+			font-size: 40px;
+			line-height: 40px;
+		}
+	}
 }
 
 .balance-trans{
 
-  .trans-item{
+	.trans-item{
 
-    &:hover{
+		&:hover, &.edit{
 
-      .trans-operation{
-        cursor: pointer;
-        background-color: #eee!important;
-      }
+			.trans-operation{
+				cursor: pointer;
+				background-color: #eee!important;
+			}
 
-      .action-button>*{
-        display: block!important;
-      }
-    }
+			.action-button>*{
+				display: block!important;
+			}
+		}
 
-    &.new-trans-item{
+		&.new-trans-item{
 
-      .trans-operation{
-        top: 4px!important;
-      }
-      .trans-detail{
-        padding-top: 0;
-        margin-top: 10px;
+			.trans-operation{
+				top: 4px!important;
+			}
 
-        .new-trans-item-form{
-	        display: none;
-	        padding-top: 20px;
+			.trans-detail{
+				padding-top: 0;
+				margin-top: 10px;
 
-	        &.active{
-		        display: block;
-	        }
-        }
-      }
-    }
+				.new-trans-item-form{
+					display: none;
+					padding-top: 20px;
 
-    .action-button{
+					&.active{
+						display: block;
+					}
+				}
+			}
+		}
 
-      .dropdown-toggle::after{
-        display: none;
-      }
+		.action-button{
 
-      >*:not(.open){
-        display: none;
-      }
+			.dropdown-toggle::after{
+				display: none;
+			}
 
-      .btn{
-        height: 14px;
-        display: inline-block;
-        padding: 0.0rem 0.5rem;
-        font-size: 14px;
-        line-height: 13px;
+			>*:not(.open){
+				display: none;
+			}
 
-        .fa{
-          height: 4px;
-          display: inline-block;
-          line-height: 4px;
-        }
-      }
-    }
+			.btn{
+				height: 14px;
+				display: inline-block;
+				padding: 0.0rem 0.5rem;
+				font-size: 14px;
+				line-height: 13px;
 
-    .trans-date-cont{
-      padding-top: 10px;
+				.fa{
+					height: 4px;
+					display: inline-block;
+					line-height: 4px;
+				}
+			}
+		}
 
-      .trans-date{
-        font-size: 14px;
-      }
-    }
+		.trans-date-cont{
+			padding-top: 10px;
 
-    .trans-detail{
-      border-left: 1px solid #eee;
-      padding: 10px 0 20px 45px;
-      position: relative;
+			.trans-date{
+				font-size: 14px;
+			}
+		}
 
-      .trans-operation{
-        position: absolute;
-        left: -12px;
-        top: 12px;
-        background: #fff;
-        padding: 2px;
-        height: 24px;
-        width: 24px;
-        text-align: center;
-        font-size: 20px;
-        line-height: 20px;
-        border-radius: 40px;
-      }
+		.trans-detail{
+			border-left: 1px solid #eee;
+			padding: 10px 0 20px 45px;
+			position: relative;
 
-      .defis{
-        display: block;
-        position: absolute;
-        top: 23px;
-        left: 12px;
-        width: 30px;
-        height: 0;
-        border-top: 1px solid #eee;
-      }
+			.trans-operation{
+				position: absolute;
+				left: -12px;
+				top: 12px;
+				background: #fff;
+				padding: 2px;
+				height: 24px;
+				width: 24px;
+				text-align: center;
+				font-size: 20px;
+				line-height: 20px;
+				border-radius: 40px;
+			}
 
-      .trans-amount{
-        font-weight: bold;
-        display: inline-block;
-        width: 85px;
-      }
+			.defis{
+				display: block;
+				position: absolute;
+				top: 23px;
+				left: 12px;
+				width: 30px;
+				height: 0;
+				border-top: 1px solid #eee;
+			}
 
-      .trans-header{
-        cursor: pointer;
+			.trans-amount{
+				font-weight: bold;
+				display: inline-block;
+				width: 85px;
+			}
 
-        .tag{
-          font-weight: normal;
-        }
-      }
-      .trans-body{
-        display: none;
-        padding-top: 10px;
-      }
-    }
+			.trans-header{
+				cursor: pointer;
 
-    &.active{
-      background: #f5f5f5;
+				.tag{
+					font-weight: normal;
+				}
+			}
 
-      .trans-body{
-        display: block;
-      }
-    }
-  }
+			.trans-body{
+				display: none;
+				padding-top: 10px;
+			}
+
+			.trans-edit{
+				display: none;
+			}
+		}
+
+		// transaction state
+		// Active state - transaction clicked
+		&.active{
+			background: #f5f5f5;
+
+			.trans-body{
+				display: block;
+			}
+			.trans-edit{
+				display: none;
+			}
+		}
+
+		// Edit state - transaction editable
+		&.edit{
+			background: #f5f5f5;
+
+			.trans-header{
+				display: none;
+			}
+			.trans-body{
+				display: none;
+			}
+			.trans-edit{
+				display: block;
+			}
+		}
+	}
 }
 

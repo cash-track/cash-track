@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  */
 class Balance extends Model
 {
@@ -45,6 +46,17 @@ class Balance extends Model
 	public function users()
 	{
 		return $this->belongsToMany('App\Models\User', 'user_balance', 'balance_id', 'user_id');
+	}
+
+	/**
+	 * Check if user assigned to balance
+	 *
+	 * @param $user
+	 * @return mixed
+	 */
+	public function hasUser($user)
+	{
+		return $this->users()->whereStrict('id', $user->id)->count();
 	}
 
 	/**

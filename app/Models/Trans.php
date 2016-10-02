@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereBalanceId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Balance $balance
  */
 class Trans extends Model
 {

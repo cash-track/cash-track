@@ -59,6 +59,7 @@
         <div class="balance-trans">
 
             {{-- New transaction block --}}
+            @if($balance->is_active)
             <div class="trans-item new-trans-item row">
                 <div class="offset-sm-4 col-sm-8 trans-detail">
                     <i class="fa fa-plus-circle trans-operation text-muted" aria-hidden="true"></i>
@@ -68,6 +69,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @if(count($balance->trans()))
                 @foreach($balance->trans() as $tran)
