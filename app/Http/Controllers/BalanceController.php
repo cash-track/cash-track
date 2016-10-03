@@ -10,10 +10,6 @@ use Illuminate\View\View;
 
 class BalanceController extends Controller
 {
-	/**
-	 * @var User
-	 */
-	protected $user;
 
 	/**
 	 * BalanceController constructor.
@@ -21,7 +17,6 @@ class BalanceController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth');
-		$this->user = Auth::user();
 	}
 
 	/**
@@ -65,7 +60,7 @@ class BalanceController extends Controller
 		    case '2':
 		    	// only this balance active
 			    $balance->is_active = true;
-				$this->user->balances()->where('is_active', 1)
+			    Auth::user()->balances()->where('is_active', 1)
 					->update(['is_active'=>0]);
 		    	break;
 		    case '3':
@@ -78,7 +73,7 @@ class BalanceController extends Controller
 	    if($balance->save()){
 
 	    	// attach balance to user
-	    	$this->user->balances()->attach($balance);
+		    Auth::user()->balances()->attach($balance);
 
 		    return redirect()->route('balance.show', $balance->id);
 	    }else{
@@ -97,7 +92,7 @@ class BalanceController extends Controller
 		$balance = Balance::findOrFail($id);
 
 	    // balance can see only attached user
-	    if(!$balance->hasUser($this->user))
+	    if(!$balance->hasUser(Auth::user()))
 	    	return redirect(route('dashboard'));
 
 	    return view('balance.show', compact('balance'));
