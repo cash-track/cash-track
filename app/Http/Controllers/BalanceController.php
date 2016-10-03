@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Auth;
 use App\Models\Balance;
 use Illuminate\Http\Request;
@@ -9,7 +10,21 @@ use Illuminate\View\View;
 
 class BalanceController extends Controller
 {
-    /**
+	/**
+	 * @var User
+	 */
+	protected $user;
+
+	/**
+	 * BalanceController constructor.
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+		$this->user = Auth::user();
+	}
+
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -26,8 +41,6 @@ class BalanceController extends Controller
      */
     public function create()
     {
-    	$this->middleware('auth');
-
         return view('balance.new');
     }
 
@@ -39,8 +52,6 @@ class BalanceController extends Controller
      */
     public function store(Request $request)
     {
-        $this->middleware('auth');
-
 	    // create balance instance
 	    $balance = new Balance();
 
@@ -54,9 +65,7 @@ class BalanceController extends Controller
 		    case '2':
 		    	// only this balance active
 			    $balance->is_active = true;
-				Auth::user()
-					->balances()
-					->where('is_active', 1)
+				$this->user->balances()->where('is_active', 1)
 					->update(['is_active'=>0]);
 		    	break;
 		    case '3':
@@ -69,7 +78,7 @@ class BalanceController extends Controller
 	    if($balance->save()){
 
 	    	// attach balance to user
-	    	Auth::user()->balances()->attach($balance);
+	    	$this->user->balances()->attach($balance);
 
 		    return redirect()->route('balance.show', $balance->id);
 	    }else{
@@ -85,12 +94,10 @@ class BalanceController extends Controller
      */
     public function show($id)
     {
-    	$this->middleware('auth');
-
 		$balance = Balance::findOrFail($id);
 
 	    // balance can see only attached user
-	    if(!$balance->hasUser(Auth::user()))
+	    if(!$balance->hasUser($this->user))
 	    	return redirect(route('dashboard'));
 
 	    return view('balance.show', compact('balance'));
