@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Auth;
 use App\Models\Balance;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -102,11 +103,13 @@ class BalanceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit($id)
     {
-        //
+    	$balance = Balance::findOrFail($id);
+
+        return view('balance.edit', compact('balance'));
     }
 
     /**
@@ -118,17 +121,48 @@ class BalanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	// get balance instance
+    	$balance = Balance::findOrFail($id);
+
+	    // update balance fields
+		$balance->amount = $request->get('amount');
+	    switch($request->get('type')){
+		    case '1':
+			    // Balance actives
+			    $balance->is_active = true;
+			    break;
+		    case '2':
+			    // only this balance active
+			    $balance->is_active = true;
+			    Auth::user()->balances()->where('is_active', 1)
+			        ->update(['is_active'=>0]);
+			    break;
+		    case '3':
+			    // balance not active
+			    $balance->is_active = false;
+			    break;
+	    }
+
+	    // save balance
+	    if($balance->save()){
+		    return redirect()->route('balance.show', $balance->id)->with('success', 'Balance updated');
+	    }else{
+		    return back()->with('fail', 'Cannot update balance');
+	    }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        $balance = Balance::findOrFail($id);
+	    $balance->users()->detach();
+	    $balance->delete();
+
+	    return redirect()->route('dashboard');
     }
 }

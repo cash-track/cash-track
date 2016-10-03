@@ -9,7 +9,7 @@
         {{-- Balance header --}}
         <div class="balance-header text-xs-center">
             <div class="pull-left">
-                <a href="#">VovanMS</a> /
+                <a href="#">{{ Auth::user()->name }}</a> /
                 <a href="#">Balance</a>
 
                 @if($balance->is_active)
@@ -23,8 +23,26 @@
                 Started at {{ $balance->created_at->format('d.m.y') }}
             </span>
             <div class="pull-right">
-                <button class="btn btn-outline-primary"><i class="fa fa-envelope-o"></i> Subscribe</button>
-                <button class="btn btn-outline-primary"><i class="fa fa-pencil"></i> Edit</button>
+                <div class="btn-group">
+                    <a href="{{ route('balance.edit', $balance->id) }}" role="button" class="btn btn-secondary">
+                        <i class="fa fa-pencil"></i>
+                        Edit
+                    </a>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Show more action</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <h6 class="dropdown-header">More actions</h6>
+                        <a class="dropdown-item disabled" href="#">Invite</a>
+                        <div class="dropdown-divider"></div>
+                        <form action="{{ route('balance.destroy', $balance->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="dropdown-item">Delete</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
             <div class="clearfix"></div>
         </div>
