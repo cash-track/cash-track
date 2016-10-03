@@ -34,6 +34,19 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">More actions</h6>
                         <a class="dropdown-item disabled" href="#">Invite</a>
+                        @if($balance->is_active)
+                            <form action="{{ route('balance.disactivate', $balance->id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <button type="submit" class="dropdown-item">Disactivate</button>
+                            </form>
+                        @else
+                            <form action="{{ route('balance.activate', $balance->id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <button type="submit" class="dropdown-item">Activate</button>
+                            </form>
+                        @endif
                         <div class="dropdown-divider"></div>
                         <form action="{{ route('balance.destroy', $balance->id) }}" method="POST">
                             {{ csrf_field() }}

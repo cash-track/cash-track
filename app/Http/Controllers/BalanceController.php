@@ -1,14 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Auth;
 use App\Models\Balance;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+/**
+ * Class BalanceController
+ *
+ * @package App\Http\Controllers
+ */
 class BalanceController extends Controller
 {
 
@@ -20,18 +23,8 @@ class BalanceController extends Controller
 		$this->middleware('auth');
 	}
 
-	/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new balance.
      *
      * @return View
      */
@@ -44,7 +37,7 @@ class BalanceController extends Controller
      * Store a newly created balance in database.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -83,7 +76,7 @@ class BalanceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified balance.
      *
      * @param  int  $id
      * @return View
@@ -100,7 +93,7 @@ class BalanceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified balance.
      *
      * @param  int  $id
      * @return View
@@ -113,11 +106,11 @@ class BalanceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified balance in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -147,9 +140,41 @@ class BalanceController extends Controller
 	    if($balance->save()){
 		    return redirect()->route('balance.show', $balance->id)->with('success', 'Balance updated');
 	    }else{
-		    return back()->with('fail', 'Cannot update balance');
+		    return back()->with('fail', 'Cannot update balance or data not changed.');
 	    }
     }
+
+	/**
+	 * Activate specified balance
+	 *
+	 * @param \Illuminate\Http\Request $request
+	 * @param int $id
+	 * @return RedirectResponse
+	 */
+    public function activate(Request $request, $id)
+    {
+		$balance = Balance::findOrFail($id);
+	    $balance->is_active = true;
+	    $balance->save();
+
+	    return back()->with('success', 'Balance activated');
+    }
+
+	/**
+	 * Disactivate specified balance
+	 *
+	 * @param Request $request
+	 * @param int $id
+	 * @return RedirectResponse
+	 */
+	public function disactivate(Request $request, $id)
+	{
+		$balance = Balance::findOrFail($id);
+		$balance->is_active = false;
+		$balance->save();
+
+		return back()->with('success', 'Balance disactivated');
+	}
 
     /**
      * Remove the specified resource from storage.
