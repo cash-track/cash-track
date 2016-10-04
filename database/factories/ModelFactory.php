@@ -20,20 +20,20 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\Balance::class, function(Faker\Generator $faker){
-	return [
-		'amount'        => $faker->randomDigit+1*1000,
-		'is_active'     => $faker->boolean
-	];
+$factory->define(App\Models\Balance::class, function (Faker\Generator $faker) {
+    return [
+        'amount'        => $faker->randomDigit + 1 * 1000,
+        'is_active'     => $faker->boolean,
+    ];
 });
 
-$factory->define(App\Models\Trans::class, function(Faker\Generator $faker){
-	return [
-		'amount'        => $faker->randomDigit*1000,
-		'balance_id'    => function () {
-			$balance_id = App\Models\Balance::all();
-			return $balance_id->get(random_int(0, $balance_id->count() - 1))->id;
-		}
-	];
-});
+$factory->define(App\Models\Trans::class, function (Faker\Generator $faker) {
+    return [
+        'amount'        => $faker->randomDigit * 1000,
+        'balance_id'    => function () {
+            $balance_id = App\Models\Balance::all();
 
+            return $balance_id->get(random_int(0, $balance_id->count() - 1))->id;
+        },
+    ];
+});

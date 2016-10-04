@@ -13,14 +13,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-        	'name'              => 'admin',
-	        'email'             => env('ADMIN_MAIL', 'admin@admin.com'),
-	        'password'          => bcrypt( env('ADMIN_PASS', 'admin') ),
-	        'remember_token'    => str_random(10),
-	        'created_at'        => Carbon::now()->toDateTimeString(),
-	        'updated_at'        => Carbon::now()->toDateTimeString()
+            'name'              => 'admin',
+            'email'             => env('ADMIN_MAIL', 'admin@admin.com'),
+            'password'          => bcrypt(env('ADMIN_PASS', 'admin')),
+            'remember_token'    => str_random(10),
+            'created_at'        => Carbon::now()->toDateTimeString(),
+            'updated_at'        => Carbon::now()->toDateTimeString(),
         ]);
 
-	    factory(App\Models\User::class, 10)->create();
+        factory(App\Models\User::class, 10)->create();
     }
 }
