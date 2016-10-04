@@ -1,20 +1,32 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
-
+// load libraries
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
- */
+// import needle components
+let example = require('./components/Example.vue');
+Vue.component('example', example);
 
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
+// The main Vue instance
+window.app = new Vue({
     el: 'body'
+});
+
+// bind main hooks
+$(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+
+	$('.trans-header, .trans-operation').on('click', function(e){
+		e.preventDefault();
+		$(this).closest('.trans-item').toggleClass('active');
+	});
+
+	$('.new-trans-item .trans-detail>i, .new-trans-item .trans-detail>a').on('click', function(e){
+		e.preventDefault();
+		$('.new-trans-item-form').toggleClass('active');
+	});
+
+	$('.trans-item .action-button .edit-button, .trans-item .cancel-edit').on('click', function(e){
+		e.preventDefault();
+		$(this).closest('.trans-item').toggleClass('edit');
+	});
 });
