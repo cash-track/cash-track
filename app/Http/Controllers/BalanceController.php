@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Balance;
 use Auth;
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -24,7 +25,7 @@ class BalanceController extends Controller
     /**
      * Show the form for creating a new balance.
      *
-     * @return View
+     * @return View|ViewFactory
      */
     public function create()
     {
@@ -79,7 +80,7 @@ class BalanceController extends Controller
      *
      * @param int $id
      *
-     * @return View
+     * @return View|ViewFactory|RedirectResponse
      */
     public function show($id)
     {
@@ -98,7 +99,7 @@ class BalanceController extends Controller
      *
      * @param int $id
      *
-     * @return View
+     * @return View|ViewFactory
      */
     public function edit($id)
     {
