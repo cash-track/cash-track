@@ -21,7 +21,7 @@
                 </small>
             </div>
         </div>
-        {{--
+
         <div class="col-md-12">
             <div class="form-group">
                 <label for="new-trans-title">Title</label>
@@ -36,7 +36,7 @@
                 <small class="form-text text-muted">Put here some notes for remember for what you lost this money</small>
             </div>
         </div>
-        --}}
+
     </div>
 
     {{-- technical area --}}

@@ -23,6 +23,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereBalanceId($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Balance $balance
+ * @property string $title
+ * @property string $description
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereDescription($value)
  */
 class Trans extends Model
 {

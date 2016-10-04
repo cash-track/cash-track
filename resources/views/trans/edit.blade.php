@@ -21,26 +21,25 @@
                 </small>
             </div>
         </div>
-        {{--
         <div class="col-md-12">
             <div class="form-group">
                 <label for="new-trans-title">Title</label>
-                <input class="form-control" type="text" name="title" id="new-trans-title" value="{{ old('title') }}">
+                <input class="form-control" type="text" name="title" id="new-trans-title" value="{{ $tran->title }}">
                 <small class="form-text text-muted">Title of transaction. If need, you can leave empty</small>
             </div>
         </div>
         <div class="col-md-12">
             <div class="form-group">
                 <label for="new-trans-description">Description</label>
-                <textarea class="form-control" name="description" id="new-trans-description">{{ old('description') }}</textarea>
+                <textarea class="form-control" name="description" id="new-trans-description">{{ $tran->description }}</textarea>
                 <small class="form-text text-muted">Put here some notes for remember for what you lost this money</small>
             </div>
         </div>
-        --}}
     </div>
 
     {{-- technical area --}}
     {{ csrf_field() }}
+    {{ method_field('PUT') }}
 
     <button type="submit" class="btn btn-primary">Save</button>
     <button type="button" class="btn btn-default cancel-edit">Cancel</button>

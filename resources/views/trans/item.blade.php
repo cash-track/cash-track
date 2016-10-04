@@ -39,8 +39,12 @@
         </div>
 
         <div class="trans-body">
-            <h6>Trans title</h6>
-            <span>Description of transaction</span>
+            @if($tran->title)
+                <h6>{{ $tran->title }}</h6>
+            @endif
+            @if($tran->description)
+                <span>{{ $tran->description }}</span>
+            @endif
         </div>
 
         <div class="trans-edit">
