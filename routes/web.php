@@ -21,5 +21,5 @@ Route::put('/balance/{id}/activate', 'BalanceController@activate')->name('balanc
 Route::put('/balance/{id}/disactivate', 'BalanceController@disactivate')->name('balance.disactivate');
 
 Route::resource('/trans', 'TransController', ['only' => [
-	'store', 'update', 'destroy'
+    'store', 'update', 'destroy',
 ]]);

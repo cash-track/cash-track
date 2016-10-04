@@ -47,9 +47,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-    	if($exception instanceof TokenMismatchException){
-    		return back()->with('fail', 'Invalid security token, maybe expired');
-	    }
+        if ($exception instanceof TokenMismatchException) {
+            return back()->with('fail', 'Invalid security token, maybe expired');
+        }
 
         return parent::render($request, $exception);
     }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddTransactionDetails extends Migration
 {
@@ -13,9 +13,9 @@ class AddTransactionDetails extends Migration
      */
     public function up()
     {
-        Schema::table('trans', function(Blueprint $table){
-        	$table->string('title')->nullable()->default(NULL);
-	        $table->text('description')->nullable()->default(NULL);
+        Schema::table('trans', function (Blueprint $table) {
+            $table->string('title')->nullable()->default(null);
+            $table->text('description')->nullable()->default(null);
         });
     }
 

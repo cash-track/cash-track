@@ -11,6 +11,6 @@ class TransTableSeeder extends Seeder
      */
     public function run()
     {
-	    factory(App\Models\Trans::class, 200)->create();
+        factory(App\Models\Trans::class, 200)->create();
     }
 }

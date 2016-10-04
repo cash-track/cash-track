@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTransTable extends Migration
 {
@@ -15,8 +15,8 @@ class CreateTransTable extends Migration
     {
         Schema::create('trans', function (Blueprint $table) {
             $table->increments('id');
-	        $table->integer('amount')->default(0);
-	        $table->enum('type', ['+', '-'])->default('+');
+            $table->integer('amount')->default(0);
+            $table->enum('type', ['+', '-'])->default('+');
             $table->timestamps();
         });
     }

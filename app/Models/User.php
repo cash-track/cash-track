@@ -12,13 +12,15 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
  * @mixin \Eloquent
- * @property integer $id
+ *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string $password
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereEmail($value)
@@ -26,6 +28,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Balance[] $balances
  */
 class User extends Authenticatable
@@ -50,13 +53,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-	/**
-	 * Get the balances for user
-	 *
-	 * @return BelongsToMany
-	 */
-	public function balances()
-	{
-		return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id');
-	}
+    /**
+     * Get the balances for user.
+     *
+     * @return BelongsToMany
+     */
+    public function balances()
+    {
+        return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id');
+    }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddBalanceColumnIntoTransTable extends Migration
 {
@@ -13,9 +13,9 @@ class AddBalanceColumnIntoTransTable extends Migration
      */
     public function up()
     {
-        Schema::table('trans', function(Blueprint $table){
-        	$table->integer('balance_id')->unsigned();
-	        $table->foreign('balance_id')->references('id')->on('balances');
+        Schema::table('trans', function (Blueprint $table) {
+            $table->integer('balance_id')->unsigned();
+            $table->foreign('balance_id')->references('id')->on('balances');
         });
     }
 
@@ -26,8 +26,8 @@ class AddBalanceColumnIntoTransTable extends Migration
      */
     public function down()
     {
-	    Schema::table('trans', function(Blueprint $table){
-		    $table->dropForeign('balance_id');
-	    });
+        Schema::table('trans', function (Blueprint $table) {
+            $table->dropForeign('balance_id');
+        });
     }
 }
