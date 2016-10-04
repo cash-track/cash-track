@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // format price with whitespaces
-        Blade::directive('price', function($exp) {
+        Blade::directive('price', function ($exp) {
             return "<?php echo number_format((float)$exp, 0, ',', ' ') ?>";
         });
     }

@@ -55,7 +55,7 @@ class BalanceController extends Controller
                 // only this balance active
                 $balance->is_active = true;
                 Auth::user()->balances()->where('is_active', 1)
-                    ->update([ 'is_active' => 0 ]);
+                    ->update(['is_active' => 0]);
                 break;
             case '3':
                 // balance not active
@@ -69,7 +69,7 @@ class BalanceController extends Controller
             // attach balance to user
             Auth::user()->balances()->attach($balance);
 
-            return redirect()->route('balance.show', [ 'id' => $balance->id ]);
+            return redirect()->route('balance.show', ['id' => $balance->id]);
         } else {
             return back()->with('fail', 'Cannot create balance');
         }
@@ -132,7 +132,7 @@ class BalanceController extends Controller
                 // only this balance active
                 $balance->is_active = true;
                 Auth::user()->balances()->where('is_active', 1)
-                    ->update([ 'is_active' => 0 ]);
+                    ->update(['is_active' => 0]);
                 break;
             case '3':
                 // balance not active
@@ -142,7 +142,7 @@ class BalanceController extends Controller
 
         // save balance
         if ($balance->save()) {
-            return redirect()->route('balance.show', [ 'id' => $balance->id])->with('success', 'Balance updated');
+            return redirect()->route('balance.show', ['id' => $balance->id])->with('success', 'Balance updated');
         } else {
             return back()->with('fail', 'Cannot update balance or data not changed.');
         }
