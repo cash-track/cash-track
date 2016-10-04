@@ -69,7 +69,7 @@ class BalanceController extends Controller
             // attach balance to user
             Auth::user()->balances()->attach($balance);
 
-            return redirect()->route('balance.show', $balance->id);
+            return redirect()->route('balance.show', ['id'=>$balance->id]);
         } else {
             return back()->with('fail', 'Cannot create balance');
         }
@@ -142,7 +142,7 @@ class BalanceController extends Controller
 
         // save balance
         if ($balance->save()) {
-            return redirect()->route('balance.show', $balance->id)->with('success', 'Balance updated');
+            return redirect()->route('balance.show', ['id'=>$balance->id])->with('success', 'Balance updated');
         } else {
             return back()->with('fail', 'Cannot update balance or data not changed.');
         }
