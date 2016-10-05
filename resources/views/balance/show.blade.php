@@ -51,7 +51,7 @@
                         <form action="{{ route('balance.destroy', $balance->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="dropdown-item">Delete</button>
+                            <button type="submit" class="dropdown-item" onclick="return confirm('You sure?')">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -119,8 +119,8 @@
             </div>
             @endif
 
-            @if(count($balance->trans()))
-                @foreach($balance->trans() as $tran)
+            @if(count($balance->getTrans()))
+                @foreach($balance->getTrans() as $tran)
                     @include('trans.item')
                 @endforeach
             @endif

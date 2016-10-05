@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Balance
@@ -29,13 +30,23 @@ class Balance extends Model
     protected $table = 'balances';
 
 	/**
-	 * Transes on balance
+	 * Transactions on balance
 	 *
-	 * @return Collection
+	 * @return HasMany
 	 */
 	public function trans()
 	{
-		return $this->hasMany('App\Models\Trans')->orderBy('created_at', 'desc')->get();
+		return $this->hasMany('App\Models\Trans');
+	}
+
+	/**
+	 * Get all transactions
+	 *
+	 * @return Collection
+	 */
+	public function getTrans()
+	{
+		return $this->trans()->orderBy('created_at', 'desc')->get();
 	}
 
 	/**
