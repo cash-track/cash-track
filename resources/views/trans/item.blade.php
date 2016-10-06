@@ -1,6 +1,6 @@
 <div class="trans-item row">
 
-    <div class="col-sm-4 text-xs-right text-muted trans-date-cont">
+    <div class="col-sm-4 text-sm-right text-muted trans-date-cont">
         <span class="trans-date">{{ $tran->updated_at->format('d.m.y H:i') }}</span>
     </div>
 

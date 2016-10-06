@@ -134,7 +134,7 @@ Balance page styles
 			.trans-amount{
 				font-weight: bold;
 				display: inline-block;
-				//width: 85px;
+				width: 74px;
 				padding: 0 10px 0 0;
 			}
 
@@ -195,6 +195,59 @@ Balance page styles
 			}
 			.trans-edit{
 				display: block;
+			}
+		}
+	}
+}
+
+@media (max-width: 544px){
+	.balance-page .balance-header{
+		padding-bottom: 20px;
+
+		.balance-title{
+			display: block;
+			padding-bottom: 8px;
+		}
+		.balance-started-date{
+			display: block;
+			text-align: center;
+		}
+		.balance-action{
+			text-align: center;
+			padding-top: 10px;
+		}
+	}
+	.balance-page .balance-detail{
+		padding: 6px 0 10px;
+
+		&>*{
+			display: block;
+			padding: 5px 0;
+
+			.fa{
+				display: none;
+			}
+		}
+	}
+
+	.balance-trans .trans-item{
+		.trans-date-cont{
+			padding: 10px 0 0 27px;
+			margin-left: 30px;
+			border-left: 1px solid #eee;
+		}
+		.trans-detail{
+			padding: 4px 15px 10px 25px;
+			margin: 0 30px 0 30px;
+
+			.trans-operation{
+				top: 6px;
+			}
+			.defis{
+				display: none;
+			}
+			.trans-title{
+				max-width: calc(100% - 120px);
 			}
 		}
 	}

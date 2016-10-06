@@ -7,8 +7,8 @@
     <div class="container balance-page">
 
         {{-- Balance header --}}
-        <div class="balance-header text-xs-center">
-            <div class="pull-left">
+        <div class="balance-header text-sm-center">
+            <div class="balance-title pull-sm-left">
                 <a href="#">{{ Auth::user()->name }}</a> /
                 <a href="#">Balance</a>
 
@@ -18,11 +18,11 @@
                               title="This balance marked as active">active</span>
                 @endif
             </div>
-            <span>
+            <span class="balance-started-date">
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>
                 Started at {{ $balance->created_at->format('d.m.y') }}
             </span>
-            <div class="pull-right">
+            <div class="balance-action pull-sm-right">
                 <div class="btn-group">
                     <a href="{{ route('balance.edit', $balance->id) }}" role="button" class="btn btn-secondary">
                         <i class="fa fa-pencil"></i>
@@ -62,7 +62,7 @@
 
         {{-- Balance amount --}}
         <div class="balance-detail text-xs-center">
-            <span class="pull-left text-xs-left">
+            <span class="pull-sm-left text-sm-left">
                 <span class="text-muted">Payments income</span><br>
                 <span class="text-success balance-detail-item">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
                 </span>
             </span>
 
-            <span class="pull-right text-xs-right">
+            <span class="pull-sm-right text-sm-right">
                 <span class="text-muted">Payments refunded</span><br>
                 <span class="text-danger balance-detail-item">
                     @price($balance->getCredit())
