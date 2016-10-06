@@ -20,7 +20,7 @@ $(function(){
 		$(this).closest('.trans-item').toggleClass('active');
 	});
 
-	$('.new-trans-item .trans-detail>i, .new-trans-item .trans-detail>a').on('click', function(e){
+	$('.new-trans-item .trans-detail>i, .new-trans-item .trans-detail>a, .new-trans-item .cancel-new-trans').on('click', function(e){
 		e.preventDefault();
 		$('.new-trans-item-form').toggleClass('active');
 	});
