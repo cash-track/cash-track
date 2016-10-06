@@ -53,7 +53,7 @@
 
                             <!-- Start amount field -->
                             <div class="form-group row {{ $errors->has('amount') ? 'has-danger' : '' }}">
-                                <label for="amount" class="text-xs-right col-md-4 col-form-label">
+                                <label for="amount" class="text-md-right col-md-4 col-form-label">
                                     Amount
                                     <i class="text-danger">*</i>
                                 </label>
@@ -73,7 +73,7 @@
 
                             <!-- Balance type field -->
                             <div class="form-group row {{ $errors->has('type') ? 'has-danger' : '' }}">
-                                <label for="type" class="text-xs-right col-md-4 col-form-label">
+                                <label for="type" class="text-md-right col-md-4 col-form-label">
                                     Type
                                     <i class="text-danger">*</i>
                                 </label>
@@ -116,11 +116,12 @@
                         </div>
                         <div class="card-footer text-muted">
                             <div class="row">
-                                <div class="col-md-4 text-md-right">
+                                <div class="col-md-4 text-md-right hidden-sm-down">
                                     <a href="{{ route('balance.show', $balance->id) }}" role="button" class="btn btn-secondary">Cancel</a>
                                 </div>
                                 <div class="col-md-8">
                                     <button class="btn btn-primary" type="submit">Save</button>
+                                    <a href="{{ route('balance.show', $balance->id) }}" role="button" class="hidden-md-up btn btn-secondary">Cancel</a>
                                 </div>
                             </div>
                         </div>

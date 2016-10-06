@@ -1,6 +1,6 @@
 <div class="trans-item row">
 
-    <div class="col-sm-4 text-xs-right text-muted trans-date-cont">
+    <div class="col-sm-4 text-sm-right text-muted trans-date-cont">
         <span class="trans-date">{{ $tran->updated_at->format('d.m.y H:i') }}</span>
     </div>
 
@@ -35,13 +35,14 @@
         <div class="trans-header">
             <span class="{{ $tran->type=='-'?'text-danger':'text-success' }} trans-amount">
                 @price($tran->amount)
-            </span><br>
+            </span>
+            @if($tran->title)
+                <span class="trans-title">{{ $tran->title }}</span>
+            @endif
+            <br>
         </div>
 
         <div class="trans-body">
-            @if($tran->title)
-                <h6>{{ $tran->title }}</h6>
-            @endif
             @if($tran->description)
                 <span>{{ $tran->description }}</span>
             @endif

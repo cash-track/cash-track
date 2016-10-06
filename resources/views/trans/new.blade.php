@@ -44,4 +44,5 @@
     {{ csrf_field() }}
 
     <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-secondary cancel-new-trans">Cancel</button>
 </form>

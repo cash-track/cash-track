@@ -193,6 +193,7 @@ class BalanceController extends Controller
     {
         $balance = Balance::findOrFail($id);
         $balance->users()->detach();
+        $balance->trans()->delete();
         $balance->delete();
 
         return redirect()->route('dashboard');
