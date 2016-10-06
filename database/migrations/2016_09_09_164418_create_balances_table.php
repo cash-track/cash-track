@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBalancesTable extends Migration
 {
@@ -15,8 +15,8 @@ class CreateBalancesTable extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->increments('id');
-	        $table->integer('amount')->default(0);
-	        $table->boolean('is_active')->default(false);
+            $table->integer('amount')->default(0);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
