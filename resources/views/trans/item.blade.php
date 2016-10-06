@@ -35,13 +35,14 @@
         <div class="trans-header">
             <span class="{{ $tran->type=='-'?'text-danger':'text-success' }} trans-amount">
                 @price($tran->amount)
-            </span><br>
+            </span>
+            @if($tran->title)
+                <b>{{ $tran->title }}</b>
+            @endif
+            <br>
         </div>
 
         <div class="trans-body">
-            @if($tran->title)
-                <h6>{{ $tran->title }}</h6>
-            @endif
             @if($tran->description)
                 <span>{{ $tran->description }}</span>
             @endif
