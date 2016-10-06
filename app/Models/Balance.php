@@ -31,25 +31,25 @@ class Balance extends Model
      */
     protected $table = 'balances';
 
-	/**
-	 * Transactions on balance
-	 *
-	 * @return HasMany
-	 */
-	public function trans()
-	{
-		return $this->hasMany('App\Models\Trans');
-	}
+    /**
+     * Transactions on balance.
+     *
+     * @return HasMany
+     */
+    public function trans()
+    {
+        return $this->hasMany('App\Models\Trans');
+    }
 
-	/**
-	 * Get all transactions
-	 *
-	 * @return Collection
-	 */
-	public function getTrans()
-	{
-		return $this->trans()->orderBy('created_at', 'desc')->get();
-	}
+    /**
+     * Get all transactions.
+     *
+     * @return Collection
+     */
+    public function getTrans()
+    {
+        return $this->trans()->orderBy('created_at', 'desc')->get();
+    }
 
     /**
      * Get the all users of balance.
