@@ -138,6 +138,16 @@ Balance page styles
 				padding: 0 10px 0 0;
 			}
 
+			.trans-title{
+				font-weight: bold;
+				overflow: hidden;
+				white-space: pre;
+				text-overflow: ellipsis;
+				max-width: calc(100% - 200px);
+				display: inline-block;
+				vertical-align: top;
+			}
+
 			.trans-header{
 				cursor: pointer;
 
@@ -167,6 +177,9 @@ Balance page styles
 			}
 			.trans-edit{
 				display: none;
+			}
+			.trans-title{
+				white-space: normal;
 			}
 		}
 

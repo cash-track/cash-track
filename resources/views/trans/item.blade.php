@@ -37,7 +37,7 @@
                 @price($tran->amount)
             </span>
             @if($tran->title)
-                <b>{{ $tran->title }}</b>
+                <span class="trans-title">{{ $tran->title }}</span>
             @endif
             <br>
         </div>
