@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -61,5 +62,15 @@ class User extends Authenticatable
     public function balances()
     {
         return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id');
+    }
+
+	/**
+	 * The transactions of users
+	 *
+	 * @return HasMany
+	 */
+    public function transactions()
+    {
+	    return $this->hasMany('App\Models\Trans');
     }
 }

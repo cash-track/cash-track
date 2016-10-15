@@ -110,7 +110,7 @@
             @if($balance->is_active)
             <div class="trans-item new-trans-item row">
                 <div class="offset-sm-4 col-sm-8 trans-detail">
-                    <i class="fa fa-plus-circle trans-operation text-muted" aria-hidden="true"></i>
+                    <i class="fa fa-plus trans-operation text-muted" aria-hidden="true"></i>
                     <a href="#">Create new trans</a>
                     <div class="new-trans-item-form">
                         @include('trans.new')

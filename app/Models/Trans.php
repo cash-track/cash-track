@@ -46,4 +46,14 @@ class Trans extends Model
     {
         return $this->belongsTo('App\Models\Balance');
     }
+
+	/**
+	 * User on trans
+	 *
+	 * @return BelongsTo
+	 */
+    public function user()
+    {
+    	return $this->belongsTo('App\Models\User');
+    }
 }
