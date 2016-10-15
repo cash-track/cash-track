@@ -6,7 +6,7 @@
 
     <div class="col-sm-8 text-xs-left trans-detail">
 
-        <i class="fa trans-operation {{ $tran->type=='-'?'fa-minus-circle text-danger':'fa-plus-circle text-success' }}" aria-hidden="true"></i>
+        <i class="fa trans-operation {{ $tran->type=='-'?'fa-long-arrow-down text-danger':'fa-long-arrow-up text-success' }}" aria-hidden="true"></i>
 
         <span class="defis"></span>
 
@@ -33,7 +33,7 @@
         @endif
 
         <div class="trans-header">
-            <span class="{{ $tran->type=='-'?'text-danger':'text-success' }} trans-amount">
+            <span class="{{-- $tran->type=='-'?'text-danger':'text-success' --}} trans-amount">
                 @price($tran->amount)
             </span>
             @if($tran->title)

@@ -65,7 +65,7 @@
             <span class="pull-sm-left text-sm-left">
                 <span class="text-muted">Payments income</span><br>
                 <span class="text-success balance-detail-item">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
                     @price($balance->getDebit())
                 </span>
             </span>
@@ -74,7 +74,7 @@
                 <span class="text-muted">Payments refunded</span><br>
                 <span class="text-danger balance-detail-item">
                     @price($balance->getCredit())
-                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                    <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
                 </span>
             </span>
 

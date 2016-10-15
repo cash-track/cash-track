@@ -23,12 +23,12 @@
         <li class="list-group-item">
             <span class="pull-left text-success" data-toggle="tooltip"
                   title="Summary credited">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
                 @price($balance->getDebit())
             </span>
             <span class="pull-right text-danger" data-toggle="tooltip"
                   title="Summary spent">
-                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
                 @price($balance->getCredit())
             </span>
             <div class="clearfix"></div>
