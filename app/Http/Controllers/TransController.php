@@ -37,6 +37,9 @@ class TransController extends Controller
         // assign transaction to balance
         $trans->balance()->associate($balance);
 
+	    // assign transaction to user
+	    $trans->user()->associate(\Auth::user());
+
         // save transaction
         if ($trans->save()) {
             return back()->with('success', 'Transaction added');

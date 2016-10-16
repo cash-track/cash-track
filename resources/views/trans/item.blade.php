@@ -33,7 +33,7 @@
         @endif
 
         <div class="trans-header">
-            <span class="{{-- $tran->type=='-'?'text-danger':'text-success' --}} trans-amount">
+            <span class="trans-amount">
                 @price($tran->amount)
             </span>
             @if($tran->title)
