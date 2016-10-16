@@ -79,6 +79,12 @@ class ProfileController extends Controller
 		    ->where('created_at', '>=', $month_ago_date)
 		    ->sum('amount');
 
-    	return view('profile.index', compact('user', 'credited', 'debited'));
+	    $active_balances = $user->balances()
+		    ->where('is_active', '=', true)
+		    ->get();
+
+	    $transactions = $user->transactions()->orderBy('updated_at', 'desc')->paginate(3);
+
+    	return view('profile.index', compact('user', 'credited', 'debited', 'active_balances', 'transactions'));
     }
 }
