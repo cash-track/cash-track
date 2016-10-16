@@ -1,0 +1,43 @@
+.profile{
+
+	.profile-image{
+		display: block;
+		max-width: 100%;
+		overflow: hidden;
+		border-radius: 100%;
+		margin-bottom: 20px;
+
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	.card-inverse{
+		color: #fff;
+	}
+
+	.card-count-heading{
+		display: block;
+		text-transform: uppercase;
+		font-size: 18px;
+		color: #e0e0e0;
+		line-height: 120%;
+	}
+	.card-count-value{
+		display: block;
+		font-size: 20px;
+		line-height: 120%;
+	}
+
+	.card-count-main{
+		padding-bottom: 20px;
+
+		.card-count-heading{
+			font-size: 18px;
+		}
+		.card-count-value{
+			font-size: 30px;
+		}
+	}
+}

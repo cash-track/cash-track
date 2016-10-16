@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('homepage');
 Route::get('/dashboard', 'ProfileController@index')->name('dashboard');
+Route::get('/profile', 'ProfileController@profile')->name('profile');
 
 Route::resource('/balance', 'BalanceController', ['except' => ['index']]);
 Route::put('/balance/{id}/activate', 'BalanceController@activate')->name('balance.activate');
