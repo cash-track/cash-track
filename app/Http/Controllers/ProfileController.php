@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Trans;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class ProfileController extends Controller
 {
@@ -86,5 +87,30 @@ class ProfileController extends Controller
 	    $transactions = $user->transactions()->orderBy('updated_at', 'desc')->paginate(3);
 
     	return view('profile.index', compact('user', 'credited', 'debited', 'active_balances', 'transactions'));
+    }
+
+	/**
+	 * Display edit profile page
+	 *
+	 * @return View|ViewFactory
+	 */
+    public function setting($section = 'general')
+    {
+    	$user = Auth::user();
+
+	    return view('profile.setting', compact('user'));
+    }
+
+	/**
+	 * Save new profile settings
+	 *
+	 * @param Request $request
+	 * @return RedirectResponse
+	 */
+    public function update(Request $request, $section = 'general')
+    {
+    	$user = Auth::user();
+
+    	return back()->with('success', 'Profile updated');
     }
 }

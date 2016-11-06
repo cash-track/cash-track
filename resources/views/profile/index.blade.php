@@ -39,14 +39,11 @@
                     <img src="https://dummyimage.com/600/666/fff.png" alt="Profile">
                 </div>
 
-                <h4>{{ $user->name }}</h4>
-                <h6><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></h6>
-
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 text-xs-right">
 
                 {{-- card overwall debited --}}
-                <div class="card card-inverse card-info ">
+                <div class="card card-inverse card-info text-xs-left">
                     <div class="card-block">
                         <div class="row">
                             <div class="col-md-2 text-xs-center">
@@ -69,39 +66,23 @@
                 </div>
 
             </div>
-            <div class="col-md-12"><hr></div>
+            <div class="col-md-12 text-xs-center">
+                <h4>{{ $user->name }}</h4>
+                <h6><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></h6>
+                <hr>
+            </div>
 
             <div class="col-md-6">
-                <p class="lead">Last 3 transaction</p>
+                <p class="lead">Last transaction</p>
                 <div class="trans-list">
                     @if($transactions)
                         <div class="list-group">
-                            @foreach($transactions as $item)
-                                <a href="{{ route('balance.show', $item->balance->id) }}" class="list-group-item list-group-item-action">
-                                    <span class="pull-right text-right">
-                                        @price($item->amount)
-                                        <i class="fa trans-operation {{ $item->type=='-'?'fa-long-arrow-down text-danger':'fa-long-arrow-up text-success' }}" aria-hidden="true"></i>
-                                    </span>
-                                    <h5 class="list-group-item-heading">
-                                        {{ $item->title }}
-                                    </h5>
-                                    <p class="list-group-item-text">
-                                        <span class="trans-balance" data-toggle="tooltip" title="{{ $item->balance->created_at }}">
-                                            <i class="fa fa-bank"></i> Balance {{ $item->balance->created_at->format('Y-m-d') }}
-                                        </span> |
-                                        <span class="trans-date" data-toggle="tooltip" title="{{ $item->updated_at }}">
-                                            <i class="fa fa-clock-o"></i> {{ $item->updated_at->diffForHumans() }}
-                                        </span>
-                                        <br>
-                                        {{ $item->description }}
-                                    </p>
-                                </a>
-                            @endforeach
+                            @each('trans.short-item', $transactions, 'item')
                         </div>
 
-                        <a href="#">See more..</a>
+                        {{--<a href="#">See more..</a>--}}
                     @else
-
+                        -
                     @endif
                 </div>
             </div>

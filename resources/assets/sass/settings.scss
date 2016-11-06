@@ -1,0 +1,16 @@
+.profile-settings{
+
+	.card{
+		.list-group-item{
+			border-left: none;
+			border-right: none;
+
+			&:first-child{
+				border-top: none;
+			}
+			&:last-child{
+				border-bottom: none;
+			}
+		}
+	}
+}

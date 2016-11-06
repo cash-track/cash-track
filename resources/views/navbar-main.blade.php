@@ -51,6 +51,9 @@
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 Profile
                             </a>
+                            <a class="dropdown-item" href="{{ route('profile.settings') }}">
+                                Setting
+                            </a>
                             <form action="{{ url('/logout') }}" method="POST">
                                 {{ csrf_field() }}
                                 <button class="dropdown-item" href="#">Sign out</button>
