@@ -98,7 +98,7 @@ class ProfileController extends Controller
     {
     	$user = Auth::user();
 
-	    return view('profile.setting', compact('user'));
+	    return view('profile.setting', compact('user', 'section'));
     }
 
 	/**
