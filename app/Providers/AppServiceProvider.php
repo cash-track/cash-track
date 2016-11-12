@@ -19,9 +19,6 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo number_format((float)$exp, 0, ',', ' ') . ' грн.' ?>";
         });
 
-	    // add BugSnap
-	    $this->app->alias('bugsnag.logger', \Illuminate\Contracts\Logging\Log::class);
-	    $this->app->alias('bugsnag.logger', \Psr\Log\LoggerInterface::class);
     }
 
     /**
@@ -31,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+	    // add BugSnap
+	    $this->app->alias('bugsnag.logger', \Illuminate\Contracts\Logging\Log::class);
+	    $this->app->alias('bugsnag.logger', \Psr\Log\LoggerInterface::class);
     }
 }
