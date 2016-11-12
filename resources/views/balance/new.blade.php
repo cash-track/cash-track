@@ -14,7 +14,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('dashboard') }}" class="pull-right">
+                            <a href="{{ route('dashboard') }}" class="float-xs-right">
                                 <i class="fa fa-times"></i>
                             </a>
                             New balance

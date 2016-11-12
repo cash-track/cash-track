@@ -1,5 +1,5 @@
 <a href="{{ route('balance.show', $item->balance->id) }}" class="list-group-item list-group-item-action">
-    <span class="pull-right text-right">
+    <span class="float-xs-right text-right">
         @price($item->amount)
         <i class="fa trans-operation {{ $item->type=='-'?'fa-long-arrow-down text-danger':'fa-long-arrow-up text-success' }}" aria-hidden="true"></i>
     </span>

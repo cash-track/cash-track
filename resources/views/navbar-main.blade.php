@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-faded navbar-main">
     <div class="container">
         <div class="hidden-sm-up">
-            <button class="navbar-toggler pull-right hidden-sm-up"
+            <button class="navbar-toggler float-xs-right hidden-sm-up"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navigation-main"
@@ -22,7 +22,7 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav pull-sm-right">
+            <ul class="nav navbar-nav float-sm-right">
                 @if (Auth::guest())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Sign in</a>

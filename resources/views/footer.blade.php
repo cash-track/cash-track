@@ -1,9 +1,9 @@
 <div class="container footer text-xs-center">
-    <div class="text-xs-center pull-sm-left">
+    <div class="text-xs-center float-sm-left">
         &copy; {{ date('Y') }} Finance, App.
     </div>
 
-    <ul class="nav nav-inline text-xs-center pull-sm-right">
+    <ul class="nav nav-inline text-xs-center float-sm-right">
         <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
         </li>

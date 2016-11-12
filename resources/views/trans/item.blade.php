@@ -11,7 +11,7 @@
         <span class="defis"></span>
 
         @if($balance->is_active)
-        <div class="pull-right action-button">
+        <div class="float-xs-right action-button">
             <div class="dropdown">
                 <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
                         id="trans_action_{{ $tran->id }}" data-toggle="dropdown" aria-haspopup="true"

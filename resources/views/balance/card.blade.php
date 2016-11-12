@@ -5,7 +5,7 @@
     <div class="card-block">
 
         <!-- Started ad field -->
-        <span class="pull-right" data-toggle="tooltip" title="Date when balance started">
+        <span class="float-xs-right" data-toggle="tooltip" title="Date when balance started">
             {{ $balance->created_at->format('Y-m-d') }}
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
         </span>
@@ -21,12 +21,12 @@
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
-            <span class="pull-left text-success" data-toggle="tooltip"
+            <span class="float-xs-left text-success" data-toggle="tooltip"
                   title="Summary credited">
                 <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
                 @price($balance->getDebit())
             </span>
-            <span class="pull-right text-danger" data-toggle="tooltip"
+            <span class="float-xs-right text-danger" data-toggle="tooltip"
                   title="Summary spent">
                 <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
                 @price($balance->getCredit())
@@ -45,7 +45,7 @@
                 @endforeach
             </span>
         @endif
-        <span class="pull-right" data-toggle="tooltip"
+        <span class="float-xs-right" data-toggle="tooltip"
               title="When balance updated">
             {{ $balance->updated_at->diffForHumans() }}
             <i class="fa fa-clock-o" aria-hidden="true"></i>
