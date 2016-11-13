@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{--*/ $page = 'profile.settings' /*--}}
+<!--{{ $page = 'profile.settings' }}-->
 @section('title') Settings @endsection
 
 @section('content')

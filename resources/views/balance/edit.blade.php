@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{--*/ $page = 'balance.edit' /*--}}
+<!--{{ $page = 'balance.edit' }}-->
 @section('title') Edit balance @endsection
 
 @section('content')

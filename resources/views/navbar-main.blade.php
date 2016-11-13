@@ -17,9 +17,14 @@
             <a class="navbar-brand hidden-xs-down" href="{{ route('homepage') }}">Finance</a>
 
             <ul class="nav navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item {{ $page=='homepage'?'active':'' }}">
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
+                @if(!Auth::guest())
+                    <li class="nav-item {{ $page=='profile.dashboard'?'active':'' }}">
+                        <a class="nav-link" href="{{ route('dashboard') }}">Balances</a>
+                    </li>
+                @endif
             </ul>
 
             <ul class="nav navbar-nav float-sm-right">

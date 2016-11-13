@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{--*/ $page = 'profile.index' /*--}}
+<!--{{ $page = 'profile.index' }}-->
 @section('title') Профіль @endsection
 
 @section('content')
