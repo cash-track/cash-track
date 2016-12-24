@@ -20,9 +20,9 @@
                         </div>
                     @endif
 
-                    <div class="form-text text-muted">
+                    <small class="form-text text-muted">
                         <a href="#">Forgot password?</a>
-                    </div>
+                    </small>
                 </div>
             </div>
 
