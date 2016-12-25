@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -25,7 +26,7 @@ class ProfileController extends Controller
      *
      * @return View|ViewFactory
      */
-    public function index()
+    public function index() :View
     {
         $balances = Auth::user()->balances()->orderBy('created_at', 'DESC')->get();
 
@@ -38,7 +39,7 @@ class ProfileController extends Controller
 	 *
 	 * @return View|ViewFactory
 	 */
-    public function profile()
+    public function profile() :View
     {
     	$user = Auth::user();
     	$debited = $credited = [];
@@ -94,7 +95,7 @@ class ProfileController extends Controller
 	 *
 	 * @return View|ViewFactory
 	 */
-    public function setting($section = 'general')
+    public function setting($section = 'general') :View
     {
     	$user = Auth::user();
 
@@ -105,12 +106,94 @@ class ProfileController extends Controller
 	 * Save new profile settings
 	 *
 	 * @param Request $request
+     * @param string $section
+     * @param string $action
 	 * @return RedirectResponse
 	 */
-    public function update(Request $request, $section = 'general')
+    public function update(Request $request, string $section = 'general', string $action) :RedirectResponse
     {
     	$user = Auth::user();
 
-    	return back()->with('success', 'Profile updated');
+        switch($section){
+            case 'general':
+                //
+                break;
+            case 'notification':
+                //
+                break;
+            case 'access':
+                return $this->updateAccess($request, $user, $action);
+                break;
+        }
+
+    	return back()->with(
+    	    'error',
+            'Possible XSS attack detected. Unexpected form action'
+        );
+    }
+
+    /**
+     * Update access options section
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @param string $action
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function updateAccess(Request $request, User $user, string $action) :RedirectResponse
+    {
+        switch($action){
+            case 'update-password':
+                return $this->updatePassword($request, $user, $action);
+                break;
+        }
+
+        return back()->with(
+            'error',
+            'Possible XSS attack detected. Unexpected form action'
+        );
+    }
+
+    /**
+     * Update profile password
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @param string $action
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function updatePassword(Request $request, User $user, string $action) :RedirectResponse
+    {
+        // validate old password
+        if(!\Hash::check($request->get('old-password'), $user->password)){
+            // old password not valid
+            return back()
+                ->with($action.'-error', 'Old password is not valid')
+                ->withInput();
+        }
+
+        // validate form request
+        $validator = \Validator::make($request->all(), [
+            'old-password' => 'required',
+            'password'     => 'required|min:6|max:100|confirmed'
+        ]);
+
+        // throw if error
+        if($validator->fails()){
+            return back()
+                ->withErrors($validator, $action)
+                ->withInput();
+        }
+
+        // update password on user
+        $user->fill([
+            'password' => \Hash::make($request->password)
+        ]);
+
+        if($user->save()){
+            return back()->with($action.'-success', 'Password has been updated');
+        }
+
+        return back()->with($action.'-error', 'Password not updated');
     }
 }

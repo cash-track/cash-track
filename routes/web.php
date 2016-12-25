@@ -17,7 +17,8 @@ Route::get('/', 'HomeController@index')->name('homepage');
 Route::get('/dashboard', 'ProfileController@index')->name('dashboard');
 Route::get('/profile', 'ProfileController@profile')->name('profile');
 Route::get('/profile/setting/{section?}', 'ProfileController@setting')->name('profile.settings');
-Route::patch('/profile/setting/{section?}', 'ProfileController@update')->name('profile.update');
+Route::patch('/profile/setting/{section?}/{action}', 'ProfileController@update')
+    ->name('profile.update');
 
 Route::resource('/balance', 'BalanceController', ['except' => ['index']]);
 Route::put('/balance/{id}/activate', 'BalanceController@activate')->name('balance.activate');

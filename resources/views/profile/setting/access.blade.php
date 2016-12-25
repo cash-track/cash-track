@@ -1,22 +1,36 @@
 
 <div class="card">
-    <form action="#" method="post" autocomplete="off" novalidate>
+    <form action="{{ route('profile.update', [$section, 'update-password']) }}" method="post" autocomplete="off" novalidate>
         <div class="card-header text-sm-center">
             <strong>Change password</strong>
         </div>
         <div class="card-block">
 
+            @if(session('update-password-success'))
+                <div class="alert alert-success">
+                    <strong>Success!</strong>
+                    {{ session('update-password-success') }}
+                </div>
+            @endif
+
+            @if(session('update-password-error'))
+                <div class="alert alert-warning">
+                    <strong>Error!</strong>
+                    {{ session('update-password-error') }}
+                </div>
+            @endif
+
             {{-- Old password field --}}
-            <div class="form-group row {{ $errors->has('old-password') ? 'has-danger' : '' }}">
+            <div class="form-group row {{ $errors->{'update-password'}->has('old-password') ? 'has-danger' : '' }}">
                 <label class="col-form-label col-sm-4 text-sm-right"
                        for="old-password">Old password</label>
                 <div class="col-sm-8">
                     <input type="password" name="old-password" class="form-control"
                            id="old-password" autocomplete="off">
 
-                    @if ($errors->has('old-password'))
-                        <div class="form-control-feedback text-muted">
-                            {{ $errors->first('old-password') }}
+                    @if ($errors->{'update-password'}->has('old-password'))
+                        <div class="form-control-feedback">
+                            {{ $errors->{'update-password'}->first('old-password') }}
                         </div>
                     @endif
 
@@ -27,16 +41,16 @@
             </div>
 
             {{-- New password field --}}
-            <div class="form-group row {{ $errors->has('password') ? 'has-danger' : '' }}">
+            <div class="form-group row {{ $errors->{'update-password'}->has('password') ? 'has-danger' : '' }}">
                 <label class="col-form-label col-sm-4 text-sm-right"
                        for="password">New password</label>
                 <div class="col-sm-8">
                     <input type="password" name="password" class="form-control"
                            id="password" autocomplete="off">
 
-                    @if ($errors->has('password'))
-                        <div class="form-control-feedback text-muted">
-                            {{ $errors->first('password') }}
+                    @if ($errors->{'update-password'}->has('password'))
+                        <div class="form-control-feedback">
+                            {{ $errors->{'update-password'}->first('password') }}
                         </div>
                     @endif
 
@@ -47,16 +61,16 @@
             </div>
 
             {{-- New password field --}}
-            <div class="form-group row {{ $errors->has('password_confirm') ? 'has-danger' : '' }}">
+            <div class="form-group row {{ $errors->{'update-password'}->has('password_confirmation') ? 'has-danger' : '' }}">
                 <label class="col-form-label col-sm-4 text-sm-right"
-                       for="password_confirm">Confirm new password</label>
+                       for="password_confirmation">Confirm new password</label>
                 <div class="col-sm-8">
-                    <input type="password" name="password_confirm" class="form-control"
-                           id="password_confirm" autocomplete="off">
+                    <input type="password" name="password_confirmation" class="form-control"
+                           id="password_confirmation" autocomplete="off">
 
-                    @if ($errors->has('password_confirm'))
+                    @if ($errors->{'update-password'}->has('password_confirmation'))
                         <div class="form-control-feedback">
-                            {{ $errors->first('password_confirm') }}
+                            {{ $errors->{'update-password'}->first('password_confirmation') }}
                         </div>
                     @endif
 
