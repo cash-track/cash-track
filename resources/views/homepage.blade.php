@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{--*/ $page = 'homepage' /*--}}
+<!--{{ $page = 'homepage' }}-->
 
 @section('content')
     <div class="container">

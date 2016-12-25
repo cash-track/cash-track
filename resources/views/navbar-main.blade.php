@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-faded navbar-main">
     <div class="container">
         <div class="hidden-sm-up">
-            <button class="navbar-toggler pull-right hidden-sm-up"
+            <button class="navbar-toggler float-xs-right hidden-sm-up"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navigation-main"
@@ -17,12 +17,17 @@
             <a class="navbar-brand hidden-xs-down" href="{{ route('homepage') }}">Finance</a>
 
             <ul class="nav navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item {{ $page=='homepage'?'active':'' }}">
                     <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                 </li>
+                @if(!Auth::guest())
+                    <li class="nav-item {{ $page=='profile.dashboard'?'active':'' }}">
+                        <a class="nav-link" href="{{ route('dashboard') }}">Balances</a>
+                    </li>
+                @endif
             </ul>
 
-            <ul class="nav navbar-nav pull-sm-right">
+            <ul class="nav navbar-nav float-sm-right">
                 @if (Auth::guest())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Sign in</a>
@@ -48,8 +53,11 @@
                                 New balance
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('profile') }}">
                                 Profile
+                            </a>
+                            <a class="dropdown-item" href="{{ route('profile.settings') }}">
+                                Setting
                             </a>
                             <form action="{{ url('/logout') }}" method="POST">
                                 {{ csrf_field() }}

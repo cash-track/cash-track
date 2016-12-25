@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<!--{{ $page = 'passreset' }}-->
+
 <!-- Main Content -->
 @section('content')
 <div class="container">

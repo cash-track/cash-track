@@ -7,9 +7,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-        {{ config('app.name') }}
         @hasSection('title')
-            / @yield('title')
+            @yield('title')
+        @else
+            {{ config('app.name') }}
         @endif
     </title>
 

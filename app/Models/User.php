@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,6 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
  * @mixin \Eloquent
- *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -20,7 +20,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereEmail($value)
@@ -28,8 +27,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
- *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Balance[] $balances
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Trans[] $transactions
  */
 class User extends Authenticatable
 {
@@ -61,5 +60,15 @@ class User extends Authenticatable
     public function balances()
     {
         return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id');
+    }
+
+	/**
+	 * The transactions of users
+	 *
+	 * @return HasMany
+	 */
+    public function transactions()
+    {
+	    return $this->hasMany('App\Models\Trans');
     }
 }

@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property int $balance_id
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereAmount($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereType($value)
@@ -22,13 +21,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereBalanceId($value)
  * @mixin \Eloquent
- *
  * @property-read \App\Models\Balance $balance
  * @property string $title
  * @property string $description
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereDescription($value)
+ * @property integer $user_id
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Trans whereUserId($value)
  */
 class Trans extends Model
 {
@@ -45,5 +45,25 @@ class Trans extends Model
     public function balance()
     {
         return $this->belongsTo('App\Models\Balance');
+    }
+
+	/**
+	 * User on trans
+	 *
+	 * @return BelongsTo
+	 */
+    public function user()
+    {
+    	return $this->belongsTo('App\Models\User');
+    }
+
+	/**
+	 * Get author info
+	 *
+	 * @return User
+	 */
+    public function getUser()
+    {
+    	return $this->user()->get();
     }
 }

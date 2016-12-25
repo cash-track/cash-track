@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<!--{{ $page = 'register' }}-->
+
 @section('content')
 <div class="container">
     <div class="row">

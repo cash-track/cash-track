@@ -16,8 +16,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // format price with whitespaces
         Blade::directive('price', function ($exp) {
-            return "<?php echo number_format((float)$exp, 0, ',', ' ') ?>";
+            return "<?php echo number_format((float)$exp, 0, ',', ' ') . ' грн.' ?>";
         });
+
     }
 
     /**
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+	    // add BugSnap
+	    $this->app->alias('bugsnag.logger', \Illuminate\Contracts\Logging\Log::class);
+	    $this->app->alias('bugsnag.logger', \Psr\Log\LoggerInterface::class);
     }
 }
