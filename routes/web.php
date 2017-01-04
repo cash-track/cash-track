@@ -23,6 +23,8 @@ Route::patch('/profile/setting/{section?}/{action}', 'ProfileController@update')
 Route::resource('/balance', 'BalanceController', ['except' => ['index']]);
 Route::put('/balance/{id}/activate', 'BalanceController@activate')->name('balance.activate');
 Route::put('/balance/{id}/disactivate', 'BalanceController@disactivate')->name('balance.disactivate');
+Route::get('/balance/{id}/invite', 'BalanceController@showInvite')->name('balance.showInvite');
+Route::put('/balance/{id}/invite', 'BalanceController@invite')->name('balance.invite');
 
 Route::resource('/trans', 'TransController', ['only' => [
     'store', 'update', 'destroy',

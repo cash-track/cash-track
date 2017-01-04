@@ -33,7 +33,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">More actions</h6>
-                        <a class="dropdown-item disabled" href="#">Invite</a>
+                        <a class="dropdown-item" href="{{ route('balance.showInvite', $balance->id) }}">Invite</a>
                         @if($balance->is_active)
                             <form action="{{ route('balance.disactivate', $balance->id) }}" method="POST">
                                 {{ csrf_field() }}

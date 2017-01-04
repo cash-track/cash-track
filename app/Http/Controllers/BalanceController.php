@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Balance;
+use App\Models\User;
 use Auth;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\RedirectResponse;
@@ -180,6 +181,37 @@ class BalanceController extends Controller
         $balance->save();
 
         return back()->with('success', 'Balance disactivated');
+    }
+
+
+    public function showInvite($id){
+        $balance = Balance::findOrFail($id);
+
+        // balance can see only attached user
+        if (!$balance->hasUser(Auth::user()))
+            return redirect(route('dashboard'));
+
+        return view('balance.invite', compact('balance'));
+    }
+
+    /**
+     * Invite user to balance
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function invite(Request $request, $id)
+    {
+        $user = User::find($request->get('user_id'));
+        if(!$user->exists)
+            return back()->with('fail', 'Cannot invite unknown user');
+
+        $balance = Balance::find($id);
+
+        $user->balances()->attach($balance);
+
+        return back()->with('success', 'User invited to this balance');
     }
 
     /**
