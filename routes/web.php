@@ -25,6 +25,8 @@ Route::put('/balance/{id}/activate', 'BalanceController@activate')->name('balanc
 Route::put('/balance/{id}/disactivate', 'BalanceController@disactivate')->name('balance.disactivate');
 Route::get('/balance/{id}/invite', 'BalanceController@showInvite')->name('balance.showInvite');
 Route::put('/balance/{id}/invite', 'BalanceController@invite')->name('balance.invite');
+Route::post('/balance/invite-user-autocomplete', 'BalanceController@inviteAutoComplete')->name('balance.invite-user-autocomplete');
+Route::patch('/balance/{id}/uninvite/{user}', 'BalanceController@unInvite')->name('balance.uninvite');
 
 Route::resource('/trans', 'TransController', ['only' => [
     'store', 'update', 'destroy',

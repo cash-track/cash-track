@@ -204,14 +204,41 @@ class BalanceController extends Controller
     public function invite(Request $request, $id)
     {
         $user = User::find($request->get('user_id'));
-        if(!$user->exists)
+        if(is_null($user) || !$user->exists)
             return back()->with('fail', 'Cannot invite unknown user');
 
         $balance = Balance::find($id);
+        $invited = $balance->users()->get();
+        $result = $invited->search(function($item, $key) use ($user) {
+            return $item->id == $user->id;
+        });
+
+        if($result !== false)
+            return back()->with('fail', 'User already invited');
 
         $user->balances()->attach($balance);
 
         return back()->with('success', 'User invited to this balance');
+    }
+
+    /**
+     * Remove user invite in balance
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @param int $user_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unInvite(Request $request, $id, $user_id){
+        $user = User::find($user_id);
+        if(is_null($user) || !$user->exists)
+            return back()->with('fail', 'Unknown user');
+
+        $balance = Balance::find($id);
+
+        $user->balances()->detach($balance);
+
+        return back()->with('success', 'User uninvited success');
     }
 
     /**
@@ -229,5 +256,22 @@ class BalanceController extends Controller
         $balance->delete();
 
         return redirect()->route('dashboard');
+    }
+
+    /**
+     * User auto complete handler on invite page
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function inviteAutoComplete(Request $request)
+    {
+        $value = $request->get('name');
+
+        $result = User::where('name', 'LIKE', '%'.$value.'%')
+            ->orWhere('email', 'LIKE', '%'.$value.'%')
+            ->get();
+
+        return response()->json($result);
     }
 }

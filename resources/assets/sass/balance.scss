@@ -200,6 +200,32 @@ Balance page styles
 	}
 }
 
+.invite-user-page{
+    .user-autocomplete-container{
+        position: relative;
+    }
+
+    .selected{
+        input, .form-text{
+            display: none;
+        }
+    }
+
+    .user-autocomplete{
+        width: calc(100% - 30px);
+        max-height: 150px;
+        position: absolute;
+        overflow-y: scroll;
+        z-index: 100;
+        top: 37px;
+        box-shadow: 0 2px 4px -2px rgba(70, 70, 70, 0.7);
+    }
+
+    .list-group-item form{
+        display: inline;
+    }
+}
+
 @media (max-width: 544px){
 	.balance-page .balance-header{
 		padding-bottom: 20px;

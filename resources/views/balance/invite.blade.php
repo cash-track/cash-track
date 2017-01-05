@@ -5,10 +5,10 @@
 
 @section('content')
 
-    <div class="container new-balance-page">
+    <div class="container invite-user-page">
 
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-6">
                 <form action="{{ route('balance.invite', $balance->id) }}" method="POST" role="form">
                     {{ csrf_field() }}
                     {{ method_field('PUT')  }}
@@ -31,25 +31,7 @@
                             @endif
 
                             <!-- Balance type field -->
-                            <div class="form-group row {{ $errors->has('name') ? 'has-danger' : '' }}">
-                                <label for="name" class="text-md-right col-md-4 col-form-label">
-                                    User name or email
-                                    <i class="text-danger">*</i>
-                                </label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="" required>
-
-                                    @if ($errors->has('name'))
-                                        <div class="form-control-feedback">
-                                            {{ $errors->first('name') }}
-                                        </div>
-                                    @endif
-
-                                    <small class="form-text text-muted">Start write user name or email and select needle member</small>
-
-                                </div>
-                            </div>
+                            <invite-user-auto-complete></invite-user-auto-complete>
 
                         </div>
                         <div class="card-footer text-muted">
@@ -66,6 +48,36 @@
                     </div>
 
                 </form>
+            </div>
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ route('balance.show', $balance->id) }}" class="float-xs-right">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        Control access of user
+                    </div>
+
+                    <div class="card-block">
+                        <div class="list-group">
+                            @foreach($balance->users()->get() as $user)
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    {{ $user->name }}
+
+                                    <form action="{{ route('balance.uninvite', [$balance->id, $user->id]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PATCH') }}
+                                        <button type="submit" class="close" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </form>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
