@@ -1,5 +1,5 @@
 
-.navbar-main{
+.navbar{
     background: #f5f5f5;
     border-bottom: 1px solid #e5e5e5;
     border-radius: 0;
@@ -64,8 +64,15 @@
 }
 
 @media (max-width: 544px){
-	.navbar-main{
+	.navbar{
 		margin-bottom: 10px;
 	}
+}
+
+@media (max-width: 991px) {
+    .navbar-toggleable-md > .container {
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 

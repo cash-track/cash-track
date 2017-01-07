@@ -1,33 +1,40 @@
-<nav class="navbar navbar-light bg-faded navbar-main">
-    <div class="container">
-        <div class="hidden-sm-up">
-            <button class="navbar-toggler float-xs-right hidden-sm-up"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navigation-main"
-                    aria-controls="navigation-main"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                &#9776;
-            </button>
-            <a class="navbar-brand" href="{{ route('homepage') }}">Finance</a>
-            <div class="clearfix"></div>
-        </div>
-        <div class="collapse navbar-toggleable-xs" id="navigation-main">
-            <a class="navbar-brand hidden-xs-down" href="{{ route('homepage') }}">Finance</a>
 
-            <ul class="nav navbar-nav">
+
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navigation-main"
+                aria-controls="navigation-main"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{{ route('homepage') }}">Finance</a>
+
+        <div class="collapse navbar-collapse" id="navigation-main">
+            <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                 <li class="nav-item {{ $page=='homepage'?'active':'' }}">
-                    <a class="nav-link" href="{{ route('homepage') }}">Home</a>
+                    <a class="nav-link" href="{{ route('homepage') }}">
+                        Home
+                        @if($page=='homepage')
+                            <span class="sr-only">(current)</span>
+                        @endif
+                    </a>
                 </li>
                 @if(!Auth::guest())
                     <li class="nav-item {{ $page=='profile.dashboard'?'active':'' }}">
-                        <a class="nav-link" href="{{ route('dashboard') }}">Balances</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            Balances
+                            @if($page=='profile.dashboard')
+                                <span class="sr-only">(current)</span>
+                            @endif
+                        </a>
                     </li>
                 @endif
             </ul>
-
-            <ul class="nav navbar-nav float-sm-right">
+            <ul class="navbar-nav my-2 my-lg-0">
                 @if (Auth::guest())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Sign in</a>
@@ -68,6 +75,5 @@
                 @endif
             </ul>
         </div>
-
     </div>
 </nav>
