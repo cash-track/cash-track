@@ -21,4 +21,24 @@ class HomeController extends Controller
     {
         return view('homepage');
     }
+
+    /**
+     * Display help page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function help()
+    {
+        return view('help');
+    }
+
+    /**
+     * Display about us page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function about()
+    {
+        return view('about');
+    }
 }

@@ -31,3 +31,7 @@ Route::patch('/balance/{id}/uninvite/{user}', 'BalanceController@unInvite')->nam
 Route::resource('/trans', 'TransController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
+
+
+Route::get('/help', 'HomeController@help')->name('help');
+Route::get('/about', 'HomeController@about')->name('about');
