@@ -4,10 +4,9 @@
         <div class="form-group row">
             <label for="name" class="text-md-right col-md-4 col-form-label">
                 User name or email
-                <i class="text-danger">*</i>
             </label>
 
-            <div class="col-md-6 user-autocomplete-container"
+            <div class="col-md-8 user-autocomplete-container"
                  :class="{'selected': selected}">
                 <input id="name" type="text" class="form-control" name="name" value="" required
                        autocomplete="off"
@@ -20,11 +19,12 @@
 
                 <div class="list-group" v-if="selected">
                     <a href="#" class="list-group-item list-group-item-action active">
-                        {{ user.name }} {{ user.email }}
-
                         <button type="button" class="close" aria-label="Close" @click="onUnselected">
                             <span aria-hidden="true">&times;</span>
                         </button>
+
+                        {{ user.name }} {{ user.email }}
+
                         <input type="hidden" name="user_id" :value="user.id">
                     </a>
                 </div>
@@ -43,7 +43,9 @@
     </div>
 </template>
 <style>
-
+    .list-group-item.list-group-item-action{
+        display: block;
+    }
 </style>
 <script>
     export default{
