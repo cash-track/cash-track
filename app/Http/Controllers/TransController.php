@@ -35,7 +35,7 @@ class TransController extends Controller
         $trans->description = $request->get('description') ? $request->get('description') : null;
 
         // assign transaction to balance
-        $trans->balance()->associate($balance);
+        $trans->balance()->associate($balance)->touch();
 
 	    // assign transaction to user
 	    $trans->user()->associate(\Auth::user());

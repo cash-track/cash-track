@@ -62,16 +62,20 @@
                     <div class="card-block">
                         <div class="list-group">
                             @foreach($balance->users()->get() as $user)
-                                <a href="#" class="list-group-item list-group-item-action">
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
                                     {{ $user->name }}
 
-                                    <form action="{{ route('balance.uninvite', [$balance->id, $user->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('PATCH') }}
-                                        <button type="submit" class="close" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </form>
+                                    @if($loop->iteration == 1)
+                                        <span class="badge badge-default">owner</span>
+                                    @else
+                                        <form action="{{ route('balance.uninvite', [$balance->id, $user->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('PATCH') }}
+                                            <button type="submit" class="close" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </a>
                             @endforeach
                         </div>
