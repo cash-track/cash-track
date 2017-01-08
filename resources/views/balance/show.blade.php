@@ -14,7 +14,7 @@
 
                 @if($balance->is_active)
                     <!-- is_active -->
-                        <span class="tag tag-primary status" data-toggle="tooltip"
+                        <span class="badge badge-primary status" data-toggle="tooltip"
                               title="This balance marked as active">active</span>
                 @endif
             </div>
@@ -22,13 +22,19 @@
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>
                 Started at {{ $balance->created_at->format('d.m.y') }}
             </span>
-            <div class="balance-action float-sm-right">
+            <div class="balance-action float-right">
                 <div class="btn-group">
-                    <a href="{{ route('balance.edit', $balance->id) }}" role="button" class="btn btn-secondary">
+                    <a href="{{ route('balance.edit', $balance->id) }}"
+                       role="button"
+                       class="btn btn-secondary">
                         <i class="fa fa-pencil"></i>
                         Edit
                     </a>
-                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button"
+                            class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
                         <span class="sr-only">Show more action</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -51,7 +57,9 @@
                         <form action="{{ route('balance.destroy', $balance->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="dropdown-item" onclick="return confirm('You sure?')">Delete</button>
+                            <button type="submit"
+                                    class="dropdown-item"
+                                    onclick="return confirm('You sure?')">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -61,7 +69,7 @@
         </div>
 
         {{-- Balance amount --}}
-        <div class="balance-detail text-xs-center">
+        <div class="balance-detail text-center">
             <span class="float-sm-left text-sm-left">
                 <span class="text-muted">Payments income</span><br>
                 <span class="text-success balance-detail-item">
@@ -90,7 +98,7 @@
         <div class="balance-trans">
 
             @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,7 +106,7 @@
                 </div>
             @endif
             @if(session('fail'))
-                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

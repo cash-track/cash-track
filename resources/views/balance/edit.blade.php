@@ -15,7 +15,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('balance.show', $balance->id) }}" class="float-xs-right">
+                            <a href="{{ route('balance.show', $balance->id) }}" class="float-right">
                                 <i class="fa fa-times"></i>
                             </a>
                             Edit balance
