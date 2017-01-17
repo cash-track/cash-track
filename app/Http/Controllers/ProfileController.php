@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\{
+    Request, RedirectResponse
+};
 use App\Models\User;
 
 class ProfileController extends Controller
 {
-
     /**
      * ProfileController constructor.
      */
@@ -24,95 +23,101 @@ class ProfileController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return View|ViewFactory
+     * @return View
      */
     public function index() :View
     {
-        $balances = Auth::user()->balances()->orderBy('created_at', 'DESC')->get();
+        $balances = Auth::user()
+            ->balances()
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         return view('profile.dashboard', compact('balances'));
     }
 
-	/**
-	 * Display profile page
-	 * Count a small statistics
-	 *
-	 * @return View|ViewFactory
-	 */
+    /**
+     * Display profile page
+     * Count a small statistics
+     *
+     * @return View
+     */
     public function profile() :View
     {
-    	$user = Auth::user();
-    	$debited = $credited = [];
+        $user = Auth::user();
+        $debited = $credited = [];
 
-	    $week_ago_date = Carbon::now()->subWeek()->format('Y-m-d H:i:s');
-	    $month_ago_date = Carbon::now()->subMonth()->format('Y-m-d H:i:s');
+        $week_ago_date = Carbon::now()->subWeek()->format('Y-m-d H:i:s');
+        $month_ago_date = Carbon::now()->subMonth()->format('Y-m-d H:i:s');
 
-	    // get summary of all debited transactions
-	    $debited['all'] = $user->transactions()
-		    ->where('type', '=', '+')
-		    ->sum('amount');
+        // get summary of all debited transactions
+        $debited['all'] = $user->transactions()
+            ->where('type', '=', '+')
+            ->sum('amount');
 
-	    // get summary of all credited transactions
-	    $credited['all'] = $user->transactions()
-		    ->where('type', '=', '-')
-		    ->sum('amount');
+        // get summary of all credited transactions
+        $credited['all'] = $user->transactions()
+            ->where('type', '=', '-')
+            ->sum('amount');
 
-	    // get summary per last week debited transactions
-	    $debited['week'] = $user->transactions()
-		    ->where('type', '=', '+')
-		    ->where('created_at', '>=', $week_ago_date)
-		    ->sum('amount');
+        // get summary per last week debited transactions
+        $debited['week'] = $user->transactions()
+            ->where('type', '=', '+')
+            ->where('created_at', '>=', $week_ago_date)
+            ->sum('amount');
 
-	    // get summary per last week credited transactions
-	    $credited['week'] = $user->transactions()
-		    ->where('type', '=', '-')
-		    ->where('created_at', '>=', $week_ago_date)
-		    ->sum('amount');
+        // get summary per last week credited transactions
+        $credited['week'] = $user->transactions()
+            ->where('type', '=', '-')
+            ->where('created_at', '>=', $week_ago_date)
+            ->sum('amount');
 
-	    // get summary per last month debited transactions
-	    $debited['month'] = $user->transactions()
-		    ->where('type', '=', '+')
-		    ->where('created_at', '>=', $month_ago_date)
-		    ->sum('amount');
+        // get summary per last month debited transactions
+        $debited['month'] = $user->transactions()
+            ->where('type', '=', '+')
+            ->where('created_at', '>=', $month_ago_date)
+            ->sum('amount');
 
-	    // get summary per last month credited transactions
-	    $credited['month'] = $user->transactions()
-		    ->where('type', '=', '-')
-		    ->where('created_at', '>=', $month_ago_date)
-		    ->sum('amount');
+        // get summary per last month credited transactions
+        $credited['month'] = $user->transactions()
+            ->where('type', '=', '-')
+            ->where('created_at', '>=', $month_ago_date)
+            ->sum('amount');
 
-	    $active_balances = $user->balances()
-		    ->where('is_active', '=', true)
-		    ->get();
+        $active_balances = $user->balances()
+            ->where('is_active', '=', true)
+            ->get();
 
-	    $transactions = $user->transactions()->orderBy('updated_at', 'desc')->paginate(3);
+        $transactions = $user->transactions()
+            ->orderBy('updated_at', 'desc')
+            ->paginate(3);
 
-    	return view('profile.index', compact('user', 'credited', 'debited', 'active_balances', 'transactions'));
+        return view('profile.index', compact('user', 'credited', 'debited', 'active_balances', 'transactions'));
     }
 
-	/**
-	 * Display edit profile page
-	 *
-	 * @return View|ViewFactory
-	 */
-    public function setting($section = 'general') :View
+    /**
+     * Display edit profile page
+     *
+     * @param string $section
+     * @return View
+     */
+    public function setting(string $section = 'general') :View
     {
-    	$user = Auth::user();
+        $user = Auth::user();
 
-	    return view('profile.setting', compact('user', 'section'));
+        return view('profile.setting', compact('user', 'section'));
     }
 
-	/**
-	 * Save new profile settings
-	 *
-	 * @param Request $request
+    /**
+     * Save new profile settings
+     *
+     * @param Request $request
      * @param string $section
      * @param string $action
-	 * @return RedirectResponse
-	 */
+     * @return RedirectResponse
+     */
     public function update(Request $request, string $section = 'general', string $action) :RedirectResponse
     {
-    	$user = Auth::user();
+        $user = Auth::user();
 
         switch($section){
             case 'general':
@@ -126,8 +131,8 @@ class ProfileController extends Controller
                 break;
         }
 
-    	return back()->with(
-    	    'error',
+        return back()->with(
+            'error',
             'Possible XSS attack detected. Unexpected form action'
         );
     }
@@ -135,10 +140,10 @@ class ProfileController extends Controller
     /**
      * Update access options section
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
+     * @param Request $request
+     * @param User $user
      * @param string $action
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     private function updateAccess(Request $request, User $user, string $action) :RedirectResponse
     {
@@ -157,10 +162,10 @@ class ProfileController extends Controller
     /**
      * Update profile password
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
+     * @param Request $request
+     * @param User $user
      * @param string $action
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     private function updatePassword(Request $request, User $user, string $action) :RedirectResponse
     {

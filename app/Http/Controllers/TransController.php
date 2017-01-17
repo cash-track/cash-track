@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Balance;
-use App\Models\Trans;
-use Illuminate\Http\Request;
+use App\Models\{
+    Balance, Trans
+};
+use Illuminate\Http\{
+    RedirectResponse, Request
+};
 
 class TransController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request) :RedirectResponse
     {
         // check authorisation of requested user
         $this->middleware('auth');
@@ -37,8 +39,8 @@ class TransController extends Controller
         // assign transaction to balance
         $trans->balance()->associate($balance)->touch();
 
-	    // assign transaction to user
-	    $trans->user()->associate(\Auth::user());
+        // assign transaction to user
+        $trans->user()->associate(\Auth::user());
 
         // save transaction
         if ($trans->save()) {
@@ -51,12 +53,11 @@ class TransController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id) :RedirectResponse
     {
         // check authorisation of requested user
         $this->middleware('auth');
@@ -67,8 +68,8 @@ class TransController extends Controller
         // update instance fields
         $trans->amount = $request->get('amount');
         $trans->type = $request->get('type');
-        $trans->title = $request->get('title') ? $request->get('title') : null;
-        $trans->description = $request->get('description') ? $request->get('description') : null;
+        $trans->title = $request->get('title', null);
+        $trans->description = $request->get('description', null);
 
         // save transaction
         if ($trans->save()) {
@@ -84,10 +85,10 @@ class TransController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(int $id) :RedirectResponse
     {
         $tran = Trans::find($id);
         if (!$tran->exists) {

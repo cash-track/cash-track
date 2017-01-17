@@ -10,8 +10,6 @@ use Illuminate\Notifications\Notifiable;
 /**
  * App\Models\User.
  *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
@@ -29,6 +27,9 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Balance[] $balances
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Trans[] $transactions
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
  */
 class User extends Authenticatable
 {
@@ -57,9 +58,19 @@ class User extends Authenticatable
      *
      * @return BelongsToMany
      */
-    public function balances()
+    public function balances() :BelongsToMany
     {
         return $this->belongsToMany('App\Models\Balance', 'user_balance', 'user_id', 'balance_id');
+    }
+
+    /**
+     * Get the own balances for user
+     *
+     * @return HasMany
+     */
+    public function ownBalances() :HasMany
+    {
+        return $this->hasMany('App\Models\Balance', 'owner_id');
     }
 
 	/**
@@ -67,7 +78,7 @@ class User extends Authenticatable
 	 *
 	 * @return HasMany
 	 */
-    public function transactions()
+    public function transactions() :HasMany
     {
 	    return $this->hasMany('App\Models\Trans');
     }
