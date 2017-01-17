@@ -9,19 +9,16 @@
         {{-- Balance header --}}
         <div class="balance-header text-sm-center">
             <div class="balance-title float-sm-left">
-                <a href="#">{{ Auth::user()->name }}</a> /
-                <a href="#">Balance</a>
+                <h3>
+                    {{ $balance->title or 'Balance' }}
 
-                @if($balance->is_active)
-                    <!-- is_active -->
-                        <span class="badge badge-primary status" data-toggle="tooltip"
-                              title="This balance marked as active">active</span>
-                @endif
+                    @if($balance->is_active)
+                        <!-- is_active -->
+                            <span class="badge badge-primary status" data-toggle="tooltip"
+                                  title="This balance marked as active">active</span>
+                    @endif
+                </h3>
             </div>
-            <span class="balance-started-date">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                Started at {{ $balance->created_at->format('d.m.y') }}
-            </span>
             <div class="balance-action float-right">
                 <div class="btn-group">
                     <a href="{{ route('balance.edit', $balance->id) }}"
