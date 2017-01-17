@@ -85,7 +85,8 @@ class ProfileController extends Controller
 
         $active_balances = $user->balances()
             ->where('is_active', '=', true)
-            ->get();
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(3);
 
         $transactions = $user->transactions()
             ->orderBy('updated_at', 'desc')

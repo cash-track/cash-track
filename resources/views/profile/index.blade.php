@@ -80,7 +80,9 @@
                             @each('trans.short-item', $transactions, 'item')
                         </div>
 
-                        {{--<a href="#">See more..</a>--}}
+                        @if($active_balances->lastPage() > $active_balances->currentPage())
+                            {{--<a href="#">See more..</a>--}}
+                        @endif
                     @else
                         -
                     @endif
@@ -90,6 +92,10 @@
                 <p class="lead">Current balance</p>
                 @if($active_balances)
                     @each('balance.card', $active_balances, 'balance')
+
+                    @if($active_balances->lastPage() > $active_balances->currentPage())
+                        <a href="{{ route('dashboard') }}">See more..</a>
+                    @endif
                 @else
                     -
                 @endif

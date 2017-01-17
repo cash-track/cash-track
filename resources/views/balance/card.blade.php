@@ -1,23 +1,22 @@
 <div class="card balance-box
-            {{ $balance->is_active?'balance-box-active card-outline-primary':'' }}"
+     {{ $balance->is_active?'balance-box-active card-outline-primary':'' }}"
      data-balance-id="{{ $balance->id }}"
      onclick="location.href='{{ url('/balance') }}/{{ $balance->id }}'">
     <div class="card-block">
 
         <!-- Started ad field -->
-        <span class="float-right" data-toggle="tooltip" title="Date when balance started">
+        <span class="float-right" data-toggle="tooltip" title="Balance created at">
             {{ $balance->created_at->format('Y-m-d') }}
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
         </span>
 
         <h4 class="card-title">
-            Balance
+            {{ !empty($balance->title)?str_limit($balance->title, 15):'Balance' }}
             @if($balance->is_active)
                 <span class="badge badge-primary status" data-toggle="tooltip"
                       title="This balance marked as active">active</span>
             @endif
         </h4>
-        <p class="card-text">Your balance @price($balance->getBalance()) UAH</p>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item justify-content-between">
@@ -25,6 +24,9 @@
                   title="Summary credited">
                 <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
                 @price($balance->getDebit())
+            </span>
+            <span class="text-primary" data-toggle="tooltip" title="Current balance">
+                <b>@price($balance->getBalance())</b>
             </span>
             <span class="text-danger" data-toggle="tooltip"
                   title="Summary spent">
