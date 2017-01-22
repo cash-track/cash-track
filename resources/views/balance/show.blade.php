@@ -8,7 +8,7 @@
 
         {{-- Balance header --}}
         <div class="balance-header text-sm-center">
-            <div class="balance-title float-sm-left">
+            <div class="balance-title float-sm-left text-center text-sm-left">
                 <h3>
                     {{ $balance->title or 'Balance' }}
 
@@ -19,7 +19,7 @@
                     @endif
                 </h3>
             </div>
-            <div class="balance-action float-right">
+            <div class="balance-action float-sm-right">
                 <div class="btn-group">
                     <a href="{{ route('balance.edit', $balance->id) }}"
                        role="button"
@@ -68,7 +68,7 @@
         <div class="row">
             <div class="col">
                 @if(count($balance->users))
-                    <div class="owners-box">
+                    <div class="owners-box text-center text-sm-left">
                         @foreach($balance->users as $user)
                             <span>
                                 <img src="{{ $user->image }}" alt="{{ $user->name }}" class="rounded-circle list-group-item-image">

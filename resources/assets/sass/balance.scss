@@ -19,6 +19,12 @@ Balance page styles
     .owners-box{
         border-top: 1px #eee solid;
         padding: 20px 0;
+
+        &>span{
+            white-space: nowrap;
+            display: inline-block;
+            padding: 4px 0 8px;
+        }
     }
 
 	.balance-detail{
@@ -101,6 +107,7 @@ Balance page styles
 
 		.trans-date-cont{
 			padding-top: 10px;
+            position: relative;
 
 			.trans-date{
 				font-size: 14px;
@@ -281,6 +288,12 @@ Balance page styles
 			padding: 10px 0 0 27px;
 			margin-left: 30px;
 			border-left: 1px solid #eee;
+
+            .list-group-item-image{
+                position: absolute;
+                left: -46px;
+                bottom: 5px;
+            }
 		}
 		.trans-detail{
 			padding: 4px 15px 10px 25px;
