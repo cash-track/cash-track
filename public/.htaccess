@@ -18,3 +18,37 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
+
+<ifModule mod_headers.c>
+
+    # Implement security headers
+
+    # Content security policy
+    # Allow load and execute scripts itself
+    # Allow execute inline script
+    # Allow eval unsave script (Webpack required)
+    # Allow the site to frame itself
+    Header set Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' frame-ancestors 'self'"
+
+    # HTTP Strict Transport Security (HSTS)
+    # Only connect to this site and subdomains via HTTPS for the next two years and also include in the preload list
+    Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+    # Referrer Policy
+    # Disable referrers for browsers that don't support strict-origin-when-cross-origin
+    # Uses strict-origin-when-cross-origin for browsers that do
+    Header set Referrer-Policy "no-referrer, strict-origin-when-cross-origin"
+
+    # X-Content-Type-Options
+    # Prevent browsers from incorrectly detecting non-scripts as scripts
+    Header set X-Content-Type-Options "nosniff"
+
+    # X-Frame-Options
+    # Allow the site to frame itself
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # X-XSS-Protection
+    # Block pages from loading when they detect reflected XSS attacks
+    Header set X-XSS-Protection "1; mode=block"
+
+</ifModule>
