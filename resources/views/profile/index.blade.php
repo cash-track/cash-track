@@ -36,7 +36,7 @@
             <div class="col-md-2 text-center">
 
                 <div class="profile-image">
-                    <img src="https://dummyimage.com/600/666/fff.png" alt="Profile">
+                    <img src="{{ $user->image or 'https://dummyimage.com/600/666/fff.png' }}" alt="Profile">
                 </div>
 
             </div>

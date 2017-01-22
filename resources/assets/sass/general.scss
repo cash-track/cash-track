@@ -4,6 +4,11 @@
     border-bottom: 1px solid #e5e5e5;
     border-radius: 0;
     margin-bottom: 20px;
+
+    .nav-image{
+        max-height: 30px;
+        margin: -8px 4px -6px 0;
+    }
 }
 
 html{
@@ -76,6 +81,28 @@ body{
 
         .list-group-item{
             background-color: #fff;
+        }
+    }
+
+    .card-footer{
+        .owners{
+            //max-width: 65%;
+            //display: inline-block;
+            //overflow: hidden;
+            //white-space: nowrap;
+            //text-overflow: ellipsis;
+
+            a{
+                text-decoration: none;
+
+                img{
+                    max-height: 26px;
+                    margin: -10px 0 -4px 0px;
+                }
+            }
+        }
+        .when-updated{
+
         }
     }
 }

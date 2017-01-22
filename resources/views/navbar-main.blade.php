@@ -50,6 +50,7 @@
                            data-toggle="dropdown"
                            aria-haspopup="true"
                            aria-expanded="false">
+                            <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}" class="rounded-circle nav-image">
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="login-dropdown">

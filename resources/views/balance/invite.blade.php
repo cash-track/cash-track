@@ -63,9 +63,12 @@
                         <div class="list-group">
                             @foreach($balance->users()->get() as $user)
                                 <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
-                                    {{ $user->name }}
+                                    <span>
+                                        <img src="{{ $user->image }}" alt="{{ $user->name }}" class="rounded-circle list-group-item-image">
+                                        {{ $user->name }}
+                                    </span>
 
-                                    @if($loop->iteration == 1)
+                                    @if($user->id == $balance->owner->id)
                                         <span class="badge badge-default">owner</span>
                                     @else
                                         <form action="{{ route('balance.uninvite', [$balance->id, $user->id]) }}" method="POST">

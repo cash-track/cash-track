@@ -37,18 +37,16 @@
     </ul>
     <div class="card-footer text-muted">
         @if(count($balance->users))
-            <span>
-                <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip"
-                   title="Balance owner"></i>
+            <span class="owners">
                 @foreach($balance->users as $user)
-                    @if($loop->iteration > 2) @continue @endif
-                    <a href="#">{{ $user->name }}</a>
-                    @if($loop->remaining && $loop->iteration < 2), @endif
+                    @if($loop->iteration > 6) @continue @endif
+                    <a href="#" data-toggle="tooltip" data-title="{{ $user->name }}">
+                        <img src="{{ $user->image }}" alt="" class="rounded-circle">
+                    </a>
                 @endforeach
-                {{ $balance->users->count() > 2 ? '...':'' }}
             </span>
         @endif
-        <span class="float-right" data-toggle="tooltip"
+        <span class="when-updated float-right" data-toggle="tooltip"
               title="When balance updated">
             {{ $balance->updated_at->diffForHumans() }}
             <i class="fa fa-clock-o" aria-hidden="true"></i>

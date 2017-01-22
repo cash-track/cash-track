@@ -2,6 +2,7 @@
 
     <div class="col-sm-4 text-sm-right text-muted trans-date-cont">
         <span class="trans-date">{{ $tran->updated_at->format('d.m.y H:i') }}</span>
+        <img src="{{ $tran->user->image }}" alt="{{ $tran->user->name }}" class="rounded-circle list-group-item-image" data-toggle="tooltip" data-title="{{ $tran->user->name }}">
     </div>
 
     <div class="col-sm-8 text-left trans-detail">

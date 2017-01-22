@@ -65,6 +65,25 @@
             <div class="clearfix"></div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                @if(count($balance->users))
+                    <div class="owners-box">
+                        @foreach($balance->users as $user)
+                            <span>
+                                <img src="{{ $user->image }}" alt="{{ $user->name }}" class="rounded-circle list-group-item-image">
+                                {{ $user->name }}
+
+                                @if($user->id == $balance->owner->id)
+                                    <span class="badge badge-primary">owner</span>
+                                @endif
+                            </span>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
+
         {{-- Balance amount --}}
         <div class="balance-detail text-center">
             <span class="float-sm-left text-sm-left">

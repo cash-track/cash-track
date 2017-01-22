@@ -16,6 +16,11 @@ Balance page styles
 		}
 	}
 
+    .owners-box{
+        border-top: 1px #eee solid;
+        padding: 20px 0;
+    }
+
 	.balance-detail{
 		padding: 20px 0 30px;
 		border-top: 1px #eee solid;
@@ -100,6 +105,12 @@ Balance page styles
 			.trans-date{
 				font-size: 14px;
 			}
+
+            .list-group-item-image{
+                max-height: 24px;
+                margin-left: 35px;
+                margin-right: 6px;
+            }
 		}
 
 		.trans-detail{
@@ -228,6 +239,11 @@ Balance page styles
     .list-group-item form{
         display: inline;
     }
+}
+
+.list-group-item-image{
+    max-height: 30px;
+    margin: -8px 4px -6px 0;
 }
 
 @media (max-width: 544px){

@@ -78,6 +78,12 @@ class Balance extends Model
         return $this->belongsTo('App\Models\User', 'owner_id');
     }
 
+    public function getOwner() :Collection
+    {
+        return $this->owner()->get();
+
+    }
+
     /**
      * Check if user assigned to balance.
      *

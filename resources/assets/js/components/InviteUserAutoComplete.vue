@@ -22,9 +22,8 @@
                         <button type="button" class="close" aria-label="Close" @click="onUnselected">
                             <span aria-hidden="true">&times;</span>
                         </button>
-
-                        {{ user.name }} {{ user.email }}
-
+                        <img :src="user.image" :alt="user.name" class="rounded-circle list-group-item-image">
+                        {{ user.name }}
                         <input type="hidden" name="user_id" :value="user.id">
                     </a>
                 </div>
@@ -33,6 +32,7 @@
                     <a @click.prevent="onSelected($event, user.id)"
                        class="list-group-item list-group-item-action"
                        v-for="user in users">
+                        <img :src="user.image" :alt="user.name" class="rounded-circle list-group-item-image">
                         {{ user.name }}
                     </a>
                 </div>

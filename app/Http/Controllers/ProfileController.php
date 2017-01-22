@@ -8,10 +8,11 @@ use Illuminate\View\View;
 use Illuminate\Http\{
     Request, RedirectResponse
 };
-use App\Models\User;
 
 class ProfileController extends Controller
 {
+    use ProfileSettingUpdateHandlers;
+
     /**
      * ProfileController constructor.
      */
@@ -122,13 +123,23 @@ class ProfileController extends Controller
 
         switch($section){
             case 'general':
-                //
+                // general options section
+                switch($action){
+                    case 'update-profile-info':
+                        return $this->updateProfileInfo($request, $user, $action);
+                        break;
+                }
                 break;
             case 'notification':
                 //
                 break;
             case 'access':
-                return $this->updateAccess($request, $user, $action);
+                // access options section
+                switch($action){
+                    case 'update-password':
+                        return $this->updatePassword($request, $user, $action);
+                        break;
+                }
                 break;
         }
 
@@ -138,68 +149,5 @@ class ProfileController extends Controller
         );
     }
 
-    /**
-     * Update access options section
-     *
-     * @param Request $request
-     * @param User $user
-     * @param string $action
-     * @return RedirectResponse
-     */
-    private function updateAccess(Request $request, User $user, string $action) :RedirectResponse
-    {
-        switch($action){
-            case 'update-password':
-                return $this->updatePassword($request, $user, $action);
-                break;
-        }
 
-        return back()->with(
-            'error',
-            'Possible XSS attack detected. Unexpected form action'
-        );
-    }
-
-    /**
-     * Update profile password
-     *
-     * @param Request $request
-     * @param User $user
-     * @param string $action
-     * @return RedirectResponse
-     */
-    private function updatePassword(Request $request, User $user, string $action) :RedirectResponse
-    {
-        // validate old password
-        if(!\Hash::check($request->get('old-password'), $user->password)){
-            // old password not valid
-            return back()
-                ->with($action.'-error', 'Old password is not valid')
-                ->withInput();
-        }
-
-        // validate form request
-        $validator = \Validator::make($request->all(), [
-            'old-password' => 'required',
-            'password'     => 'required|min:6|max:100|confirmed'
-        ]);
-
-        // throw if error
-        if($validator->fails()){
-            return back()
-                ->withErrors($validator, $action)
-                ->withInput();
-        }
-
-        // update password on user
-        $user->fill([
-            'password' => \Hash::make($request->password)
-        ]);
-
-        if($user->save()){
-            return back()->with($action.'-success', 'Password has been updated');
-        }
-
-        return back()->with($action.'-error', 'Password not updated');
-    }
 }
