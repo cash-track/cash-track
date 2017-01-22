@@ -159,6 +159,10 @@ Balance page styles
 			.trans-body{
 				display: none;
 				padding-top: 10px;
+
+				span{
+                    white-space: pre;
+                }
 			}
 
 			.trans-edit{
