@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\InvitedToBalance;
 use Auth;
 use App\Models\{
     Balance, User
@@ -67,14 +68,14 @@ class BalanceController extends Controller
                 break;
         }
 
+        // make current user as balance owner
+        $balance->owner()->associate(Auth::user());
+
         // save balance
         if ($balance->save()) {
 
             // attach balance to user
             Auth::user()->balances()->attach($balance);
-
-            // make current user as balance owner
-            $balance->owner()->associate(Auth::user());
 
             return redirect()->route('balance.show', ['id' => $balance->id]);
         } else {
@@ -221,6 +222,7 @@ class BalanceController extends Controller
 
         $balance = Balance::find($id);
         $invited = $balance->users()->get();
+
         $result = $invited->search(function($item, $key) use ($user) {
             return $item->id == $user->id;
         });
@@ -229,6 +231,11 @@ class BalanceController extends Controller
             return back()->with('fail', 'User already invited');
 
         $user->balances()->attach($balance);
+
+        // notify user what he invited to balance
+        $user->notify(
+            new InvitedToBalance(Auth::user(), $balance)
+        );
 
         return back()->with('success', 'User invited to this balance');
     }
