@@ -1,18 +1,20 @@
 .profile-settings{
 
-	.card{
-		.list-group-item{
-			border-left: none;
-			border-right: none;
+    .card{
+        margin-bottom: 14px;
 
-			&:first-child{
-				border-top: none;
-			}
-			&:last-child{
-				border-bottom: none;
-			}
-		}
-	}
+        .list-group-item{
+            border-left: none;
+            border-right: none;
+
+            &:first-child{
+                border-top: none;
+            }
+            &:last-child{
+                border-bottom: none;
+            }
+        }
+    }
 }
 
 // Extender from /node_modules/bootstrap/dist/css/bootstrap.css:3756

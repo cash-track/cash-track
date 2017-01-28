@@ -36,21 +36,20 @@ body{
 }
 
 .card-columns {
-	.card{
-		-webkit-column-break-inside: avoid; /* Chrome, Safari */
-		page-break-inside: avoid;           /* Theoretically FF 20+ */
-		break-inside: avoid-column;         /* IE 11 */
+    .card{
+        -webkit-column-break-inside: avoid; /* Chrome, Safari */
+        page-break-inside: avoid;           /* Theoretically FF 20+ */
+        break-inside: avoid-column;         /* IE 11 */
 
-		.card-footer{
-			font-size: 14px;
+        .card-footer{
+            font-size: 14px;
 
-			a{
-				color: #818a91;
-			}
-		}
-	}
+            a{
+                color: #818a91;
+            }
+        }
+    }
 }
-
 
 .balance-box{
     cursor: pointer;
@@ -76,7 +75,7 @@ body{
         }
     }
 
-	&.balance-box-active{
+    &.balance-box-active{
         background-color: #fff;
 
         .list-group-item{
@@ -107,6 +106,10 @@ body{
     }
 }
 
+.profile-image-container{
+
+}
+
 @media (max-width: 425px){
     body{
         margin-bottom: 92px;
@@ -118,9 +121,9 @@ body{
 }
 
 @media (max-width: 544px){
-	.navbar{
-		margin-bottom: 10px;
-	}
+    .navbar{
+        margin-bottom: 10px;
+    }
     .balance-box{
         margin-bottom: 14px;
     }
