@@ -127,7 +127,6 @@ class ProfileController extends Controller
                 switch($action){
                     case 'update-profile-info':
                         return $this->updateProfileInfo($request, $user, $action);
-                        break;
                 }
                 break;
             case 'notification':
@@ -138,7 +137,6 @@ class ProfileController extends Controller
                 switch($action){
                     case 'update-password':
                         return $this->updatePassword($request, $user, $action);
-                        break;
                 }
                 break;
         }
