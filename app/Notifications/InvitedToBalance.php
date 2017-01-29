@@ -57,7 +57,7 @@ class InvitedToBalance extends Notification
         $initiator = $this->initiator;
 
         return (new MailMessage)
-            ->subject('Invited to balance')
+            ->subject('Invited to balance '.$this->balance->title)
             ->view('email.user-invited', compact('balance', 'initiator', 'notifiable'));
     }
 
