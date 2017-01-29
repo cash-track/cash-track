@@ -22,8 +22,14 @@ Balance page styles
 
         &>span{
             white-space: nowrap;
-            display: inline-block;
             padding: 4px 0 8px;
+
+            .profile-image-container{
+                height: 30px;
+                width: 30px;
+                display: inline-block;
+                vertical-align: middle;
+            }
         }
     }
 
@@ -113,12 +119,14 @@ Balance page styles
 				font-size: 14px;
 			}
 
-            .list-group-item-image{
-                max-height: 24px;
-                margin-left: 35px;
-                margin-right: 6px;
+            .profile-image-container{
+                height: 24px;
+                width: 24px;
+                margin: 0 6px 0 35px;
+                display: inline-block;
+                vertical-align: middle;
             }
-		}
+        }
 
 		.trans-detail{
 			border-left: 1px solid #eee;
@@ -289,9 +297,9 @@ Balance page styles
 			margin-left: 30px;
 			border-left: 1px solid #eee;
 
-            .list-group-item-image{
+            .profile-image-container{
                 position: absolute;
-                left: -46px;
+                left: -47px;
                 bottom: 5px;
             }
 		}

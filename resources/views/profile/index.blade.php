@@ -36,7 +36,9 @@
             <div class="col-md-2 text-center">
 
                 <div class="profile-image">
-                    <img src="{{ $user->image or 'https://dummyimage.com/600/666/fff.png' }}" alt="Profile">
+                    <a href="{{ route('profile.settings', 'general') }}" class="profile-image-container rounded-circle" title="Change profile image">
+                        <img src="{{ $user->image }}" alt="Profile image">
+                    </a>
                 </div>
 
             </div>
@@ -67,7 +69,7 @@
 
             </div>
             <div class="col-md-12 text-center">
-                <h4>{{ $user->name }}</h4>
+                <h4 class="pt-3">{{ $user->name }}</h4>
                 <h6><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></h6>
                 <hr>
             </div>

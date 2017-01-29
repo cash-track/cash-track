@@ -1,17 +1,23 @@
 .profile{
 
-	.profile-image{
-		display: block;
-		max-width: 100%;
-		overflow: hidden;
-		border-radius: 100%;
-		margin-bottom: 20px;
+    .profile-image{
+        display: block;
+        width: 100%;
+        height: 100%;
 
-		img{
-			width: 100%;
-			height: auto;
-		}
-	}
+        .profile-image-container{
+            width: 100%;
+            height: auto;
+            display: inline-block;
+            float: left;
+
+            &:before {
+                content: "";
+                display: block;
+                padding-top: 20%;
+            }
+        }
+    }
 
 	.card-inverse{
 		color: #fff;

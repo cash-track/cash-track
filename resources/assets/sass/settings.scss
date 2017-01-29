@@ -3,6 +3,12 @@
     .card{
         margin-bottom: 14px;
 
+        .profile-image-container{
+            display: inline-block;
+            height: 200px;
+            width: 200px;
+        }
+
         .list-group-item{
             border-left: none;
             border-right: none;

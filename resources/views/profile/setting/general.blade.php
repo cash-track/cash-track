@@ -46,7 +46,9 @@
                     <div class="row">
                         <div class="col-6">
                             <figure class="figure">
-                                <img src="{{ $user->image }}" class="figure-img img-fluid rounded-circle" alt="Profile picture">
+                                <span class="profile-image-container rounded-circle">
+                                    <img src="{{ $user->image }}" class="figure-img img-fluid" alt="Profile picture">
+                                </span>
                                 <figcaption class="figure-caption">Your current profile picture</figcaption>
                             </figure>
                         </div>

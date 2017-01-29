@@ -66,12 +66,17 @@
         </div>
 
         <div class="row">
+
+            {{-- Balance attached users list --}}
             <div class="col">
                 @if(count($balance->users))
                     <div class="owners-box text-center text-sm-left">
                         @foreach($balance->users as $user)
                             <span>
-                                <img src="{{ $user->image }}" alt="{{ $user->name }}" class="rounded-circle list-group-item-image">
+                                <span class="profile-image-container rounded-circle">
+                                    <img src="{{ $user->image }}" alt="{{ $user->name }}" class="">
+                                </span>
+
                                 {{ $user->name }}
 
                                 @if($user->id == $balance->owner->id)
