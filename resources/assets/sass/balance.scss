@@ -256,6 +256,22 @@ Balance page styles
     }
 }
 
+.invited-users-box{
+    .invited-user-item{
+
+        .badge{
+            padding: 0.1em 0.4em 0.4em 0.4em;
+        }
+
+        .profile-image-container{
+            display: inline-block;
+            vertical-align: middle;
+            height: 30px;
+            width: 30px;
+        }
+    }
+}
+
 .list-group-item-image{
     max-height: 30px;
     margin: -8px 4px -6px 0;

@@ -59,12 +59,15 @@
                         Control access of user
                     </div>
 
-                    <div class="card-block">
+                    <div class="card-block invited-users-box">
                         <div class="list-group">
                             @foreach($balance->users()->get() as $user)
-                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
+                                <a href="#" class="invited-user-item list-group-item list-group-item-action d-flex justify-content-between">
                                     <span>
-                                        <img src="{{ $user->image }}" alt="{{ $user->name }}" class="rounded-circle list-group-item-image">
+                                        <span class="profile-image-container rounded-circle list-group-item-image">
+                                            <img src="{{ $user->image }}" alt="{{ $user->name }}">
+                                        </span>
+
                                         {{ $user->name }}
                                     </span>
 
