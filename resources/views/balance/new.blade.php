@@ -29,44 +29,22 @@
                                 <p class="alert alert-danger">{{ session('fail') }}</p>
                             @endif
 
-                            {{--
-                            <!-- Started at field -->
-                            <div class="form-group row {{ $errors->has('started_at') ? 'has-danger' : '' }}">
-                                <label for="started_at" class="text-xs-right col-md-4 col-form-label">
-                                    Started at
-                                </label>
-
-                                <div class="col-md-6">
-                                    <input id="started_at" type="date" class="form-control" name="started_at" value="{{ old('started_at') }}" required autofocus>
-
-                                    @if ($errors->has('started_at'))
-                                        <div class="form-control-feedback">
-                                            {{ $errors->first('started_at') }}
-                                        </div>
-                                    @endif
-
-                                    <small class="form-text text-muted">Put date when balance will be started</small>
-                                </div>
-                            </div>
-                            --}}
-
                             <!-- Start amount field -->
-                            <div class="form-group row {{ $errors->has('amount') ? 'has-danger' : '' }}">
-                                <label for="amount" class="text-md-right col-md-4 col-form-label">
-                                    Amount
-                                    <i class="text-danger">*</i>
+                            <div class="form-group row {{ $errors->has('title') ? 'has-danger' : '' }}">
+                                <label for="title" class="text-md-right col-md-4 col-form-label">
+                                    Title
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="amount" type="number" class="form-control" name="amount" value="{{ old('amount') }}" required>
+                                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}">
 
-                                    @if ($errors->has('amount'))
+                                    @if ($errors->has('title'))
                                         <div class="form-control-feedback">
-                                            {{ $errors->first('amount') }}
+                                            {{ $errors->first('title') }}
                                         </div>
                                     @endif
 
-                                    <small class="form-text text-muted">Put the start amount of your balance. This can be for example money from latest balance.</small>
+                                    <small class="form-text text-muted">Put balance title text</small>
                                 </div>
                             </div>
 

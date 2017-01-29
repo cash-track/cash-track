@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class HomeController extends Controller
 {
     /**
@@ -15,10 +17,30 @@ class HomeController extends Controller
     /**
      * Show the application homepage.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() :View
     {
         return view('homepage');
+    }
+
+    /**
+     * Display help page
+     *
+     * @return View
+     */
+    public function help() :View
+    {
+        return view('help');
+    }
+
+    /**
+     * Display about us page
+     *
+     * @return View
+     */
+    public function about() :View
+    {
+        return view('about');
     }
 }

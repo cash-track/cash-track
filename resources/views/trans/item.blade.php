@@ -2,16 +2,19 @@
 
     <div class="col-sm-4 text-sm-right text-muted trans-date-cont">
         <span class="trans-date">{{ $tran->updated_at->format('d.m.y H:i') }}</span>
+        <span class="profile-image-container rounded-circle">
+            <img src="{{ $tran->user->image }}" alt="{{ $tran->user->name }}" data-toggle="tooltip" data-title="{{ $tran->user->name }}">
+        </span>
     </div>
 
-    <div class="col-sm-8 text-xs-left trans-detail">
+    <div class="col-sm-8 text-left trans-detail">
 
         <i class="fa trans-operation {{ $tran->type=='-'?'fa-long-arrow-down text-danger':'fa-long-arrow-up text-success' }}" aria-hidden="true"></i>
 
         <span class="defis"></span>
 
         @if($balance->is_active)
-        <div class="float-xs-right action-button">
+        <div class="float-right action-button">
             <div class="dropdown">
                 <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
                         id="trans_action_{{ $tran->id }}" data-toggle="dropdown" aria-haspopup="true"

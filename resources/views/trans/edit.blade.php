@@ -12,10 +12,17 @@
         <div class="col-md-8">
             <div class="form-group">
                 <label for="new-trans-type">Type <i class="text-danger">*</i></label>
-                <select class="form-control" name="type" id="new-trans-type" required>
-                    <option value="-" {{ $tran->type=='-'?'selected':'' }}>Credited (-)</option>
-                    <option value="+" {{ $tran->type=='+'?'selected':'' }}>Debited (+)</option>
-                </select>
+                <br>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary {{ $tran->type!='+'?'active':'' }}">
+                        <input type="radio" name="type" id="new-trans-type-credit" value="-" autocomplete="off" {{ $tran->type!='+'?'checked':'' }} required>
+                        Credited (-)
+                    </label>
+                    <label class="btn btn-primary {{ $tran->type=='+'?'active':'' }}">
+                        <input type="radio" name="type" id="new-trans-type-debit" value="+" autocomplete="off" {{ $tran->type=='+'?'checked':'' }} required>
+                        Debited (+)
+                    </label>
+                </div>
                 <small class="form-text text-muted">
                     Set the type of transaction, this is debited (+) or credited (-)
                 </small>

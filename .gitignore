@@ -10,7 +10,6 @@ public/dist/*
 public/dist/fonts/*
 !public/dist/fonts/
 !public/dist/fonts/.gitkeep
-composer.lock
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -22,6 +21,7 @@ bootstrap/cache/*
 .env.*.php
 .env.php
 .env
+public/storage/*
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/

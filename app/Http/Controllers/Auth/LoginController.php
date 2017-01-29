@@ -3,21 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Foundation\Auth\{AuthenticatesUsers, RedirectsUsers};
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
     use AuthenticatesUsers, RedirectsUsers;
 
     /**
@@ -29,8 +18,6 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -42,7 +29,7 @@ class LoginController extends Controller
      *
      * @return string
      */
-    public function redirectPath()
+    public function redirectPath() :string
     {
         return $this->redirectTo;
     }

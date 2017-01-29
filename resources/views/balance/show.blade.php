@@ -8,32 +8,35 @@
 
         {{-- Balance header --}}
         <div class="balance-header text-sm-center">
-            <div class="balance-title float-sm-left">
-                <a href="#">{{ Auth::user()->name }}</a> /
-                <a href="#">Balance</a>
+            <div class="balance-title float-sm-left text-center text-sm-left">
+                <h3>
+                    {{ $balance->title or 'Balance' }}
 
-                @if($balance->is_active)
-                    <!-- is_active -->
-                        <span class="tag tag-primary status" data-toggle="tooltip"
-                              title="This balance marked as active">active</span>
-                @endif
+                    @if($balance->is_active)
+                        <!-- is_active -->
+                            <span class="badge badge-primary status" data-toggle="tooltip"
+                                  title="This balance marked as active">active</span>
+                    @endif
+                </h3>
             </div>
-            <span class="balance-started-date">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                Started at {{ $balance->created_at->format('d.m.y') }}
-            </span>
             <div class="balance-action float-sm-right">
                 <div class="btn-group">
-                    <a href="{{ route('balance.edit', $balance->id) }}" role="button" class="btn btn-secondary">
+                    <a href="{{ route('balance.edit', $balance->id) }}"
+                       role="button"
+                       class="btn btn-secondary">
                         <i class="fa fa-pencil"></i>
                         Edit
                     </a>
-                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button"
+                            class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
                         <span class="sr-only">Show more action</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">More actions</h6>
-                        <a class="dropdown-item disabled" href="#">Invite</a>
+                        <a class="dropdown-item" href="{{ route('balance.showInvite', $balance->id) }}">Invite</a>
                         @if($balance->is_active)
                             <form action="{{ route('balance.disactivate', $balance->id) }}" method="POST">
                                 {{ csrf_field() }}
@@ -51,7 +54,9 @@
                         <form action="{{ route('balance.destroy', $balance->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="dropdown-item" onclick="return confirm('You sure?')">Delete</button>
+                            <button type="submit"
+                                    class="dropdown-item"
+                                    onclick="return confirm('You sure?')">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -60,8 +65,32 @@
             <div class="clearfix"></div>
         </div>
 
+        <div class="row">
+
+            {{-- Balance attached users list --}}
+            <div class="col">
+                @if(count($balance->users))
+                    <div class="owners-box text-center text-sm-left">
+                        @foreach($balance->users as $user)
+                            <span>
+                                <span class="profile-image-container rounded-circle">
+                                    <img src="{{ $user->image }}" alt="{{ $user->name }}" class="">
+                                </span>
+
+                                {{ $user->name }}
+
+                                @if($user->id == $balance->owner->id)
+                                    <span class="badge badge-primary fix-badge-padding">owner</span>
+                                @endif
+                            </span>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
+
         {{-- Balance amount --}}
-        <div class="balance-detail text-xs-center">
+        <div class="balance-detail text-center">
             <span class="float-sm-left text-sm-left">
                 <span class="text-muted">Payments income</span><br>
                 <span class="text-success balance-detail-item">
@@ -90,7 +119,7 @@
         <div class="balance-trans">
 
             @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,7 +127,7 @@
                 </div>
             @endif
             @if(session('fail'))
-                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

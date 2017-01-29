@@ -3,8 +3,8 @@
 require('./bootstrap');
 
 // import needle components
-let example = require('./components/Example.vue');
-Vue.component('example', example);
+let UserAutoComplete = require('./components/InviteUserAutoComplete.vue');
+Vue.component('invite-user-auto-complete', UserAutoComplete);
 
 // The main Vue instance
 window.app = new Vue({

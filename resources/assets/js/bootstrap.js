@@ -2,6 +2,9 @@
 // Lodash
 window._ = require('lodash');
 
+// Bootstrap v4 require Tether for tooltips
+window.Tether = require('tether');
+
 // Jquery
 window.$ = window.jQuery = require('jquery');
 

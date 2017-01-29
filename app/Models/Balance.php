@@ -2,26 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\{
+    Collection, Model
+};
+use Illuminate\Database\Eloquent\Relations\{
+    BelongsTo,
+    BelongsToMany,
+    HasMany
+};
 
 /**
  * App\Models\Balance.
  *
+ * @mixin \Eloquent
  * @property int $id
- * @property int $amount
+ * @property string $title
+ * @property int $owner_id
  * @property bool $is_active
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereOwnerId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereIsActive($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereUpdatedAt($value)
- * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Trans[] $trans
+ * @property-read \App\Models\User $owner
  */
 class Balance extends Model
 {
@@ -35,7 +43,7 @@ class Balance extends Model
      *
      * @return HasMany
      */
-    public function trans()
+    public function trans() :HasMany
     {
         return $this->hasMany('App\Models\Trans');
     }
@@ -45,7 +53,7 @@ class Balance extends Model
      *
      * @return Collection
      */
-    public function getTrans()
+    public function getTrans() :Collection
     {
         return $this->trans()->orderBy('created_at', 'desc')->get();
     }
@@ -53,11 +61,27 @@ class Balance extends Model
     /**
      * Get the all users of balance.
      *
-     * @return Collection
+     * @return BelongsToMany
      */
-    public function users()
+    public function users() :BelongsToMany
     {
         return $this->belongsToMany('App\Models\User', 'user_balance', 'balance_id', 'user_id');
+    }
+
+    /**
+     * Get balance owner
+     *
+     * @return BelongsTo
+     */
+    public function owner() :BelongsTo
+    {
+        return $this->belongsTo('App\Models\User', 'owner_id');
+    }
+
+    public function getOwner() :Collection
+    {
+        return $this->owner()->get();
+
     }
 
     /**
@@ -67,7 +91,7 @@ class Balance extends Model
      *
      * @return bool
      */
-    public function hasUser($user)
+    public function hasUser(User $user) :bool
     {
         if ($user instanceof User) {
             return (bool) $this->users()->get()->whereStrict('id', $user->id)->count();
@@ -81,7 +105,7 @@ class Balance extends Model
      *
      * @return int
      */
-    public function getCredit()
+    public function getCredit() :int
     {
         $trans = $this->trans()->where('type', '=', '-')->sum('amount');
 
@@ -93,7 +117,7 @@ class Balance extends Model
      *
      * @return int
      */
-    public function getDebit()
+    public function getDebit() :int
     {
         $trans = $this->trans()->where('type', '=', '+')->sum('amount');
 
@@ -105,10 +129,10 @@ class Balance extends Model
      *
      * @return int
      */
-    public function getBalance()
+    public function getBalance() :int
     {
         $credit = $this->getCredit();
-        $debit = $this->getDebit() + $this->amount;
+        $debit = $this->getDebit();
 
         return $debit - $credit;
     }
