@@ -1,7 +1,6 @@
 # Finance application
 
 [![Build Status](https://travis-ci.org/VovikeMS/finance.svg?branch=master)](https://travis-ci.org/VovikeMS/finance)
-[![StyleCI](https://styleci.io/repos/67274628/shield)](https://styleci.io/repos/67274628)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/VovikeMS/finance/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/VovikeMS/finance/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/VovikeMS/finance/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/VovikeMS/finance/?branch=master)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
