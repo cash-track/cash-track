@@ -82,7 +82,7 @@
                                 {{ $user->name }}
 
                                 @if($user->id == $balance->owner->id)
-                                    <span class="badge badge-primary fix-badge-padding">owner</span>
+                                    <span class="badge badge-primary">owner</span>
                                 @endif
                             </span>
                         @endforeach

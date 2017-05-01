@@ -113,4 +113,17 @@ class Balance extends Model
 
         return $debit - $credit;
     }
+
+    /**
+     * Get public link of balance
+     *
+     * @return string
+     */
+    public function publicLink()
+    {
+        return route('user.balance', [
+            'users'     => $this->owner->nick ? $this->owner->nick : $this->owner_id,
+            'balance'   => $this->slug ? $this->slug : $this->id
+        ]);
+    }
 }
