@@ -74,13 +74,15 @@
                         @foreach($balance->users as $user)
                             <span>
                                 <span class="profile-image-container rounded-circle">
-                                    <img src="{{ $user->image }}" alt="{{ $user->name }}" class="">
+                                    <a href="{{ $user->link() }}">
+                                        <img src="{{ $user->image }}" alt="{{ $user->name }}" class="">
+                                    </a>
                                 </span>
 
                                 {{ $user->name }}
 
                                 @if($user->id == $balance->owner->id)
-                                    <span class="badge badge-primary fix-badge-padding">owner</span>
+                                    <span class="badge badge-primary">owner</span>
                                 @endif
                             </span>
                         @endforeach

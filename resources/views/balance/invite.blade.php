@@ -15,7 +15,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('balance.show', $balance->id) }}" class="float-right">
+                            <a href="{{ $balance->publicLink() }}" class="float-right">
                                 <i class="fa fa-times"></i>
                             </a>
                             Invite user to balance {{ $balance->id }}
@@ -37,7 +37,7 @@
                         <div class="card-footer text-muted">
                             <div class="row">
                                 <div class="col-md-4 text-md-right hidden-sm-down">
-                                    <a href="{{ route('balance.show', $balance->id) }}" role="button" class="btn btn-secondary">Back</a>
+                                    <a href="{{ $balance->publicLink() }}" role="button" class="btn btn-secondary">Back</a>
                                 </div>
                                 <div class="col-md-8">
                                     <button class="btn btn-primary" type="submit">Invite</button>

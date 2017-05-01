@@ -37,7 +37,10 @@ class TransController extends Controller
         $trans->description = $request->get('description') ? $request->get('description') : null;
 
         // assign transaction to balance
-        $trans->balance()->associate($balance)->touch();
+        $trans->balance()->associate($balance);
+
+        // update parent balance updated_at
+        $balance->touch();
 
         // assign transaction to user
         $trans->user()->associate(\Auth::user());
@@ -73,7 +76,7 @@ class TransController extends Controller
 
         // save transaction
         if ($trans->save()) {
-            $trans->balance()->touch();
+            $trans->balance->touch();
 
             return back()->with('success', 'Transaction updated');
         } else {
@@ -95,9 +98,13 @@ class TransController extends Controller
             return back()->with('fail', 'Unknown transaction');
         }
 
+        $balance = $tran->balance;
+
         if (!$tran->delete()) {
             return back()->with('fail', 'Cannot delete transaction');
         }
+
+        $balance->touch();
 
         return back()->with('success', 'Transaction deleted');
     }

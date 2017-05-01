@@ -29,7 +29,7 @@
                                 <p class="alert alert-danger">{{ session('fail') }}</p>
                             @endif
 
-                            <!-- Start amount field -->
+                            <!-- Title field -->
                             <div class="form-group row {{ $errors->has('title') ? 'has-danger' : '' }}">
                                 <label for="title" class="text-md-right col-md-4 col-form-label">
                                     Title
@@ -47,6 +47,30 @@
                                     <small class="form-text text-muted">Put balance title text</small>
                                 </div>
                             </div>
+
+                                <!-- Slug field -->
+                                <div class="form-group row {{ $errors->has('slug') ? 'has-danger' : '' }}">
+                                    <label for="slug" class="text-md-right col-md-4 col-form-label">
+                                        Slug
+                                    </label>
+
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                {{ route('homepage') }}/user/{{ Auth::user()->slug ? Auth::user()->slug : Auth::user()->id }}/balance/
+                                            </span>
+                                            <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}">
+                                        </div>
+
+                                        @if ($errors->has('slug'))
+                                            <div class="form-control-feedback">
+                                                {{ $errors->first('slug') }}
+                                            </div>
+                                        @endif
+
+                                        <small class="form-text text-muted">Balance friendly URI</small>
+                                    </div>
+                                </div>
 
                             <!-- Balance type field -->
                             <div class="form-group row {{ $errors->has('type') ? 'has-danger' : '' }}">

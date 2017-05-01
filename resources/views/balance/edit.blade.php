@@ -36,7 +36,7 @@
                                     Title
                                 </label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="title" type="text" class="form-control" name="title" value="{{ $balance->title }}">
 
                                     @if ($errors->has('title'))
@@ -49,6 +49,30 @@
                                 </div>
                             </div>
 
+                                <!-- Slug field -->
+                                <div class="form-group row {{ $errors->has('slug') ? 'has-danger' : '' }}">
+                                    <label for="slug" class="text-md-right col-md-4 col-form-label">
+                                        Slug
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                {{ route('homepage') }}/user/{{ $balance->owner->nick ? $balance->owner->nick : $balance->owner_id }}/balance/
+                                            </span>
+                                            <input type="text" class="form-control" id="slug" name="slug" value="{{ $balance->slug }}">
+                                        </div>
+
+                                        @if ($errors->has('slug'))
+                                            <div class="form-control-feedback">
+                                                {{ $errors->first('slug') }}
+                                            </div>
+                                        @endif
+
+                                        <small class="form-text text-muted">Balance friendly URI</small>
+                                    </div>
+                                </div>
+
                             <!-- Balance type field -->
                             <div class="form-group row {{ $errors->has('type') ? 'has-danger' : '' }}">
                                 <label for="type" class="text-md-right col-md-4 col-form-label">
@@ -56,7 +80,7 @@
                                     <i class="text-danger">*</i>
                                 </label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     @if($balance->is_active)
                                         <div class="form-check">
                                             <label for="type3" class="form-check-label">
@@ -95,11 +119,11 @@
                         <div class="card-footer text-muted">
                             <div class="row">
                                 <div class="col-md-4 text-md-right hidden-sm-down">
-                                    <a href="{{ route('balance.show', $balance->id) }}" role="button" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ $balance->publicLink() }}" role="button" class="btn btn-secondary">Cancel</a>
                                 </div>
                                 <div class="col-md-8">
                                     <button class="btn btn-primary" type="submit">Save</button>
-                                    <a href="{{ route('balance.show', $balance->id) }}" role="button" class="hidden-md-up btn btn-secondary">Cancel</a>
+                                    <a href="{{ $balance->publicLink() }}" role="button" class="hidden-md-up btn btn-secondary">Cancel</a>
                                 </div>
                             </div>
                         </div>
