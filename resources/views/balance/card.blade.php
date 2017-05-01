@@ -40,7 +40,7 @@
             <span class="owners">
                 @foreach($balance->users as $user)
                     @if($loop->iteration > 6) @continue @endif
-                    <a href="#"
+                    <a href="{{ $user->link() }}"
                        data-toggle="tooltip"
                        data-title="{{ $user->name }}"
                        class="profile-image-container rounded-circle">

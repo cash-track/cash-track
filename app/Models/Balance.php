@@ -13,23 +13,6 @@ use Illuminate\Database\Eloquent\Relations\{
 
 /**
  * App\Models\Balance.
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $title
- * @property int $owner_id
- * @property bool $is_active
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereOwnerId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereIsActive($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Balance whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Trans[] $trans
- * @property-read \App\Models\User $owner
  */
 class Balance extends Model
 {
@@ -76,12 +59,6 @@ class Balance extends Model
     public function owner() :BelongsTo
     {
         return $this->belongsTo('App\Models\User', 'owner_id');
-    }
-
-    public function getOwner() :Collection
-    {
-        return $this->owner()->get();
-
     }
 
     /**

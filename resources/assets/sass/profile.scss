@@ -7,15 +7,15 @@
 
         .profile-image-container{
             width: 100%;
-            height: auto;
+            height: 97%;
             display: inline-block;
             float: left;
 
-            &:before {
-                content: "";
-                display: block;
-                padding-top: 20%;
-            }
+            //&:before {
+            //    content: "";
+            //    display: block;
+            //    padding-top: 20%;
+            //}
         }
     }
 
@@ -49,5 +49,21 @@
 
 	.balance-box{
         margin-bottom: 12px;
+    }
+
+    .chapter.lead{
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .profile .profile-image{
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+
+        .profile-image-container{
+            height: 100%;
+        }
     }
 }

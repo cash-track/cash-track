@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\View\View;
@@ -42,9 +43,18 @@ class ProfileController extends Controller
      *
      * @return View
      */
-    public function profile() :View
+    public function profile($user_id = null) :View
     {
-        $user = Auth::user();
+        $user = null;
+        if(!is_null($user_id)){
+            $user = User::where('nick', $user_id)->orWhere('id', $user_id)->first();
+            if(!($user instanceof User)){
+                $user = abort(404);
+            }
+        }else{
+            $user = Auth::user();
+        }
+
         $debited = $credited = [];
 
         $week_ago_date = Carbon::now()->subWeek()->format('Y-m-d H:i:s');
