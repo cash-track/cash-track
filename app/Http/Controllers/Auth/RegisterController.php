@@ -3,21 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Validator as ValidatorFacade;
-use Illuminate\Validation\Validator;
 
 class RegisterController extends Controller
 {
     use RegistersUsers;
-
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -28,32 +21,25 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
      *
-     * @param array $data
-     * @return Validator
+     * @param \App\Http\Requests\Auth\RegisterRequest $request
+     * @return \Illuminate\Http\Response
      */
-    protected function validator(array $data) :Validator
+    public function register(RegisterRequest $request)
     {
-        return ValidatorFacade::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+        $user = User::create([
+            'name'      => $request->get('name'),
+            'last_name' => $request->get('last_name'),
+            'nick'      => str_slug($request->get('nick')),
+            'email'     => $request->get('email'),
+            'password'  => bcrypt($request->get('password')),
         ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param array $data
-     * @return User
-     */
-    protected function create(array $data) :User
-    {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        event(new Registered($user));
+
+        $this->guard()->login($user);
+
+        return redirect()->route('dashboard');
     }
 }

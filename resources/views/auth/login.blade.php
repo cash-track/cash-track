@@ -14,15 +14,15 @@
                     <div class="card-header">Login</div>
                     <div class="card-block">
 
-                        <div class="form-group row {{ $errors->has('email') ? 'has-danger' : '' }}">
-                            <label for="email" class="text-xs-right col-md-4 col-form-label">E-Mail Address</label>
+                        <div class="form-group row {{ $errors->has('login') ? 'has-danger' : '' }}">
+                            <label for="login" class="text-xs-right col-md-4 col-form-label">Login</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="login" type="text" class="form-control" name="login" value="{{ old('login') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('login'))
                                     <div class="form-control-feedback">
-                                        {{ $errors->first('email') }}
+                                        {{ $errors->first('login') }}
                                     </div>
                                 @endif
                             </div>

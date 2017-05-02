@@ -73,7 +73,7 @@ class BalanceController extends Controller
 
         // fill slug
         $slug = str_slug($request->get('slug'));
-        if(Auth::user()->ownBalances()->where('slug', 'slug')->andWhere('id', '!=', $balance->id)->count())
+        if(Auth::user()->ownBalances()->where('slug', 'slug')->where('id', '!=', $balance->id)->count())
             return back()->with('fail', 'Duplicated balance slug');
 
         $balance->slug = $slug;
@@ -84,7 +84,7 @@ class BalanceController extends Controller
             // attach balance to user
             Auth::user()->balances()->attach($balance);
 
-            return redirect()->route('balance.show', ['id' => $balance->id]);
+            return redirect($balance->publicLink());
         } else {
             return back()->with('fail', 'Cannot create balance');
         }

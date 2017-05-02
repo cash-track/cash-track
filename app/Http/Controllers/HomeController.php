@@ -7,14 +7,6 @@ use Illuminate\View\View;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Show the application homepage.
      *
      * @return View
