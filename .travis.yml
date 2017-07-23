@@ -5,8 +5,9 @@ php:
   - 7.1
 
 before_script:
-  - cp .env.travis .env
   - mysql -e 'create database homestead_test;'
+  - cd app
+  - cp .env.travis .env
   - composer self-update
   - composer install --no-interaction
   - php artisan key:generate
