@@ -1,7 +1,7 @@
 <div class="card balance-box
      {{ $balance->is_active?'balance-box-active card-outline-primary':'' }}"
      data-balance-id="{{ $balance->id }}"
-     onclick="location.href='{{ url('/balance') }}/{{ $balance->id }}'">
+     onclick="location.href='{{ $balance->publicLink() }}'">
     <div class="card-block">
 
         <!-- Started ad field -->
@@ -40,7 +40,7 @@
             <span class="owners">
                 @foreach($balance->users as $user)
                     @if($loop->iteration > 6) @continue @endif
-                    <a href="#"
+                    <a href="{{ $user->link() }}"
                        data-toggle="tooltip"
                        data-title="{{ $user->name }}"
                        class="profile-image-container rounded-circle">

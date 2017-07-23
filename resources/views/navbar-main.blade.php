@@ -32,7 +32,31 @@
                             @endif
                         </a>
                     </li>
+                    <li class="nav-item {{ $page=='profile.index'?'active':'' }}">
+                        <a class="nav-link" href="{{ route('profile') }}">
+                            Profile
+                            @if($page=='profile.index')
+                                <span class="sr-only">(current)</span>
+                            @endif
+                        </a>
+                    </li>
                 @endif
+                <li class="nav-item {{ $page=='help'?'active':'' }}">
+                    <a class="nav-link" href="{{ route('help') }}">
+                        Help
+                        @if($page=='help')
+                            <span class="sr-only">(current)</span>
+                        @endif
+                    </a>
+                </li>
+                <li class="nav-item {{ $page=='about'?'active':'' }}">
+                    <a class="nav-link" href="{{ route('about') }}">
+                        About
+                        @if($page=='about')
+                            <span class="sr-only">(current)</span>
+                        @endif
+                    </a>
+                </li>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
                 @if (Auth::guest())
@@ -51,7 +75,7 @@
                            aria-haspopup="true"
                            aria-expanded="false">
                             <span class="profile-image-container rounded-circle nav-image">
-                                <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}">
+                                <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }} {{ Auth::user()->last_name }}">
                             </span>
                             {{ Auth::user()->name }}
                         </a>

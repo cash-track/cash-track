@@ -9,30 +9,6 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\User.
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @property string $email
- * @property string $image
- * @property string $password
- * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereImage($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Balance[] $balances
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Trans[] $transactions
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Balance[] $ownBalances
  */
 class User extends Authenticatable
 {
@@ -49,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'image', 'password',
+        'name', 'last_name', 'nick',  'email', 'image', 'password',
     ];
 
     /**
@@ -91,13 +67,26 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Balance', 'owner_id');
     }
 
-	/**
-	 * The transactions of users
-	 *
-	 * @return HasMany
-	 */
+    /**
+     * The transactions of users
+     *
+     * @return HasMany
+     */
     public function transactions() :HasMany
     {
-	    return $this->hasMany('App\Models\Trans');
+        return $this->hasMany('App\Models\Trans');
+    }
+
+    /**
+     * Get link for user profile
+     *
+     * @return string
+     */
+    public function link()
+    {
+        if(is_null($this->nick))
+            return route('user.show', $this->id);
+
+        return route('user.show', $this->nick);
     }
 }

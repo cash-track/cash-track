@@ -6,76 +6,48 @@
 @section('content')
     <div class="container profile">
 
-        <div class="row">
+        {{-- on desktop --}}
+        <div class="row hidden-md-down">
             <div class="col-md-5">
-
-                {{-- card overwall credited --}}
-                <div class="card card-inverse card-success">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-md-2 text-center">
-                                <i class="fa fa-3x fa-shopping-cart"></i>
-                            </div>
-                            <div class="col-md-10 card-count-main">
-                                <span class="card-count-heading">Потрачено</span>
-                                <span class="card-count-value">@price($credited['all'])</span>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="card-count-heading">За тиждень</span>
-                                <span class="card-count-value">@price($credited['week'])</span>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <span class="card-count-heading">За місяць</span>
-                                <span class="card-count-value">@price($credited['month'])</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @include('profile.components.card-stats-credited')
             </div>
-            <div class="col-md-2 text-center">
-
-                <div class="profile-image">
-                    <a href="{{ route('profile.settings', 'general') }}" class="profile-image-container rounded-circle" title="Change profile image">
-                        <img src="{{ $user->image }}" alt="Profile image">
-                    </a>
-                </div>
-
+            <div class="col-md-2 text-center hidden-md-down">
+                @include('profile.components.profile-avatar')
             </div>
             <div class="col-md-5 text-right">
-
-                {{-- card overwall debited --}}
-                <div class="card card-inverse card-info text-left">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-md-2 text-center">
-                                <i class="fa fa-3x fa-line-chart"></i>
-                            </div>
-                            <div class="col-md-10 card-count-main">
-                                <span class="card-count-heading">Зароблено</span>
-                                <span class="card-count-value">@price($debited['all'])</span>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="card-count-heading">За тиждень</span>
-                                <span class="card-count-value">@price($debited['week'])</span>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <span class="card-count-heading">За місяць</span>
-                                <span class="card-count-value">@price($debited['month'])</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @include('profile.components.card-stats-debited')
             </div>
             <div class="col-md-12 text-center">
-                <h4 class="pt-3">{{ $user->name }}</h4>
+                <h4 class="pt-3">{{ $user->name }} {{ $user->last_name }} ({{ '@'.$user->nick }})</h4>
                 <h6><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></h6>
                 <hr>
             </div>
+        </div>
 
+        {{-- on tablet&mobile --}}
+        <div class="row hidden-lg-up">
+            <div class="col-md-12 text-center">
+                @include('profile.components.profile-avatar')
+            </div>
+            <div class="col-md-12 text-center">
+                <h4 class="pt-3">{{ $user->name }} {{ $user->last_name }} ({{ '@'.$user->nick }})</h4>
+                <h6><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></h6>
+                <hr>
+            </div>
+            <div class="col-md-12">
+                @include('profile.components.card-stats-credited')
+                <br>
+            </div>
+
+            <div class="col-md-12">
+                @include('profile.components.card-stats-debited')
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-6">
-                <p class="lead">Last transaction</p>
+                <p class="lead chapter">Last transaction</p>
                 <div class="trans-list">
                     @if($transactions)
                         <div class="list-group">
@@ -91,7 +63,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <p class="lead">Current balance</p>
+                <p class="lead chapter">Current balance</p>
                 @if($active_balances)
                     @each('balance.card', $active_balances, 'balance')
 

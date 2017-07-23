@@ -29,6 +29,11 @@ Balance page styles
                 width: 30px;
                 display: inline-block;
                 vertical-align: middle;
+
+                &>a{
+                    display: inline-block;
+                    height: 30px;
+                }
             }
         }
     }
@@ -125,6 +130,11 @@ Balance page styles
                 margin: 0 6px 0 35px;
                 display: inline-block;
                 vertical-align: middle;
+
+	            &>a{
+		            display: inline-block;
+		            height: 24px;
+	            }
             }
         }
 
@@ -260,7 +270,7 @@ Balance page styles
     .invited-user-item{
 
         .badge{
-            padding: 0.1em 0.4em 0.4em 0.4em;
+            padding: 0.1em 0.4em 0.1em 0.4em;
         }
 
         .profile-image-container{
@@ -268,6 +278,11 @@ Balance page styles
             vertical-align: middle;
             height: 30px;
             width: 30px;
+
+            &>a{
+                display: inline-block;
+                height: 30px;
+            }
         }
     }
 }
@@ -317,6 +332,11 @@ Balance page styles
                 position: absolute;
                 left: -47px;
                 bottom: 5px;
+
+                &>a{
+                    display: inline-block;
+                    height: 24px;
+                }
             }
 		}
 		.trans-detail{

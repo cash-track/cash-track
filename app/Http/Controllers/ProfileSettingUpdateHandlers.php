@@ -65,8 +65,10 @@ trait ProfileSettingUpdateHandlers{
     {
         // upload photo here
         $validator = \Validator::make($request->all(), [
-            'name'  => 'string',
-            'image' => 'image|max:3072'
+            'name'      => 'string',
+            'nick'      => 'alpha_dash|unique:users,nick,'.$user->id,
+            'last_name' => 'string',
+            'image'     => 'image|max:3072'
         ]);
 
         // throw if error
@@ -93,6 +95,12 @@ trait ProfileSettingUpdateHandlers{
         // update user name if given
         if($user->name != $request->get('name'))
             $user->name = $request->get('name');
+
+        if($user->last_name != $request->get('last_name'))
+            $user->last_name = $request->get('last_name');
+
+        if($request->has('nick') && $request->get('nick') != $user->nick)
+            $user->nick = str_slug($request->get('nick'));
 
         if($user->save())
             return back()->with($action.'-success', 'Profile info updated');

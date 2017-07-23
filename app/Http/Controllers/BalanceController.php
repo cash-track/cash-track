@@ -71,13 +71,20 @@ class BalanceController extends Controller
         // make current user as balance owner
         $balance->owner()->associate(Auth::user());
 
+        // fill slug
+        $slug = str_slug($request->get('slug'));
+        if(Auth::user()->ownBalances()->where('slug', 'slug')->where('id', '!=', $balance->id)->count())
+            return back()->with('fail', 'Duplicated balance slug');
+
+        $balance->slug = $slug;
+
         // save balance
         if ($balance->save()) {
 
             // attach balance to user
             Auth::user()->balances()->attach($balance);
 
-            return redirect()->route('balance.show', ['id' => $balance->id]);
+            return redirect($balance->publicLink());
         } else {
             return back()->with('fail', 'Cannot create balance');
         }
@@ -92,6 +99,37 @@ class BalanceController extends Controller
     public function show(int $id) :View
     {
         $balance = Balance::findOrFail($id);
+
+        // balance can see only attached user
+        if (!$balance->hasUser(Auth::user())) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('balance.show', compact('balance'));
+    }
+
+    /**
+     * Show balance by user owner and slug
+     *
+     * @param string $user_nick
+     * @param string $balance_slug
+     * @return View|RedirectResponse
+     */
+    public function byOwner($user_nick, $balance_slug)
+    {
+        $user = null;
+        if(!is_null($user_nick)){
+            $user = User::where('nick', $user_nick)->orWhere('id', $user_nick)->first();
+            if(!($user instanceof User)){
+                return abort(404);
+            }
+        }else{
+            $user = Auth::user();
+        }
+
+        $balance = Balance::where('slug', $balance_slug)->orWhere('id', $balance_slug)->first();
+        if(!($balance instanceof Balance))
+            return abort(404);
 
         // balance can see only attached user
         if (!$balance->hasUser(Auth::user())) {
@@ -146,6 +184,12 @@ class BalanceController extends Controller
                 $balance->is_active = false;
                 break;
         }
+
+        $slug = str_slug($request->get('slug'));
+        if(Auth::user()->ownBalances()->where('slug', $slug)->where('id', '!=', $balance->id)->count())
+            return back()->with('fail', 'Duplicated balance slug');
+
+        $balance->slug = $slug;
 
         // save balance
         if ($balance->save()) {

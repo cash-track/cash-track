@@ -103,6 +103,11 @@ body{
                     display: inline-block;
                     vertical-align: middle;
                     width: 26px;
+
+                    &>a{
+                        display: inline-block;
+                        height: 24px;
+                    }
                 }
             }
         }
@@ -129,6 +134,11 @@ body{
         left: 50%;
         top: 50%;
         margin: -50% 0 0 -50%;
+    }
+
+    &>{
+        display: inline-block;
+        height: 24px;
     }
 }
 

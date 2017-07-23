@@ -35,7 +35,47 @@
                         @endif
 
                         <small class="form-text text-muted">
-                            Your full name, what will be display on site
+                            Your name, what will be display on site
+                        </small>
+                    </div>
+                </div>
+
+                {{-- Last name field --}}
+                <div class="form-group row {{ $errors->{'update-profile-info'}->has('last_name') ? 'has-danger' : '' }}">
+                    <label class="col-form-label col-sm-4 text-sm-right"
+                           for="last_name">Last Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="last_name" class="form-control"
+                               id="last_name" autocomplete="off" value="{{ $user->last_name }}">
+
+                        @if ($errors->{'update-profile-info'}->has('last_name'))
+                            <div class="form-control-feedback">
+                                {{ $errors->{'update-profile-info'}->first('last_name') }}
+                            </div>
+                        @endif
+
+                        <small class="form-text text-muted">
+                            Your last name
+                        </small>
+                    </div>
+                </div>
+
+                {{-- Nick field --}}
+                <div class="form-group row {{ $errors->{'update-profile-info'}->has('nick') ? 'has-danger' : '' }}">
+                    <label class="col-form-label col-sm-4 text-sm-right"
+                           for="nick">Nick</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="nick" class="form-control"
+                               id="nick" autocomplete="off" value="{{ $user->nick }}">
+
+                        @if ($errors->{'update-profile-info'}->has('nick'))
+                            <div class="form-control-feedback">
+                                {{ $errors->{'update-profile-info'}->first('nick') }}
+                            </div>
+                        @endif
+
+                        <small class="form-text text-muted">
+                            Your nick name, only letter, number, underscore and dashes allowed. Will be used on URL and mention.
                         </small>
                     </div>
                 </div>
