@@ -1,0 +1,6 @@
+*
+!.gitignore
+!Dockerfile
+!nginx.conf
+!host.conf.example
+!host.ssl.conf.example
