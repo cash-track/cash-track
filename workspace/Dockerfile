@@ -81,7 +81,7 @@ RUN ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone
 
 # Composer
 # Add the composer.json
-COPY ./backend/composer.json /home/finance/.composer/composer.json
+COPY ./composer.json /home/finance/.composer/composer.json
 # Make sure that ~/.composer belongs to finance
 RUN chown -R finance:finance /home/finance/.composer
 USER finance
@@ -170,15 +170,12 @@ RUN echo "" >> ~/.bashrc && \
 
 USER finance
 
-ARG INSTALL_YARN=false
-ENV INSTALL_YARN ${INSTALL_YARN}
-ARG YARN_VERSION=latest
-ENV YARN_VERSION ${YARN_VERSION}
-
-RUN [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
-    curl -o- -L https://yarnpkg.com/install.sh | bash; && \
+RUN if [ true ]; then \
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
+    curl -o- -L https://yarnpkg.com/install.sh | bash && \
     echo "" >> ~/.bashrc && \
-    echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> ~/.bashrc
+    echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> ~/.bashrc \
+;fi
 
 # Add YARN binaries to root's .bashrc
 USER root

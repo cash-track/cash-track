@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,10 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        if (User::all()->count()) {
+            return;
+        }
+
         DB::table('users')->insert([
             'name'              => 'admin',
             'email'             => env('ADMIN_MAIL', 'admin@admin.com'),

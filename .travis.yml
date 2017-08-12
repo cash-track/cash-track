@@ -6,7 +6,7 @@ php:
 
 before_script:
   - mysql -e 'create database homestead_test;'
-  - cd app
+  - cd backend
   - cp .env.travis .env
   - composer self-update
   - composer install --no-interaction

@@ -22,7 +22,8 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Balance::class, function (Faker\Generator $faker) {
     return [
-        'amount'        => $faker->randomDigit + 1 * 1000,
+        'title'         => $faker->title,
+        'slug'          => $faker->slug,
         'is_active'     => $faker->boolean,
     ];
 });

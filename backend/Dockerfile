@@ -19,7 +19,7 @@ RUN apt-get update \
         php-soap \
         zlib1g-dev \
         libicu-dev \
-        g++
+        g++ \
     && rm -rf /var/lib/apt/lists/*
 
 # Install the PHP mcrypt extention
