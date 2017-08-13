@@ -11,6 +11,7 @@ _ide_helper_models.php
 /storage/*.key
 npm-debug.log
 yarn-error.log
+/public/mix-manifest.json
 
 # Laravel 5
 bootstrap/cache/*

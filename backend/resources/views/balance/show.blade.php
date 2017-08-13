@@ -74,7 +74,7 @@
                         @foreach($balance->users as $user)
                             <span>
                                 <span class="profile-image-container rounded-circle">
-                                    <a href="{{ $user->link() }}">
+                                    <a href="{{ $user->link }}">
                                         <img src="{{ $user->image }}" alt="{{ $user->name }}" class="">
                                     </a>
                                 </span>

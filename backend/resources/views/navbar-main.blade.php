@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-expand-lg navbar-light bg-faded">
     <div class="container">
         <button class="navbar-toggler navbar-toggler-right"
                 type="button"
@@ -11,6 +11,7 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <a class="navbar-brand" href="{{ route('homepage') }}">Finance</a>
 
         <div class="collapse navbar-collapse" id="navigation-main">
@@ -60,11 +61,11 @@
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
                 @if (Auth::guest())
-                    <li class="nav-item">
+                    <li class="nav-item {{ $page == 'login' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('login') }}">Sign in</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/register') }}">Sign up</a>
+                    <li class="nav-item {{ $page == 'register' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('register') }}">Sign up</a>
                     </li>
                 @else
                     <li class="nav-item dropdown">
@@ -75,7 +76,7 @@
                            aria-haspopup="true"
                            aria-expanded="false">
                             <span class="profile-image-container rounded-circle nav-image">
-                                <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }} {{ Auth::user()->last_name }}">
+                                <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->full_name }}">
                             </span>
                             {{ Auth::user()->name }}
                         </a>
@@ -93,7 +94,7 @@
                             <a class="dropdown-item" href="{{ route('profile.settings') }}">
                                 Setting
                             </a>
-                            <form action="{{ url('/logout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST">
                                 {{ csrf_field() }}
                                 <button class="dropdown-item" href="#">Sign out</button>
                             </form>

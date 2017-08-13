@@ -40,11 +40,21 @@ class User extends Authenticatable
     /**
      * Return default image of user if not specified
      *
-     * @param string|null $value
      * @return string
      */
-    public function getImageAttribute($value) :string {
-        return !is_null($value) ? $value : self::DEFAULT_IMAGE_URL;
+    public function getImageAttribute() :string
+    {
+        return !is_null($this->attributes['image']) ? $this->attributes['image'] : self::DEFAULT_IMAGE_URL;
+    }
+
+    /**
+     * Get the full name attribute of user
+     *
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->name} {$this->last_name}";
     }
 
     /**
@@ -72,9 +82,9 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function transactions() :HasMany
+    public function transactions(): HasMany
     {
-        return $this->hasMany('App\Models\Trans');
+        return $this->hasMany(\App\Models\Trans::class);
     }
 
     /**
@@ -82,7 +92,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function link()
+    public function getLinkAttribute(): string
     {
         if(is_null($this->nick))
             return route('user.show', $this->id);

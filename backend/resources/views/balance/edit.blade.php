@@ -8,8 +8,9 @@
     <div class="container new-balance-page">
 
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 ml-md-auto mr-md-auto">
                 <form action="{{ route('balance.update', $balance->id) }}" method="POST" role="form">
+
                     {{ csrf_field() }}
                     {{ method_field('PUT')  }}
 
@@ -20,7 +21,7 @@
                             </a>
                             Edit balance
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
 
                             @if(session('success'))
                                 <p class="alert alert-success">{{ session('success') }}</p>
@@ -31,16 +32,16 @@
                             @endif
 
                             <!-- Title field -->
-                            <div class="form-group row {{ $errors->has('title') ? 'has-danger' : '' }}">
-                                <label for="title" class="text-md-right col-md-4 col-form-label">
+                            <div class="form-group row">
+                                <label for="title" class="text-md-right col-md-2 col-form-label">
                                     Title
                                 </label>
 
-                                <div class="col-md-8">
-                                    <input id="title" type="text" class="form-control" name="title" value="{{ $balance->title }}">
+                                <div class="col-md-10">
+                                    <input id="title" type="text" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title" value="{{ $balance->title }}">
 
                                     @if ($errors->has('title'))
-                                        <div class="form-control-feedback">
+                                        <div class="invalid-feedback">
                                             {{ $errors->first('title') }}
                                         </div>
                                     @endif
@@ -50,21 +51,21 @@
                             </div>
 
                                 <!-- Slug field -->
-                                <div class="form-group row {{ $errors->has('slug') ? 'has-danger' : '' }}">
-                                    <label for="slug" class="text-md-right col-md-4 col-form-label">
+                                <div class="form-group row">
+                                    <label for="slug" class="text-md-right col-md-2 col-form-label">
                                         Slug
                                     </label>
 
-                                    <div class="col-md-8">
+                                    <div class="col-md-10">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 {{ route('homepage') }}/user/{{ $balance->owner->nick ? $balance->owner->nick : $balance->owner_id }}/balance/
                                             </span>
-                                            <input type="text" class="form-control" id="slug" name="slug" value="{{ $balance->slug }}">
+                                            <input type="text" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" id="slug" name="slug" value="{{ $balance->slug }}">
                                         </div>
 
                                         @if ($errors->has('slug'))
-                                            <div class="form-control-feedback">
+                                            <div class="invalid-feedback">
                                                 {{ $errors->first('slug') }}
                                             </div>
                                         @endif
@@ -74,13 +75,13 @@
                                 </div>
 
                             <!-- Balance type field -->
-                            <div class="form-group row {{ $errors->has('type') ? 'has-danger' : '' }}">
-                                <label for="type" class="text-md-right col-md-4 col-form-label">
+                            <div class="form-group row">
+                                <label for="type" class="text-md-right col-md-2 col-form-label">
                                     Type
                                     <i class="text-danger">*</i>
                                 </label>
 
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     @if($balance->is_active)
                                         <div class="form-check">
                                             <label for="type3" class="form-check-label">
@@ -118,12 +119,9 @@
                         </div>
                         <div class="card-footer text-muted">
                             <div class="row">
-                                <div class="col-md-4 text-md-right hidden-sm-down">
-                                    <a href="{{ $balance->publicLink() }}" role="button" class="btn btn-secondary">Cancel</a>
-                                </div>
-                                <div class="col-md-8">
+                                <div class="col-md-10 ml-md-auto">
                                     <button class="btn btn-primary" type="submit">Save</button>
-                                    <a href="{{ $balance->publicLink() }}" role="button" class="hidden-md-up btn btn-secondary">Cancel</a>
+                                    <a href="{{ $balance->publicLink() }}" role="button" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </div>
                         </div>

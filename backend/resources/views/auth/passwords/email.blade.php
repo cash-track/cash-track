@@ -6,14 +6,14 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-8 ml-md-auto mr-md-auto">
 
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
                 {{ csrf_field() }}
 
             <div class="card">
                 <div class="card-header">Reset Password</div>
-                <div class="card-block">
+                <div class="card-body">
 
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -22,14 +22,14 @@
                     @endif
 
                     <!-- Email field -->
-                    <div class="form-group row{{ $errors->has('email') ? ' has-danger' : '' }}">
-                        <label for="email" class="col-md-4 text-xs-right col-form-label">E-Mail Address</label>
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 text-right col-form-label">E-Mail Address</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                             @if ($errors->has('email'))
-                                <div class="form-control-feedback">
+                                <div class="invalid-feedback">
                                     {{ $errors->first('email') }}
                                 </div>
                             @endif
@@ -39,7 +39,7 @@
                 </div>
                 <div class="card-footer text-muted">
                     <div class="row">
-                        <div class="col-md-8 offset-md-4">
+                        <div class="col-md-8 ml-md-auto">
                             <button type="submit" class="btn btn-primary">Send Password Reset Link</button>
                         </div>
                     </div>
