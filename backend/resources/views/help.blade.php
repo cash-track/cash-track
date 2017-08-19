@@ -21,11 +21,13 @@
                     </div>
 
                     <div id="answer-1" class="collapse" role="tabpanel" aria-labelledby="question-1">
-                        <div class="card-block">
+                        <div class="card-body">
                             You can start use our service by <a href="{{ url('/register') }}">create your account</a> and create your first balance for track your money.
                         </div>
                     </div>
                 </div>
+
+                <p></p>
 
                 {{-- Question 2 --}}
                 <div class="card">
@@ -38,7 +40,7 @@
                     </div>
 
                     <div id="answer-2" class="collapse" role="tabpanel" aria-labelledby="question-2">
-                        <div class="card-block">
+                        <div class="card-body">
                             Yes, you can share any balance to any registered people by click on dropdown button in balance page and click to <mark>Invite</mark> button. Then you must find needle account by start typing his name or email.
                         </div>
                     </div>
