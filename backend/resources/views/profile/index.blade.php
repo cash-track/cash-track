@@ -25,7 +25,7 @@
         </div>
 
         {{-- on tablet&mobile --}}
-        <div class="row hidden-lg-up">
+        <div class="row hidden-lg-up" style="display: none">
             <div class="col-md-12 text-center">
                 @include('profile.components.profile-avatar')
             </div>

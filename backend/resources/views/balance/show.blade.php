@@ -23,12 +23,12 @@
                 <div class="btn-group">
                     <a href="{{ route('balance.edit', $balance->id) }}"
                        role="button"
-                       class="btn btn-secondary">
+                       class="btn btn-primary">
                         <i class="fa fa-pencil"></i>
                         Edit
                     </a>
                     <button type="button"
-                            class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                            class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false">
@@ -73,11 +73,11 @@
                     <div class="owners-box text-center text-sm-left">
                         @foreach($balance->users as $user)
                             <span>
-                                <span class="profile-image-container rounded-circle">
-                                    <a href="{{ $user->link }}">
+                                {{--<span class="">--}}
+                                    <a href="{{ $user->link }}" class="profile-image-container rounded-circle">
                                         <img src="{{ $user->image }}" alt="{{ $user->name }}" class="">
                                     </a>
-                                </span>
+                                {{--</span>--}}
 
                                 {{ $user->name }}
 
@@ -140,7 +140,7 @@
             {{-- New transaction block --}}
             @if($balance->is_active)
             <div class="trans-item new-trans-item row">
-                <div class="offset-sm-4 col-sm-8 trans-detail">
+                <div class="ml-md-auto col-sm-8 trans-detail">
                     <i class="fa fa-plus trans-operation text-muted" aria-hidden="true"></i>
                     <a href="#">Create new trans</a>
                     <div class="new-trans-item-form">

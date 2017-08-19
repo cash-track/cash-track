@@ -21,6 +21,8 @@ services:
       image: finance/workspace
       volumes_from:
         - source
+      volumes:
+        - ./logs/cron.log:/var/log/cron-job.log
       ports:
         - "${WORKSPACE_SSH_PORT}:22"
       tty: true

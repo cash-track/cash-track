@@ -2,7 +2,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-faded">
     <div class="container">
-        <button class="navbar-toggler navbar-toggler-right"
+        <a class="navbar-brand" href="{{ route('homepage') }}">{{ config('app.name') }}</a>
+
+        <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navigation-main"
@@ -11,8 +13,6 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <a class="navbar-brand" href="{{ route('homepage') }}">Finance</a>
 
         <div class="collapse navbar-collapse" id="navigation-main">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">

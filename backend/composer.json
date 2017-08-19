@@ -1,14 +1,15 @@
 {
-    "name": "VovikeMS/finance",
-    "description": "The finance app.",
-    "keywords": ["finance", "app"],
+    "name": "VovikeMS/cash-track",
+    "description": "Track your money stream just now.",
+    "keywords": ["finance", "tracking", "business", "money", "laravel", "php7", "docker"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "laravel/framework": "5.4.*",
         "bugsnag/bugsnag-laravel": "^2.0",
-        "laravel/tinker": "~1.0"
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

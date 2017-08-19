@@ -2,11 +2,11 @@
 
     <div class="col-sm-4 text-sm-right text-muted trans-date-cont">
         <span class="trans-date">{{ $tran->updated_at->format('d.m.y H:i') }}</span>
-        <span class="profile-image-container rounded-circle">
-            <a href="{{ $tran->user->link }}">
+
+            <a href="{{ $tran->user->link }}" class="profile-image-container rounded-circle">
                 <img src="{{ $tran->user->image }}" alt="{{ $tran->user->name }}" data-toggle="tooltip" data-title="{{ $tran->user->name }}">
             </a>
-        </span>
+
     </div>
 
     <div class="col-sm-8 text-left trans-detail">

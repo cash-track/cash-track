@@ -1,6 +1,6 @@
 {{-- card overwall credited --}}
-<div class="card card-inverse card-success">
-    <div class="card-block">
+<div class="card text-white bg-success">
+    <div class="card-body">
         <div class="row">
             <div class="col-2 text-center">
                 <i class="fa fa-3x fa-shopping-cart"></i>

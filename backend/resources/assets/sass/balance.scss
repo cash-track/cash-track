@@ -27,13 +27,9 @@ Balance page styles
             .profile-image-container{
                 height: 30px;
                 width: 30px;
+                min-width: 30px;
                 display: inline-block;
                 vertical-align: middle;
-
-                &>a{
-                    display: inline-block;
-                    height: 30px;
-                }
             }
         }
     }
@@ -125,16 +121,12 @@ Balance page styles
 			}
 
             .profile-image-container{
-                height: 24px;
-                width: 24px;
+                height: 27px;
+                width: 27px;
+	            min-width: 27px;
                 margin: 0 6px 0 35px;
                 display: inline-block;
                 vertical-align: middle;
-
-	            &>a{
-		            display: inline-block;
-		            height: 24px;
-	            }
             }
         }
 
@@ -278,11 +270,7 @@ Balance page styles
             vertical-align: middle;
             height: 30px;
             width: 30px;
-
-            &>a{
-                display: inline-block;
-                height: 30px;
-            }
+            min-width: 30px;
         }
     }
 }

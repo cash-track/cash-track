@@ -18,9 +18,9 @@
                             <a href="{{ $balance->publicLink() }}" class="float-right">
                                 <i class="fa fa-times"></i>
                             </a>
-                            Invite user to balance {{ $balance->id }}
+                            Invite user to {{ $balance->title }}
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
 
                             @if(session('success'))
                                 <p class="alert alert-success">{{ session('success') }}</p>
@@ -36,12 +36,9 @@
                         </div>
                         <div class="card-footer text-muted">
                             <div class="row">
-                                <div class="col-md-4 text-md-right hidden-sm-down">
-                                    <a href="{{ $balance->publicLink() }}" role="button" class="btn btn-secondary">Back</a>
-                                </div>
-                                <div class="col-md-8">
+                                <div class="ml-auto mr-auto">
+                                    <a href="{{ $balance->publicLink() }}" role="button" class="hidden-md-up btn btn-secondary">Back</a>
                                     <button class="btn btn-primary" type="submit">Invite</button>
-                                    <a href="{{ route('balance.show', $balance->id) }}" role="button" class="hidden-md-up btn btn-secondary">Back</a>
                                 </div>
                             </div>
                         </div>
@@ -56,10 +53,10 @@
                         <a href="{{ route('balance.show', $balance->id) }}" class="float-right">
                             <i class="fa fa-times"></i>
                         </a>
-                        Control access of user
+                        Balance members
                     </div>
 
-                    <div class="card-block invited-users-box">
+                    <div class="card-body invited-users-box">
                         <div class="list-group">
                             @foreach($balance->users()->get() as $user)
                                 <a href="#" class="invited-user-item list-group-item list-group-item-action d-flex justify-content-between">

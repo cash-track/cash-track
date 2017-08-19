@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'no-reply@f.vovike.ml',
-        'name'    => 'Finance App',
+        'name'    => 'Cash Track',
     ],
 
     /*

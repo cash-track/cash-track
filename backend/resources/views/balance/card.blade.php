@@ -1,35 +1,25 @@
 <div class="card balance-box
-     {{ $balance->is_active?'balance-box-active card-outline-primary':'' }}"
+     {{ $balance->is_active ? 'balance-box-active card-outline-primary' : '' }}"
      data-balance-id="{{ $balance->id }}"
      onclick="location.href='{{ $balance->publicLink() }}'">
-    <div class="card-block">
-
-        <!-- Started ad field -->
-        <span class="float-right" data-toggle="tooltip" title="Balance created at">
-            {{ $balance->created_at->format('Y-m-d') }}
-            <i class="fa fa-calendar-o" aria-hidden="true"></i>
-        </span>
-
+    <div class="card-body">
+        @if($balance->is_active)
+            <span class="badge badge-primary status float-right">active</span>
+        @endif
         <h4 class="card-title">
             {{ !empty($balance->title)?str_limit($balance->title, 15):'Balance' }}
-            @if($balance->is_active)
-                <span class="badge badge-primary status" data-toggle="tooltip"
-                      title="This balance marked as active">active</span>
-            @endif
         </h4>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item justify-content-between">
-            <span class="text-success" data-toggle="tooltip"
-                  title="Summary credited">
+        <li class="list-group-item d-flex justify-content-between">
+            <span class="text-success">
                 <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
                 @price($balance->getDebit())
             </span>
-            <span class="text-primary" data-toggle="tooltip" title="Current balance">
+            <span class="text-primary">
                 <b>@price($balance->getBalance())</b>
             </span>
-            <span class="text-danger" data-toggle="tooltip"
-                  title="Summary spent">
+            <span class="text-danger">
                 <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
                 @price($balance->getCredit())
             </span>
@@ -49,8 +39,7 @@
                 @endforeach
             </span>
         @endif
-        <span class="when-updated float-right" data-toggle="tooltip"
-              title="When balance updated">
+        <span class="when-updated float-right">
             {{ $balance->updated_at->diffForHumans() }}
             <i class="fa fa-clock-o" aria-hidden="true"></i>
         </span>

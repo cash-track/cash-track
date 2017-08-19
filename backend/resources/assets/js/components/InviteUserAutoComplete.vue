@@ -10,7 +10,7 @@
                  :class="{'selected': selected}">
                 <input id="name" type="text" class="form-control" name="name" value="" required
                        autocomplete="off"
-                       v-model.lazy="name"
+                       v-model="name"
                        @keyup="loadList"
                        @focus="onFocus"
                        @blur="onBlur">
@@ -60,14 +60,14 @@
         },
         methods: {
             loadList: function(event){
-                if(this.name == ''){
+                if(this.name === ''){
                     this.enabled = false;
                     this.users = [];
                 }else{
                     this.enabled = true;
-                    this.$http.post('/balance/invite-user-autocomplete', {
+                    axios.post('/balance/invite-user-autocomplete', {
                         name: this.name
-                    }).then(this.loaded);
+                    }).then(res => {this.users = res.data;});
                 }
             },
             loaded: function(res){
@@ -76,7 +76,7 @@
             onSelected: function(event, id){
                 this.selected = true;
                 this.user = _.find(this.users, function(item){
-                    return item.id == id;
+                    return item.id === id;
                 });
                 this.enabled = false;
             },
@@ -86,13 +86,12 @@
                 this.name = '';
             },
             onBlur: function(event){
-                var $this = this;
-                setTimeout(function(){
-                    $this.enabled = false;
+                setTimeout(()=>{
+                    this.enabled = false;
                 }, 200);
             },
             onFocus: function(event){
-                if(this.name != '')
+                if(this.name !== '')
                     this.loadList();
             }
         }

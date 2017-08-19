@@ -119,9 +119,9 @@
                         </div>
                         <div class="card-footer text-muted">
                             <div class="row">
-                                <div class="col-md-10 ml-md-auto">
-                                    <button class="btn btn-primary" type="submit">Save</button>
+                                <div class="ml-auto mr-auto">
                                     <a href="{{ $balance->publicLink() }}" role="button" class="btn btn-secondary">Cancel</a>
+                                    <button class="btn btn-primary" type="submit">Save</button>
                                 </div>
                             </div>
                         </div>

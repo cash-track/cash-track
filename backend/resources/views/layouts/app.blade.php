@@ -26,11 +26,15 @@
 </head>
 <body>
 
-    @include('navbar-main')
+    <div id="vue-root">
 
-    @yield('content')
+        @include('navbar-main')
 
-    @include('footer')
+        @yield('content')
+
+        @include('footer')
+
+    </div>
 
     <!-- Google Analytics -->
     <script>

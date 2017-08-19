@@ -7,8 +7,9 @@
 
     .nav-image{
         height: 30px;
-        margin: -8px 4px -6px 0;
         width: 30px;
+        min-width: 30px;
+        margin: -8px 4px -6px 0;
         display: inline-block;
         vertical-align: middle;
     }
@@ -38,19 +39,9 @@ body{
     }
 }
 
-.card-columns {
+.dashboard {
     .card{
-        -webkit-column-break-inside: avoid; /* Chrome, Safari */
-        page-break-inside: avoid;           /* Theoretically FF 20+ */
-        break-inside: avoid-column;         /* IE 11 */
-
-        .card-footer{
-            font-size: 14px;
-
-            a{
-                color: #818a91;
-            }
-        }
+        margin-bottom: 15px;
     }
 }
 
@@ -88,21 +79,16 @@ body{
 
     .card-footer{
         .owners{
-            //max-width: 65%;
-            //display: inline-block;
-            //overflow: hidden;
-            //white-space: nowrap;
-            //text-overflow: ellipsis;
-
             a{
                 text-decoration: none;
 
                 &.profile-image-container{
-                    height: 26px;
+                    height: 27px;
+                    width: 27px;
+                    min-width: 27px;
                     margin: -10px 0 -4px 0px;
                     display: inline-block;
                     vertical-align: middle;
-                    width: 26px;
 
                     &>a{
                         display: inline-block;
@@ -123,17 +109,15 @@ body{
     overflow: hidden;
     position: relative;
 
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    display: block;
     img{
-        width: auto;
+        width: 100%;
         height: auto;
-        max-width: 100%;
-        max-height: 100%;
-        min-width: 100%;
-        position: relative;
-        display: block;
-        left: 50%;
-        top: 50%;
-        margin: -50% 0 0 -50%;
     }
 
     &>{

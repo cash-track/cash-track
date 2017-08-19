@@ -1,6 +1,6 @@
 {{-- card overwall debited --}}
-<div class="card card-inverse card-info text-left">
-    <div class="card-block">
+<div class="card text-white bg-info text-left">
+    <div class="card-body">
         <div class="row">
             <div class="col-2 text-center">
                 <i class="fa fa-3x fa-line-chart"></i>

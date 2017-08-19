@@ -4,7 +4,7 @@
 @section('title') Dashboard @endsection
 
 @section('content')
-<div class="container">
+<div class="container dashboard">
 
     @if(session('status'))
         <div class="alert alert-info" role="alert">
@@ -13,8 +13,12 @@
     @endif
 
     @if($balances->count())
-        <div class="card-columns">
-            @each('balance.card', $balances, 'balance')
+        <div class="row">
+            @foreach($balances as $balance)
+                <div class="col-sm-6 col-md-4">
+                    @include('balance.card', $balance)
+                </div>
+            @endforeach
         </div>
     @else
         <div class="alert alert-info" role="alert">

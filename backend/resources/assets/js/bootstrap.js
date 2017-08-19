@@ -11,15 +11,14 @@ window.Popper = Popper;
 // Bootstrap
 require('bootstrap');
 
-// Vue.js
-window.Vue = require('vue');
+// Axios HTTP requests
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+let token = document.head.querySelector('meta[name="csrf-token"]');
 
-// Vue resource
-require('vue-resource');
-
-// Set up a laravel crfs implementation in vue-resource
-Vue.http.interceptors.push((request, next) => {
-    request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken;
-
-    next();
-});
+if (token) {
+    window.csrf_token = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf_token;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
