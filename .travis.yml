@@ -9,17 +9,6 @@ php:
   - 7.0
   - 7.1
 
-cache:
-  directories:
-    - /home/travis/docker/
-
-before_install:
-  - if [ -f ${DOCKER_CACHE_FILE} ]; then gunzip -c ${DOCKER_CACHE_FILE} | docker load; fi
-
-env:
-  global:
-    - DOCKER_CACHE_FILE=/home/travis/docker/cache.tar.gz
-
 before_script:
   - cp .env.travis .env
   - cp backend/.env.travis backend/.env
@@ -29,7 +18,6 @@ before_script:
 
 script:
   - docker-compose exec -T workspace vendor/bin/phpunit
-  - if [[ ${TRAVIS_BRANCH} == "master" ]] && [[ ${TRAVIS_PULL_REQUEST} == "false" ]]; then mkdir -p $(dirname ${DOCKER_CACHE_FILE}) ; docker save $(docker history -q ${DOCKER_REPOSITORY}:${TRAVIS_COMMIT} | grep -v '<missing>') | gzip > ${DOCKER_CACHE_FILE}; fi
 
 matrix:
   allow_failures:
