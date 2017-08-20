@@ -1,19 +1,23 @@
 language: php
 
+sudo: required
+
+services:
+  - docker
+
 php:
   - 7.0
   - 7.1
 
 before_script:
-  - mysql -e 'create database homestead_test;'
-  - cd backend
-  - cp .env.travis .env
-  - composer self-update
-  - composer install --no-interaction
-  - php artisan key:generate
+  - cp .env.example .env
+  - cp backend/.env.travis backend/.env
+  - docker-compose up -d
+  - docker-compose exec workspace composer install --no-ineraction
+  - docker-compose exec workspace php artisan key:generate
 
 script:
-  - vendor/bin/phpunit
+  - docker-compose exec workspace phpunit
 
 matrix:
   allow_failures:
