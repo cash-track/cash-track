@@ -17,7 +17,7 @@ before_script:
   - docker-compose exec -T workspace php artisan key:generate
 
 script:
-  - docker-compose exec -T workspace phpunit
+  - docker-compose exec -T workspace vendor/bin/phpunit
 
 matrix:
   allow_failures:
