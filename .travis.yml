@@ -13,7 +13,7 @@ before_script:
   - cp .env.travis .env
   - cp backend/.env.travis backend/.env
   - docker-compose up -d workspace database
-  - docker-compose exec workspace composer install --no-ineraction
+  - docker-compose exec workspace composer install --no-interaction --prefer-dist --optimize-autoloader
   - docker-compose exec workspace php artisan key:generate
 
 script:
