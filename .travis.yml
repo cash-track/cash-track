@@ -10,9 +10,9 @@ php:
   - 7.1
 
 before_script:
-  - cp .env.example .env
+  - cp .env.travis .env
   - cp backend/.env.travis backend/.env
-  - docker-compose up -d
+  - docker-compose up -d workspace database
   - docker-compose exec workspace composer install --no-ineraction
   - docker-compose exec workspace php artisan key:generate
 
