@@ -17,7 +17,7 @@ mysql:
 
 before_script:
   - cp .env.travis .env
-  - mysql -e 'create database homestead_test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS homestead_test;'
   - cp backend/.env.travis backend/.env
   - docker-compose up -d workspace
   - docker-compose exec -T workspace composer install --no-interaction --prefer-dist --optimize-autoloader

@@ -72,7 +72,7 @@ return [
             'port'      => env('DB_TEST_PORT', '3306'),
             'database'  => env('DB_TEST_DATABASE', 'homestead_test'),
             'username'  => env('DB_TEST_USERNAME', 'homestead'),
-            'password'  => env('DB_TEST_PASSWORD', 'secret'),
+            'password'  => env('DB_TEST_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
