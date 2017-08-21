@@ -10,6 +10,11 @@ php:
   - 7.0
   - 7.1
 
+mysql:
+  database: homestead_test
+  username: root
+  encoding: utf8
+
 before_script:
   - cp .env.travis .env
   - mysql -e 'create database homestead_test;'
