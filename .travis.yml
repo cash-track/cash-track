@@ -4,24 +4,18 @@ sudo: required
 
 services:
   - docker
-  - mysql
 
 php:
   - 7.0
   - 7.1
 
-mysql:
-  database: homestead_test
-  username: root
-  encoding: utf8
-
 before_script:
   - cp .env.travis .env
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS homestead_test;'
   - cp backend/.env.travis backend/.env
-  - docker-compose up -d workspace
+  - docker-compose up -d workspace database
   - docker-compose exec -T workspace composer install --no-interaction --prefer-dist --optimize-autoloader
   - docker-compose exec -T workspace php artisan key:generate
+  - sleep 15
   - docker-compose exec -T workspace php artisan migrate
   - docker-compose exec -T workspace php artisan db:seed
 
