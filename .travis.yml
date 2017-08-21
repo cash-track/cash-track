@@ -9,18 +9,21 @@ php:
   - 7.0
   - 7.1
 
+before_install:
+  - sudo service mysql stop
+
 before_script:
   - cp .env.travis .env
   - cp backend/.env.travis backend/.env
-  - docker-compose up -d workspace database
-  - docker-compose exec -T workspace composer install --no-interaction --prefer-dist --optimize-autoloader
-  - docker-compose exec -T workspace php artisan key:generate
+  - sudo docker-compose up -d --build workspace database
+  - sudo docker-compose exec -T workspace composer install --no-interaction --prefer-dist --optimize-autoloader
+  - sudo docker-compose exec -T workspace php artisan key:generate
   - sleep 15
-  - docker-compose exec -T workspace php artisan migrate
-  - docker-compose exec -T workspace php artisan db:seed
+  - sudo docker-compose exec -T workspace php artisan migrate
+  - sudo docker-compose exec -T workspace php artisan db:seed
 
 script:
-  - docker-compose exec -T workspace vendor/bin/phpunit
+  - sudo docker-compose exec -T workspace vendor/bin/phpunit
 
 matrix:
   allow_failures:
