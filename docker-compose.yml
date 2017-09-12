@@ -18,11 +18,11 @@ services:
           - APP_PRODUCTION=${APP_PRODUCTION}
           - PUID=${WORKSPACE_PUID}
           - PGID=${WORKSPACE_PGID}
-      image: finance/workspace
+      image: cash-track/workspace
       volumes_from:
         - source
       volumes:
-        - ./logs/cron.log:/var/log/cron-job.log
+        - ./logs/cron-job.log:/var/log/cron-job.log
       ports:
         - "${WORKSPACE_SSH_PORT}:22"
       tty: true
@@ -37,13 +37,13 @@ services:
         context: ./backend
         args:
           - APP_PRODUCTION=${APP_PRODUCTION}
-      image: finance/php-fpm
+      image: cash-track/php-fpm
       volumes_from:
         - source
       volumes:
         - ./backend/config/php.ini:/usr/local/etc/php/php.ini
-      expose:
-        - "9000"
+      ports:
+        - "9000:9000"
       depends_on:
         - workspace
       networks:
@@ -54,7 +54,7 @@ services:
     web:
       build:
         context: ./web
-      image: finance/web
+      image: cash-track/web
       volumes_from:
         - source
       volumes:
@@ -79,7 +79,7 @@ services:
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      image: finance/database
+      image: cash-track/database
       volumes:
         - ./database/data:/var/lib/mysql
       ports:
@@ -91,7 +91,7 @@ services:
 
     cache:
       build: ./cache
-      image: finance/cache
+      image: cash-track/cache
       volumes:
         - ./cache/data:/data
       ports:
