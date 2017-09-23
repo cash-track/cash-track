@@ -1,7 +1,7 @@
 # Cash Track
 
 [![Build Status](https://travis-ci.org/VovikeMS/cash-track.svg?branch=master)](https://travis-ci.org/VovikeMS/cash-track)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/VovikeMS/finance/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/VovikeMS/finance/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/VovikeMS/cash-track/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/VovikeMS/cash-track/?branch=master)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
 Cash Track its an online tracking system which provide an easy way to track your money streams. 
