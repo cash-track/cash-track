@@ -1,19 +1,19 @@
-language: php
+sudo: required
 
-php:
-  - 7.0
-  - 7.1
+services:
+  - docker
 
-before_script:
+before_install:
+  - sudo service mysql stop
   - cp .env.travis .env
-  - mysql -e 'create database homestead_test;'
-  - composer self-update
-  - composer install --no-interaction
-  - php artisan key:generate
+  - cp backend/.env.travis backend/.env
+
+install:
+  - sudo docker-compose up -d --build workspace database
+  - sudo docker-compose exec -T workspace composer install --no-interaction --prefer-dist --optimize-autoloader
+  - sudo docker-compose exec -T workspace php artisan key:generate
+  - sudo docker-compose exec -T workspace php artisan migrate
+  - sudo docker-compose exec -T workspace php artisan db:seed
 
 script:
-  - vendor/bin/phpunit
-
-matrix:
-  allow_failures:
-    - php: 7.1
+  - sudo docker-compose exec -T workspace vendor/bin/phpunit
